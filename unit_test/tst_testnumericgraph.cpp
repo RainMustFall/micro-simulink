@@ -1,12 +1,16 @@
 #include <QtTest>
 
+#include "core.h"
+
 class TestNumericGraph : public QObject {
   Q_OBJECT
  private slots:
   void testBasic();
 };
 
-void TestNumericGraph::testBasic() { QCOMPARE(2 + 2, 4); }
+void TestNumericGraph::testBasic() {
+    QCOMPARE(Core().GetNumber(), 4);
+}
 
 QTEST_APPLESS_MAIN(TestNumericGraph)
 
