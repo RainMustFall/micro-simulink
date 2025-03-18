@@ -3,17 +3,27 @@ CONFIG -= qt
 TEMPLATE = lib
 CONFIG += staticlib
 
-CONFIG += c++17
+CONFIG += c++20
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    core.cpp
+    binary_operator.cpp \
+    execution_result.cpp \
+    scalar.cpp \
+    scalar_result.cpp \
+    scalar_result_factory.cpp
 
 HEADERS += \
-    core.h
+    binary_operator.h \
+    execution_result.h \
+    execution_result_factory.h \
+    node.h \
+    scalar.h \
+    scalar_result.h \
+    scalar_result_factory.h
 
 # Default rules for deployment.
 unix {
