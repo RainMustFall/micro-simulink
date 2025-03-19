@@ -1,11 +1,11 @@
 #include <QtTest>
 
 #include "binary_operator.h"
-#include "scalar.h"
 #include "function.h"
+#include "scalar.h"
 #include "scalar_node.h"
-#include "x_node.h"
 #include "scalar_result_factory.h"
+#include "x_node.h"
 
 class TestNumericGraph : public QObject {
   Q_OBJECT
@@ -15,27 +15,27 @@ class TestNumericGraph : public QObject {
 };
 
 void TestNumericGraph::testAddTwoNumbers() {
-  auto two = ScalarNode(2);
-  auto three = ScalarNode(3);
-  auto plus = PlusOperator();
+  auto two = ScalarNode<Function>(2);
+  auto plus = PlusOperator<Function>();
+  auto three = ScalarNode<Function>(3);
+
   plus.AttachInput(0, two).AttachInput(1, three);
 
-  auto scalar_factory = ScalarResultFactory();
-  auto result = plus.Execute(scalar_factory);
+  std::unique_ptr<Function> result = plus.Execute(FunctionFactory());
   auto scalar = static_cast<Scalar&>(*result);
 
   QCOMPARE(scalar.GetValue(), 5);
 }
 
 void TestNumericGraph::testXPlusOne() {
-  auto x = XNode();
-  auto one = ScalarNode(1);
-  auto plus = PlusOperator();
+  auto x = XNode<Function>();
+  auto plus = PlusOperator<Function>();
+  auto one = ScalarNode<Function>(1);
+
   plus.AttachInput(0, x).AttachInput(1, one);
 
-  auto scalar_factory = ScalarResultFactory();
-  auto result = plus.Execute(scalar_factory);
-  auto function = static_cast<Function&>(*result);
+  std::unique_ptr<Function> result = plus.Execute(FunctionFactory());
+  auto function = *result;
 
   QCOMPARE(function(0), 1);
   QCOMPARE(function(1), 2);

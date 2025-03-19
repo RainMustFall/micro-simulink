@@ -3,14 +3,13 @@
 
 #include "node.h"
 
-class ScalarNode : public Node {
+template <typename T>
+class ScalarNode : public Node<T, 0> {
  public:
-  ScalarNode(double value);
-  std::unique_ptr<ExecutionResult> Execute(
-      const ExecutionResultFactory &factory) const;
-  size_t GetNumInputs() const;
-  Node &AttachInput(size_t slot_index, const Node &node);
-  Node &DetachInput(size_t slot_index);
+  ScalarNode(double value) : value_{value} {}
+  std::unique_ptr<T> Execute(const ExecutionResultFactory<T> &factory) const override {
+    return factory.CreateScalar(value_);
+  }
 
  private:
   double value_;

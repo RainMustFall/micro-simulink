@@ -3,13 +3,13 @@
 
 #include "node.h"
 
-class XNode : public Node {
+template <typename T>
+class XNode : public Node<T, 0> {
  public:
-  std::unique_ptr<ExecutionResult> Execute(
-      const ExecutionResultFactory &factory) const override;
-  size_t GetNumInputs() const override;
-  Node &AttachInput(size_t slot_index, const Node &node) override;
-  Node &DetachInput(size_t slot_index) override;
+  std::unique_ptr<T> Execute(
+      const ExecutionResultFactory<T> &factory) const override {
+    return factory.CreateX();
+  }
 };
 
 #endif  // X_NODE_H

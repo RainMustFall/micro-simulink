@@ -10,17 +10,12 @@ CONFIG += c++20
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    binary_operator.cpp \
-    execution_result.cpp \
     function.cpp \
     scalar.cpp \
-    scalar_node.cpp \
-    scalar_result_factory.cpp \
-    x_node.cpp
+    scalar_result_factory.cpp
 
 HEADERS += \
     binary_operator.h \
-    execution_result.h \
     execution_result_factory.h \
     function.h \
     node.h \
