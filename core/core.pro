@@ -12,18 +12,22 @@ CONFIG += c++20
 SOURCES += \
     binary_operator.cpp \
     execution_result.cpp \
+    function.cpp \
     scalar.cpp \
-    scalar_result.cpp \
-    scalar_result_factory.cpp
+    scalar_node.cpp \
+    scalar_result_factory.cpp \
+    x_node.cpp
 
 HEADERS += \
     binary_operator.h \
     execution_result.h \
     execution_result_factory.h \
+    function.h \
     node.h \
     scalar.h \
-    scalar_result.h \
-    scalar_result_factory.h
+    scalar_node.h \
+    scalar_result_factory.h \
+    x_node.h
 
 # Default rules for deployment.
 unix {
