@@ -1,5 +1,7 @@
 #include "visual_node.h"
 
+#include <QtWidgets/QGraphicsScene>
+
 #include "input_connection_point.h"
 #include "output_connection_point.h"
 

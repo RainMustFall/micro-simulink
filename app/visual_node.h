@@ -1,8 +1,6 @@
 #ifndef VISUAL_NODE_H
 #define VISUAL_NODE_H
 
-#include <QtWidgets/QGraphicsScene>
-
 #include "connection_point.h"
 
 class VisualNode : public QGraphicsRectItem {
