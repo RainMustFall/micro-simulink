@@ -13,13 +13,15 @@ SOURCES += \
     input_connection_point.cpp \
     main.cpp \
     mainwindow.cpp \
-    output_connection_point.cpp
+    output_connection_point.cpp \
+    visual_node.cpp
 
 HEADERS += \
     connection_point.h \
     input_connection_point.h \
     mainwindow.h \
-    output_connection_point.h
+    output_connection_point.h \
+    visual_node.h
 
 FORMS += \
     mainwindow.ui
