@@ -9,11 +9,17 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    connection_point.cpp \
+    input_connection_point.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    output_connection_point.cpp
 
 HEADERS += \
-    mainwindow.h
+    connection_point.h \
+    input_connection_point.h \
+    mainwindow.h \
+    output_connection_point.h
 
 FORMS += \
     mainwindow.ui
@@ -22,6 +28,10 @@ TRANSLATIONS += \
     app_pl_PL.ts
 CONFIG += lrelease
 CONFIG += embed_translations
+
+CONFIG+=sanitizer
+
+CONFIG+=sanitize_address
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
