@@ -15,6 +15,7 @@ SOURCES += \
     input_connection_point.cpp \
     main.cpp \
     mainwindow.cpp \
+    node_palette.cpp \
     output_connection_point.cpp \
     visual_node.cpp
 
@@ -24,6 +25,7 @@ HEADERS += \
     graph_widget.h \
     input_connection_point.h \
     mainwindow.h \
+    node_palette.h \
     output_connection_point.h \
     visual_node.h
 
