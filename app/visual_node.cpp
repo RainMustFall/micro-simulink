@@ -5,25 +5,19 @@
 #include "input_connection_point.h"
 #include "output_connection_point.h"
 
-VisualNode::VisualNode(const QString &label, QGraphicsItem *parent)
-    : QGraphicsRectItem(parent), m_label(label) {
+VisualNode::VisualNode(QGraphicsItem *parent)
+    : QGraphicsRectItem(parent) {
   setFlag(ItemIsMovable);
   setFlag(ItemIsSelectable);
   setRect(-40, -20, 80, 40);
   setBrush(QBrush(Qt::white));
   setPen(QPen(Qt::black));
 
-  m_textItem = new QGraphicsTextItem(m_label, this);
-  m_textItem->setPos(-m_textItem->boundingRect().width() / 2,
-                     -m_textItem->boundingRect().height() / 2);
-
   m_connectionPoints = {
       std::make_shared<InputConnectionPoint>(0, 1, this),
       std::make_shared<OutputConnectionPoint>(this),
   };
 }
-
-QString VisualNode::label() const { return m_label; }
 
 ConnectionPoint *VisualNode::processHover(const QPointF &scenePos,
                                           bool mousePressed,

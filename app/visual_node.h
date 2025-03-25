@@ -5,7 +5,7 @@
 
 class VisualNode : public QGraphicsRectItem {
  public:
-  VisualNode(const QString& label, QGraphicsItem* parent = nullptr);
+  VisualNode(QGraphicsItem* parent = nullptr);
 
   QString label() const;
 
@@ -21,8 +21,6 @@ class VisualNode : public QGraphicsRectItem {
   virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
 
  private:
-  QString m_label;
-  QGraphicsTextItem* m_textItem;
   std::vector<std::shared_ptr<ConnectionPoint>> m_connectionPoints;
 };
 

@@ -1,5 +1,9 @@
 #include "graph_widget.h"
 
+#include <QGraphicsProxyWidget>
+
+#include "number_visual_node.h"
+
 GraphWidget::GraphWidget(QWidget *parent) : QGraphicsView(parent) {
   setScene(&m_scene);
   setRenderHint(QPainter::Antialiasing);
@@ -9,17 +13,17 @@ GraphWidget::GraphWidget(QWidget *parent) : QGraphicsView(parent) {
   m_scene.setItemIndexMethod(QGraphicsScene::ItemIndexMethod::NoIndex);
 
   // Pre-populate with some nodes
-  VisualNode *node1 = new VisualNode("Input 1");
+  VisualNode *node1 = new NumberVisualNode();
   node1->setPos(-200, 0);
   m_scene.addItem(node1);
   m_nodes.append(node1);
 
-  VisualNode *node2 = new VisualNode("Operation");
+  VisualNode *node2 = new VisualNode();
   node2->setPos(0, 0);
   m_scene.addItem(node2);
   m_nodes.append(node2);
 
-  VisualNode *node3 = new VisualNode("Output");
+  VisualNode *node3 = new VisualNode();
   node3->setPos(200, 0);
   m_scene.addItem(node3);
   m_nodes.append(node3);
@@ -165,7 +169,7 @@ void GraphWidget::dropEvent(QDropEvent *event) {
     QPointF dropPoint = mapToScene(event->position().toPoint());
     dataStream >> nodeLabel;
 
-    VisualNode *newNode = new VisualNode(nodeLabel);
+    VisualNode *newNode = new VisualNode();
     newNode->setPos(dropPoint - QPointF(40, 20));  // Adjust position to center
     m_scene.addItem(newNode);
     m_nodes.append(newNode);

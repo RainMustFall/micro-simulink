@@ -16,6 +16,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     node_palette.cpp \
+    number_visual_node.cpp \
     output_connection_point.cpp \
     visual_node.cpp
 
@@ -26,6 +27,7 @@ HEADERS += \
     input_connection_point.h \
     mainwindow.h \
     node_palette.h \
+    number_visual_node.h \
     output_connection_point.h \
     visual_node.h
 

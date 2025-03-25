@@ -17,6 +17,7 @@
 #include "connection.h"
 #include "connection_point.h"
 #include "visual_node.h"
+#include "number_visual_node.h"
 
 class GraphWidget : public QGraphicsView {
  public:
