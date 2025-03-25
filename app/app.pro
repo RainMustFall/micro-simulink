@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     connection.cpp \
     connection_point.cpp \
+    graph_widget.cpp \
     input_connection_point.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 HEADERS += \
     connection.h \
     connection_point.h \
+    graph_widget.h \
     input_connection_point.h \
     mainwindow.h \
     output_connection_point.h \
