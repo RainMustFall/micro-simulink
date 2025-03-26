@@ -2,6 +2,7 @@
 #define NODE_H
 
 #include <cstddef>
+#include <stdexcept>
 #include <vector>
 
 #include "execution_result_factory.h"

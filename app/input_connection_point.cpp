@@ -1,8 +1,9 @@
 #include "input_connection_point.h"
 
 InputConnectionPoint::InputConnectionPoint(size_t index, size_t totalPoints,
+                                           size_t nodeId,
                                            QGraphicsRectItem *parent)
-    : ConnectionPoint(parent) {
+    : ConnectionPoint(nodeId, parent), m_index{index} {
   double distanceBetweenInputs =
       parent->boundingRect().height() / (totalPoints + 1);
   double x = parent->boundingRect().left();
@@ -33,3 +34,5 @@ bool InputConnectionPoint::acceptsInputPress(const QPointF &scenePos) {
   return sceneBoundingRect().contains(scenePos) &&
          m_state == ConnectionState::CONNECTED;
 }
+
+size_t InputConnectionPoint::getSlot() const { return m_index; }

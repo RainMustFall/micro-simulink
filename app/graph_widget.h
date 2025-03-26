@@ -16,12 +16,12 @@
 
 #include "connection.h"
 #include "connection_point.h"
+#include "graph_controller.h"
 #include "visual_node.h"
-#include "number_visual_node.h"
 
 class GraphWidget : public QGraphicsView {
  public:
-  GraphWidget(QWidget *parent = nullptr);
+  GraphWidget(GraphController *controller, QWidget *parent = nullptr);
 
  protected:
   void mousePressEvent(QMouseEvent *event) override;
@@ -42,6 +42,7 @@ class GraphWidget : public QGraphicsView {
   QGraphicsScene m_scene;
   QVector<VisualNode *> m_nodes;
   QVector<Connection *> m_connections;
+  GraphController *m_controller;
 
   ConnectionPoint *m_connectionSourcePoint = nullptr;
   QPointF m_currentMousePos;

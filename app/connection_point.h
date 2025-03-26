@@ -14,7 +14,7 @@
 
 class ConnectionPoint : public QGraphicsEllipseItem {
  public:
-  ConnectionPoint(QGraphicsRectItem* parent = nullptr);
+  ConnectionPoint(size_t nodeId, QGraphicsRectItem* parent = nullptr);
 
   virtual void updateHovered(const QPointF& scenePos, bool mousePressed,
                              bool currentlyConnecting) = 0;
@@ -24,6 +24,10 @@ class ConnectionPoint : public QGraphicsEllipseItem {
   virtual bool acceptsInputPress(const QPointF& scenePos) = 0;
 
   virtual bool acceptsOutputPress(const QPointF& scenePos) = 0;
+
+  virtual size_t getSlot() const = 0;
+
+  size_t getNodeId() const;
 
   void startConnection();
 
@@ -46,5 +50,7 @@ class ConnectionPoint : public QGraphicsEllipseItem {
   };
 
   ConnectionState m_state = ConnectionState::FREE;
+
+  size_t m_nodeId;
 };
 #endif  // CONNECTION_POINT_H

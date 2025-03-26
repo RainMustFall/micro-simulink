@@ -1,11 +1,13 @@
 #include "connection_point.h"
 
-ConnectionPoint::ConnectionPoint(QGraphicsRectItem *parent)
-    : QGraphicsEllipseItem(parent) {
+ConnectionPoint::ConnectionPoint(size_t nodeId, QGraphicsRectItem *parent)
+    : QGraphicsEllipseItem(parent), m_nodeId(nodeId) {
   setBrush(QBrush(Qt::blue));
   setPen(QPen(Qt::blue));
   setZValue(5);
 }
+
+size_t ConnectionPoint::getNodeId() const { return m_nodeId; }
 
 void ConnectionPoint::startConnection() {
   m_state = ConnectionState::CONNECTING;

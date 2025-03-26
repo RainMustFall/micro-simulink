@@ -5,7 +5,7 @@
 
 class OutputConnectionPoint : public ConnectionPoint {
  public:
-  OutputConnectionPoint(QGraphicsRectItem* parent = nullptr);
+  OutputConnectionPoint(size_t nodeId, QGraphicsRectItem* parent = nullptr);
 
   void updateHovered(const QPointF &scenePos, bool mousePressed, bool currentlyConnecting) override;
 
@@ -14,6 +14,8 @@ class OutputConnectionPoint : public ConnectionPoint {
   bool acceptsOutputPress(const QPointF& scenePos) override;
 
   bool acceptsInputPress(const QPointF&) override;
+
+  size_t getSlot() const override;
 };
 
 #endif  // OUTPUT_CONNECTION_POINT_H

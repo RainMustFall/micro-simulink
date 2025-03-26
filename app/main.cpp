@@ -30,8 +30,10 @@ int main(int argc, char** argv) {
   QWidget* centralWidget = new QWidget(&mainWindow);
   QHBoxLayout* mainLayout = new QHBoxLayout(centralWidget);
 
+  GraphController controller;
+
   // Create the graph widget
-  GraphWidget* graphWidget = new GraphWidget();
+  GraphWidget* graphWidget = new GraphWidget(&controller);
   mainLayout->addWidget(graphWidget);
 
   // Create the right panel

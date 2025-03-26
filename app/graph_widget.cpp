@@ -3,8 +3,10 @@
 #include <QGraphicsProxyWidget>
 
 #include "number_visual_node.h"
+#include "root_visual_node.h"
 
-GraphWidget::GraphWidget(QWidget *parent) : QGraphicsView(parent) {
+GraphWidget::GraphWidget(GraphController *controller, QWidget *parent)
+    : QGraphicsView(parent), m_controller(controller) {
   setScene(&m_scene);
   setRenderHint(QPainter::Antialiasing);
   setDragMode(RubberBandDrag);
@@ -12,21 +14,11 @@ GraphWidget::GraphWidget(QWidget *parent) : QGraphicsView(parent) {
   // https://stackoverflow.com/questions/38458830
   m_scene.setItemIndexMethod(QGraphicsScene::ItemIndexMethod::NoIndex);
 
-  // Pre-populate with some nodes
-  VisualNode *node1 = new NumberVisualNode();
-  node1->setPos(-200, 0);
-  m_scene.addItem(node1);
-  m_nodes.append(node1);
-
-  VisualNode *node2 = new VisualNode();
-  node2->setPos(0, 0);
-  m_scene.addItem(node2);
-  m_nodes.append(node2);
-
-  VisualNode *node3 = new VisualNode();
-  node3->setPos(200, 0);
-  m_scene.addItem(node3);
-  m_nodes.append(node3);
+  // Add root node
+  VisualNode *root = new RootVisualNode(controller);
+  root->setPos(-200, 0);
+  m_scene.addItem(root);
+  m_nodes.append(root);
 }
 
 void GraphWidget::detachAndStartConnecting(ConnectionPoint *destinationPoint,
@@ -64,6 +56,7 @@ void GraphWidget::mousePressEvent(QMouseEvent *event) {
 
       auto destinationPoint = node->processInputPress(scenePos);
       if (destinationPoint != nullptr) {
+        m_controller->DetachNode(node->getId(), destinationPoint->getSlot());
         detachAndStartConnecting(destinationPoint, scenePos);
         return;
       }
@@ -121,6 +114,9 @@ void GraphWidget::mouseReleaseEvent(QMouseEvent *event) {
   for (VisualNode *node : m_nodes) {
     auto destinationPoint = node->processDrop(scenePos);
     if (destinationPoint != nullptr) {
+      m_controller->ConnectNodes(m_connectionSourcePoint->getNodeId(),
+                                 destinationPoint->getNodeId(),
+                                 destinationPoint->getSlot());
       makeConnection(destinationPoint);
       connectionHappened = true;
       break;
@@ -169,7 +165,7 @@ void GraphWidget::dropEvent(QDropEvent *event) {
     QPointF dropPoint = mapToScene(event->position().toPoint());
     dataStream >> nodeLabel;
 
-    VisualNode *newNode = new VisualNode();
+    VisualNode *newNode = new NumberVisualNode(m_controller);
     newNode->setPos(dropPoint - QPointF(40, 20));  // Adjust position to center
     m_scene.addItem(newNode);
     m_nodes.append(newNode);

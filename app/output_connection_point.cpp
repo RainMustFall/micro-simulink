@@ -1,7 +1,8 @@
 #include "output_connection_point.h"
 
-OutputConnectionPoint::OutputConnectionPoint(QGraphicsRectItem *parent)
-    : ConnectionPoint(parent) {
+OutputConnectionPoint::OutputConnectionPoint(size_t nodeId,
+                                             QGraphicsRectItem *parent)
+    : ConnectionPoint(nodeId, parent) {
   double x = parent->boundingRect().right() - 10;
   double y = parent->boundingRect().center().y() - 5;
   setRect(x, y, 10, 10);
@@ -27,3 +28,5 @@ bool OutputConnectionPoint::acceptsOutputPress(const QPointF &scenePos) {
 }
 
 bool OutputConnectionPoint::acceptsInputPress(const QPointF &) { return false; }
+
+size_t OutputConnectionPoint::getSlot() const { return 0; }

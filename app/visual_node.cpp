@@ -5,25 +5,29 @@
 #include "input_connection_point.h"
 #include "output_connection_point.h"
 
-VisualNode::VisualNode(QGraphicsItem *parent)
-    : QGraphicsRectItem(parent) {
+VisualNode::VisualNode(size_t numberOfInputs, size_t id, QGraphicsItem *parent)
+    : QGraphicsRectItem(parent), m_id{id} {
   setFlag(ItemIsMovable);
   setFlag(ItemIsSelectable);
   setRect(-40, -20, 80, 40);
   setBrush(QBrush(Qt::white));
   setPen(QPen(Qt::black));
 
-  m_connectionPoints = {
-      std::make_shared<InputConnectionPoint>(0, 1, this),
-      std::make_shared<OutputConnectionPoint>(this),
-  };
+  m_connectionPoints = {std::make_shared<OutputConnectionPoint>(id, this)};
+
+  for (size_t i = 0; i < numberOfInputs; ++i) {
+    m_connectionPoints.push_back(
+        std::make_shared<InputConnectionPoint>(i, numberOfInputs, id, this));
+  }
 }
 
-ConnectionPoint *VisualNode::processHover(const QPointF &scenePos,
+size_t VisualNode::getId() const { return m_id; }
+
+ConnectionPoint *VisualNode::processHover(const QPointF &mousePos,
                                           bool mousePressed,
                                           bool currentlyConnecting) {
   for (const auto &connectionPoint : m_connectionPoints) {
-    connectionPoint->updateHovered(scenePos, mousePressed, currentlyConnecting);
+    connectionPoint->updateHovered(mousePos, mousePressed, currentlyConnecting);
   }
 
   for (const auto &connectionPoint : m_connectionPoints) {
@@ -34,27 +38,27 @@ ConnectionPoint *VisualNode::processHover(const QPointF &scenePos,
   return nullptr;
 }
 
-ConnectionPoint *VisualNode::processDrop(const QPointF &scenePos) {
+ConnectionPoint *VisualNode::processDrop(const QPointF &mousePos) {
   for (auto connectionPoint : m_connectionPoints) {
-    if (connectionPoint->acceptsDrop(scenePos)) {
+    if (connectionPoint->acceptsDrop(mousePos)) {
       return connectionPoint.get();
     }
   }
   return nullptr;
 }
 
-ConnectionPoint *VisualNode::processOutputPress(const QPointF &scenePos) {
+ConnectionPoint *VisualNode::processOutputPress(const QPointF &mousePos) {
   for (auto connectionPoint : m_connectionPoints) {
-    if (connectionPoint->acceptsOutputPress(scenePos)) {
+    if (connectionPoint->acceptsOutputPress(mousePos)) {
       return connectionPoint.get();
     }
   }
   return nullptr;
 }
 
-ConnectionPoint *VisualNode::processInputPress(const QPointF &scenePos) {
+ConnectionPoint *VisualNode::processInputPress(const QPointF &mousePos) {
   for (auto connectionPoint : m_connectionPoints) {
-    if (connectionPoint->acceptsInputPress(scenePos)) {
+    if (connectionPoint->acceptsInputPress(mousePos)) {
       return connectionPoint.get();
     }
   }
