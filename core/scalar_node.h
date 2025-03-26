@@ -4,10 +4,11 @@
 #include "node.h"
 
 template <typename T>
-class ScalarNode : public Node<T, 0> {
+class ScalarNode : public Node<T> {
  public:
-  ScalarNode(double value) : value_{value} {}
-  std::unique_ptr<T> Execute(const ExecutionResultFactory<T> &factory) const override {
+  ScalarNode(double value) : Node<T>(0), value_{value} {}
+  std::unique_ptr<T> Execute(
+      const ExecutionResultFactory<T> &factory) const override {
     return factory.CreateScalar(value_);
   }
 

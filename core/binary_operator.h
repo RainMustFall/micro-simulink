@@ -4,9 +4,12 @@
 #include "node.h"
 
 template <typename T>
-class PlusOperator : public Node<T, 2> {
+class PlusOperator : public Node<T> {
  public:
-  std::unique_ptr<T> Execute(const ExecutionResultFactory<T> &factory) const override {
+  PlusOperator() : Node<T>(2) {}
+
+  std::unique_ptr<T> Execute(
+      const ExecutionResultFactory<T> &factory) const override {
     auto inputs = this->ExecuteDependencies(factory);
     return std::make_unique<T>(*(inputs.front()) + *(inputs.back()));
   }

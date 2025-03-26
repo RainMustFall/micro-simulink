@@ -11,6 +11,7 @@ CONFIG += c++20
 
 SOURCES += \
     function.cpp \
+    graph_controller.cpp \
     scalar.cpp \
     scalar_result_factory.cpp
 
@@ -18,7 +19,9 @@ HEADERS += \
     binary_operator.h \
     execution_result_factory.h \
     function.h \
+    graph_controller.h \
     node.h \
+    root_node.h \
     scalar.h \
     scalar_node.h \
     scalar_result_factory.h \

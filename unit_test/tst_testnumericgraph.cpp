@@ -2,6 +2,7 @@
 
 #include "binary_operator.h"
 #include "function.h"
+#include "graph_controller.h"
 #include "scalar.h"
 #include "scalar_node.h"
 #include "scalar_result_factory.h"
@@ -12,6 +13,7 @@ class TestNumericGraph : public QObject {
  private slots:
   void testAddTwoNumbers();
   void testXPlusOne();
+  void testGraphController();
 };
 
 void TestNumericGraph::testAddTwoNumbers() {
@@ -40,6 +42,21 @@ void TestNumericGraph::testXPlusOne() {
   QCOMPARE(function(0), 1);
   QCOMPARE(function(1), 2);
   QCOMPARE(function(2), 3);
+}
+
+void TestNumericGraph::testGraphController() {
+  auto controller = GraphController();
+  controller.AddRootNode();
+
+  auto five = controller.AddScalarNode(5);
+  auto plus = controller.AddPlusNode();
+  auto three = controller.AddScalarNode(3);
+
+  controller.ConnectNodes(five, plus, 0);
+  controller.ConnectNodes(three, plus, 1);
+  controller.ConnectNodes(plus, GraphController::kRootIndex, 0);
+
+  QCOMPARE(controller.GetGraphResult(), 8);
 }
 
 QTEST_APPLESS_MAIN(TestNumericGraph)

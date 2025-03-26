@@ -2,45 +2,43 @@
 #define NODE_H
 
 #include <cstddef>
+#include <vector>
 
 #include "execution_result_factory.h"
 
 template <typename T>
-class Executable {
+class Node {
  public:
-  virtual std::unique_ptr<T> Execute(
-      const ExecutionResultFactory<T>& factory) const = 0;
-};
+  explicit Node(size_t input_num) : dependencies_(input_num) {}
 
-template <typename T, size_t NumInputs>
-class Node : public Executable<T> {
- public:
-  size_t GetNumInputs() const { return NumInputs; }
+  size_t GetNumInputs() const { return dependencies_.size(); }
 
-  Node<T, NumInputs>& AttachInput(size_t slot_index,
-                                  const Executable<T>& input) {
+  Node<T>& AttachInput(size_t slot_index, const Node<T>& input) {
     CheckSlotIndex(slot_index);
     dependencies_[slot_index] = &input;
     return *this;
   }
 
-  Node<T, NumInputs>& DetachInput(size_t slot_index) {
+  Node<T>& DetachInput(size_t slot_index) {
     CheckSlotIndex(slot_index);
     dependencies_[slot_index] = nullptr;
     return *this;
   }
 
+  virtual std::unique_ptr<T> Execute(
+      const ExecutionResultFactory<T>& factory) const = 0;
+
  protected:
-  std::array<std::unique_ptr<T>, NumInputs> ExecuteDependencies(
+  std::vector<std::unique_ptr<T>> ExecuteDependencies(
       const ExecutionResultFactory<T>& factory) const {
-    std::array<std::unique_ptr<T>, NumInputs> result;
-    for (size_t i = 0; i < NumInputs; ++i) {
+    std::vector<std::unique_ptr<T>> result;
+    for (size_t i = 0; i < dependencies_.size(); ++i) {
       if (dependencies_[i] == nullptr) {
         throw std::runtime_error(
             "The graph is incomplete: some nodes are missing inputs!");
       }
 
-      result[i] = dependencies_[i]->Execute(factory);
+      result.emplace_back(dependencies_[i]->Execute(factory));
     }
 
     return result;
@@ -48,12 +46,12 @@ class Node : public Executable<T> {
 
  private:
   void CheckSlotIndex(size_t slot_index) {
-    if (slot_index >= NumInputs) {
+    if (slot_index >= dependencies_.size()) {
       throw std::out_of_range("Tried to access slot with index out of range");
     }
   }
 
-  std::array<const Executable<T>*, NumInputs> dependencies_;
+  std::vector<const Node<T>*> dependencies_;
 };
 
 #endif  // NODE_H
