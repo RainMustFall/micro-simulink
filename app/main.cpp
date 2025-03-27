@@ -18,6 +18,7 @@
 #include <cmath>
 
 #include "graph_widget.h"
+#include "node_drag_buffer.h"
 #include "node_palette.h"
 
 int main(int argc, char** argv) {
@@ -31,9 +32,10 @@ int main(int argc, char** argv) {
   QHBoxLayout* mainLayout = new QHBoxLayout(centralWidget);
 
   GraphController controller;
+  NodeDragBuffer dragBuffer;
 
   // Create the graph widget
-  GraphWidget* graphWidget = new GraphWidget(&controller);
+  GraphWidget* graphWidget = new GraphWidget(&controller, &dragBuffer);
   mainLayout->addWidget(graphWidget);
 
   // Create the right panel
@@ -42,7 +44,7 @@ int main(int argc, char** argv) {
   QVBoxLayout* rightLayout = new QVBoxLayout(rightPanel);
 
   // Create the node palette
-  NodePalette* nodePalette = new NodePalette();
+  NodePalette* nodePalette = new NodePalette(&controller, &dragBuffer);
   rightLayout->addWidget(nodePalette);
   rightLayout->addStretch();
 

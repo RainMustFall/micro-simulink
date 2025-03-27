@@ -5,8 +5,11 @@
 #include "number_visual_node.h"
 #include "root_visual_node.h"
 
-GraphWidget::GraphWidget(GraphController *controller, QWidget *parent)
-    : QGraphicsView(parent), m_controller(controller) {
+GraphWidget::GraphWidget(GraphController *controller,
+                         NodeDragBuffer *dragBuffer, QWidget *parent)
+    : QGraphicsView(parent),
+      m_controller(controller),
+      m_dragBuffer(dragBuffer) {
   setScene(&m_scene);
   setRenderHint(QPainter::Antialiasing);
   setDragMode(RubberBandDrag);
@@ -159,13 +162,9 @@ void GraphWidget::dragMoveEvent(QDragMoveEvent *event) {
 
 void GraphWidget::dropEvent(QDropEvent *event) {
   if (event->mimeData()->hasFormat("application/x-node")) {
-    QByteArray itemData = event->mimeData()->data("application/x-node");
-    QDataStream dataStream(&itemData, QIODevice::ReadOnly);
-    QString nodeLabel;
     QPointF dropPoint = mapToScene(event->position().toPoint());
-    dataStream >> nodeLabel;
 
-    VisualNode *newNode = new NumberVisualNode(m_controller);
+    VisualNode *newNode = m_dragBuffer->releaseNode().release();
     newNode->setPos(dropPoint - QPointF(40, 20));  // Adjust position to center
     m_scene.addItem(newNode);
     m_nodes.append(newNode);

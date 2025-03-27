@@ -17,11 +17,13 @@
 #include "connection.h"
 #include "connection_point.h"
 #include "graph_controller.h"
+#include "node_drag_buffer.h"
 #include "visual_node.h"
 
 class GraphWidget : public QGraphicsView {
  public:
-  GraphWidget(GraphController *controller, QWidget *parent = nullptr);
+  GraphWidget(GraphController *controller, NodeDragBuffer *dragBuffer,
+              QWidget *parent = nullptr);
 
  protected:
   void mousePressEvent(QMouseEvent *event) override;
@@ -43,6 +45,7 @@ class GraphWidget : public QGraphicsView {
   QVector<VisualNode *> m_nodes;
   QVector<Connection *> m_connections;
   GraphController *m_controller;
+  NodeDragBuffer *m_dragBuffer;
 
   ConnectionPoint *m_connectionSourcePoint = nullptr;
   QPointF m_currentMousePos;

@@ -6,27 +6,28 @@
 #include <QtGui/QDrag>
 #include <QtWidgets/QListWidgetItem>
 
-#include "node_palette.h"
+#include "number_visual_node.h"
 
-NodePalette::NodePalette(QWidget *parent) : QListWidget(parent) {
+NodePalette::NodePalette(GraphController *controller,
+                         NodeDragBuffer *dragBuffer, QWidget *parent)
+    : QListWidget(parent), m_dragBuffer(dragBuffer), m_controller(controller) {
   setDragEnabled(true);
-  addItem(new QListWidgetItem("New Node"));
-  addItem(new QListWidgetItem("New Node"));
+  addItem(new NodePaletteItem<NumberVisualNode>("Number"));
 }
 
 void NodePalette::startDrag(Qt::DropActions supportedActions) {
-  QListWidgetItem *item = currentItem();
-  if (item) {
+  auto item = dynamic_cast<AbstractNodePaletteItem *>(currentItem());
+  if (item != nullptr) {
     QMimeData *mimeData = new QMimeData;
-    QByteArray itemData;
-    QDataStream dataStream(&itemData, QIODevice::WriteOnly);
+    mimeData->setData("application/x-node", "new-node");
+    m_dragBuffer->setNode(item->createVisualNode(m_controller));
 
-    QString label = item->text();
-    dataStream << label;
-
-    mimeData->setData("application/x-node", itemData);
     QDrag *drag = new QDrag(this);
     drag->setMimeData(mimeData);
     drag->exec(supportedActions, Qt::MoveAction);
   }
 }
+
+NodePalette::AbstractNodePaletteItem::AbstractNodePaletteItem(
+    const QString &text)
+    : QListWidgetItem(text) {}
