@@ -17,6 +17,7 @@
 #include <QtWidgets/QWidget>
 #include <cmath>
 
+#include "calculation_widget.h"
 #include "graph_widget.h"
 #include "node_drag_buffer.h"
 #include "node_palette.h"
@@ -45,8 +46,12 @@ int main(int argc, char** argv) {
 
   // Create the node palette
   NodePalette* nodePalette = new NodePalette(&controller, &dragBuffer);
-  rightLayout->addWidget(nodePalette);
+  CalculationWidget* calcWidget =
+      new CalculationWidget(&controller, rightPanel);
+
+  rightLayout->addWidget(calcWidget);
   rightLayout->addStretch();
+  rightLayout->addWidget(nodePalette);
 
   mainLayout->addWidget(rightPanel);
 

@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui concurrent
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    calculation_widget.cpp \
     connection.cpp \
     connection_point.cpp \
     graph_widget.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
     visual_node.cpp
 
 HEADERS += \
+    calculation_widget.h \
     connection.h \
     connection_point.h \
     graph_widget.h \
@@ -43,9 +45,10 @@ TRANSLATIONS += \
 CONFIG += lrelease
 CONFIG += embed_translations
 
+
 CONFIG+=sanitizer
 
-CONFIG+=sanitize_address
+CONFIG+=sanitize_thread
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
