@@ -46,9 +46,9 @@ CONFIG += lrelease
 CONFIG += embed_translations
 
 
-CONFIG+=sanitizer
+# CONFIG+=sanitizer
 
-CONFIG+=sanitize_thread
+# CONFIG+=sanitize_thread
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -69,3 +69,16 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../core
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../core/release/core.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../core/debug/core.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../core/libcore.a
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../klfbackend/release/ -lKLFBackend
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../klfbackend/debug/ -lKLFBackend
+else:unix: LIBS += -L$$OUT_PWD/../klfbackend/ -lKLFBackend
+
+INCLUDEPATH += $$PWD/../klfbackend
+DEPENDPATH += $$PWD/../klfbackend
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../klfbackend/release/libKLFBackend.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../klfbackend/debug/libKLFBackend.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../klfbackend/release/KLFBackend.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../klfbackend/debug/KLFBackend.lib
+else:unix: PRE_TARGETDEPS += $$OUT_PWD/../klfbackend/libKLFBackend.a
