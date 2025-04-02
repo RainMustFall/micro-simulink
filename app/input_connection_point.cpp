@@ -3,12 +3,10 @@
 InputConnectionPoint::InputConnectionPoint(size_t index, size_t totalPoints,
                                            size_t nodeId,
                                            QGraphicsRectItem *parent)
-    : ConnectionPoint(nodeId, parent), m_index{index} {
-  double distanceBetweenInputs =
-      parent->boundingRect().height() / (totalPoints + 1);
-  double x = parent->boundingRect().left();
-  double y = parent->boundingRect().top() + distanceBetweenInputs * (index + 1);
-  setRect(x, y - kRadius, 2 * kRadius, 2 * kRadius);
+    : ConnectionPoint(nodeId, parent),
+      m_index{index},
+      m_totalPoints{totalPoints} {
+  updatePosition();
 }
 
 void InputConnectionPoint::updateHovered(const QPointF &scenePos,
@@ -36,3 +34,14 @@ bool InputConnectionPoint::acceptsInputPress(const QPointF &scenePos) {
 }
 
 size_t InputConnectionPoint::getSlot() const { return m_index; }
+
+void InputConnectionPoint::updatePosition() { setPositionOnParent(); }
+
+void InputConnectionPoint::setPositionOnParent() {
+  double distanceBetweenInputs =
+      parentItem()->boundingRect().height() / (m_totalPoints + 1);
+  double x = parentItem()->boundingRect().left();
+  double y = parentItem()->boundingRect().top() +
+             distanceBetweenInputs * (m_index + 1);
+  setRect(x, y - kRadius, 2 * kRadius, 2 * kRadius);
+}

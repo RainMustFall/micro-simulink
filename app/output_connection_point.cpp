@@ -1,11 +1,15 @@
 #include "output_connection_point.h"
 
+void OutputConnectionPoint::setPositionOnParent() {
+  double x = parentItem()->boundingRect().right() - 2 * kRadius;
+  double y = parentItem()->boundingRect().center().y() - kRadius;
+  setRect(x, y, 2 * kRadius, 2 * kRadius);
+}
+
 OutputConnectionPoint::OutputConnectionPoint(size_t nodeId,
                                              QGraphicsRectItem *parent)
     : ConnectionPoint(nodeId, parent) {
-  double x = parent->boundingRect().right() - 2 * kRadius;
-  double y = parent->boundingRect().center().y() - kRadius;
-  setRect(x, y, 2 * kRadius, 2 * kRadius);
+  setPositionOnParent();
 }
 
 void OutputConnectionPoint::updateHovered(const QPointF &scenePos,
@@ -30,3 +34,5 @@ bool OutputConnectionPoint::acceptsOutputPress(const QPointF &scenePos) {
 bool OutputConnectionPoint::acceptsInputPress(const QPointF &) { return false; }
 
 size_t OutputConnectionPoint::getSlot() const { return 0; }
+
+void OutputConnectionPoint::updatePosition() { setPositionOnParent(); }

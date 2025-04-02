@@ -5,7 +5,8 @@
 
 class VisualNode : public QGraphicsRectItem {
  public:
-  VisualNode(size_t numberOfInputs, size_t id, const QRect& rect, QGraphicsItem *parent);
+  VisualNode(size_t numberOfInputs, size_t id, const QRect& rect,
+             QGraphicsItem* parent);
 
   size_t getId() const;
 
@@ -19,6 +20,8 @@ class VisualNode : public QGraphicsRectItem {
   ConnectionPoint* processInputPress(const QPointF& scenePos);
 
   virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
+
+  void updateRect(const QRectF& rect);
 
  private:
   std::vector<std::shared_ptr<ConnectionPoint>> m_connectionPoints;

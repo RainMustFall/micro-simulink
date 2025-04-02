@@ -19,8 +19,13 @@ class InputConnectionPoint : public ConnectionPoint {
 
   size_t getSlot() const override;
 
+  void updatePosition() override;
+
  private:
   size_t m_index;
+     size_t m_totalPoints;
+
+  void setPositionOnParent();
 };
 
 #endif  // INPUT_CONNECTION_POINT_H

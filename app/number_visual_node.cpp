@@ -1,6 +1,8 @@
 #include "number_visual_node.h"
 
 #include <QDebug>
+#include <QGraphicsScene>
+#include <QtGlobal>
 
 NumberVisualNode::NumberVisualNode(GraphController *controller,
                                    QGraphicsItem *parent)
@@ -21,13 +23,25 @@ void NumberVisualNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
 void NumberVisualNode::paint(QPainter *painter,
                              const QStyleOptionGraphicsItem *option,
                              QWidget *widget) {
-  QGraphicsRectItem::paint(painter, option, widget);
   updateTextPosition();
+  QGraphicsRectItem::paint(painter, option, widget);
+}
+
+void NumberVisualNode::updateRectWidth() {
+  double newWidth = qMax(m_textItem->boundingRect().width(), 40.0);
+  auto newRect = rect();
+
+  // Moving a bit right
+  newRect.setX(rect().x() + rect().width() - newWidth);
+  newRect.setWidth(newWidth);
+
+  updateRect(newRect);
 }
 
 void NumberVisualNode::updateTextPosition() {
   if (m_textItem) {
-    qreal x = rect().width() / 2 - m_textItem->boundingRect().width() / 2;
+    updateRectWidth();
+    qreal x = rect().x() + rect().width() / 2 - m_textItem->boundingRect().width() / 2;
     qreal y = rect().height() / 2 - m_textItem->boundingRect().height() / 2;
     m_textItem->setPos(x, y);
     m_textItem->setRotation(0);  // Ensure it remains horizontally aligned
@@ -59,7 +73,7 @@ void EditableTextItem::saveEnteredValue() {
   setTextInteractionFlags(Qt::NoTextInteraction);
 
   bool ok;
-  double newValue = toPlainText().toDouble(&ok);
+  double newValue = toPlainText().replace(',', '.').toDouble(&ok);
   if (ok) {
     m_value = newValue;
 

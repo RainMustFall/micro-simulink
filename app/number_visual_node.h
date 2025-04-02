@@ -41,6 +41,7 @@ class NumberVisualNode : public VisualNode {
   void updateTextPosition();
 
   EditableTextItem *m_textItem;
+  void updateRectWidth();
 };
 
 #endif  // NUMBER_VISUAL_NODE_H

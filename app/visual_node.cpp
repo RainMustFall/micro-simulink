@@ -5,7 +5,8 @@
 #include "input_connection_point.h"
 #include "output_connection_point.h"
 
-VisualNode::VisualNode(size_t numberOfInputs, size_t id, const QRect& rect, QGraphicsItem *parent)
+VisualNode::VisualNode(size_t numberOfInputs, size_t id, const QRect &rect,
+                       QGraphicsItem *parent)
     : QGraphicsRectItem(rect, parent), m_id{id} {
   setFlag(ItemIsMovable);
   setFlag(ItemIsSelectable);
@@ -13,8 +14,9 @@ VisualNode::VisualNode(size_t numberOfInputs, size_t id, const QRect& rect, QGra
   auto penColor =
       QApplication::palette().color(QPalette::Active, QPalette::WindowText);
 
-  auto fillColor =
-      QApplication::palette().color(QPalette::Active, QPalette::Button).lighter();
+  auto fillColor = QApplication::palette()
+                       .color(QPalette::Active, QPalette::Button)
+                       .lighter();
 
   setBrush(QBrush(fillColor));
   setPen(QPen(penColor));
@@ -75,4 +77,11 @@ void VisualNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
   QGraphicsRectItem::mouseMoveEvent(event);
   // We want to repaint connections if the node is moved
   scene()->update();
+}
+
+void VisualNode::updateRect(const QRectF &rect) {
+  setRect(rect);
+  for (auto connectionPoint : m_connectionPoints) {
+    connectionPoint->updatePosition();
+  }
 }
