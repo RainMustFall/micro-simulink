@@ -14,6 +14,7 @@ SOURCES += \
     connection_point.cpp \
     graph_widget.cpp \
     input_connection_point.cpp \
+    latex_display_widget.cpp \
     main.cpp \
     mainwindow.cpp \
     node_drag_buffer.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     connection_point.h \
     graph_widget.h \
     input_connection_point.h \
+    latex_display_widget.h \
     mainwindow.h \
     node_drag_buffer.h \
     node_palette.h \
@@ -70,15 +72,11 @@ else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PW
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../core/debug/core.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../core/libcore.a
 
+DEFINES += KLF_SRC_BUILD
+
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../klfbackend/release/ -lKLFBackend
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../klfbackend/debug/ -lKLFBackend
 else:unix: LIBS += -L$$OUT_PWD/../klfbackend/ -lKLFBackend
 
 INCLUDEPATH += $$PWD/../klfbackend
 DEPENDPATH += $$PWD/../klfbackend
-
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../klfbackend/release/libKLFBackend.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../klfbackend/debug/libKLFBackend.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../klfbackend/release/KLFBackend.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../klfbackend/debug/KLFBackend.lib
-else:unix: PRE_TARGETDEPS += $$OUT_PWD/../klfbackend/libKLFBackend.a

@@ -122,6 +122,7 @@ void GraphWidget::mouseReleaseEvent(QMouseEvent *event) {
                                  destinationPoint->getSlot());
       makeConnection(destinationPoint);
       connectionHappened = true;
+      emit graphEdited();
       break;
     }
   }

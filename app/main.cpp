@@ -19,6 +19,7 @@
 
 #include "calculation_widget.h"
 #include "graph_widget.h"
+#include "latex_display_widget.h"
 #include "node_drag_buffer.h"
 #include "node_palette.h"
 
@@ -48,8 +49,14 @@ int main(int argc, char** argv) {
   NodePalette* nodePalette = new NodePalette(&controller, &dragBuffer);
   CalculationWidget* calcWidget =
       new CalculationWidget(&controller, rightPanel);
+  LatexDisplayWidget* latex_widget = new LatexDisplayWidget(&controller);
+
+  graphWidget->connect(graphWidget, &GraphWidget::graphEdited, latex_widget,
+                       &LatexDisplayWidget::updatePreviewBuilderThreadInput,
+                       Qt::QueuedConnection);
 
   rightLayout->addWidget(calcWidget);
+  rightLayout->addWidget(latex_widget);
   rightLayout->addStretch();
   rightLayout->addWidget(nodePalette);
 

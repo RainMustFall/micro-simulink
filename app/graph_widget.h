@@ -21,9 +21,14 @@
 #include "visual_node.h"
 
 class GraphWidget : public QGraphicsView {
+  Q_OBJECT
+
  public:
   GraphWidget(GraphController *controller, NodeDragBuffer *dragBuffer,
               QWidget *parent = nullptr);
+
+ signals:
+  void graphEdited();
 
  protected:
   void mousePressEvent(QMouseEvent *event) override;
