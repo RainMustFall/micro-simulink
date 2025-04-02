@@ -4,34 +4,66 @@
 
 NumberVisualNode::NumberVisualNode(GraphController *controller,
                                    QGraphicsItem *parent)
-    : VisualNode(0, controller->AddScalarNode(0), parent),
-      m_value(0),
-      m_controller(controller) {
-  m_textItem = new QGraphicsTextItem(QString::number(m_value), this);
-  m_textItem->setPos(-m_textItem->boundingRect().width() / 2,
-                     -m_textItem->boundingRect().height() / 2);
-  m_textItem->setDefaultTextColor(Qt::black);
+    : VisualNode(/* numInputs=*/0, controller->AddScalarNode(0),
+                 QRect(0, 0, 40, 40), parent) {
+  m_textItem = new EditableTextItem(/*initialValue=*/0, controller, this);
+  m_textItem->setDefaultTextColor(pen().color());
 }
 
 void NumberVisualNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
   m_textItem->setTextInteractionFlags(Qt::TextEditorInteraction);
   m_textItem->setFocus();
+  QTextCursor cursor = m_textItem->textCursor();
+  cursor.select(QTextCursor::Document);
+  m_textItem->setTextCursor(cursor);
 }
 
-QVariant NumberVisualNode::itemChange(GraphicsItemChange change,
-                                      const QVariant &value) {
-  if (change == ItemSelectedChange) {
-    m_textItem->setTextInteractionFlags(Qt::NoTextInteraction);
+void NumberVisualNode::paint(QPainter *painter,
+                             const QStyleOptionGraphicsItem *option,
+                             QWidget *widget) {
+  QGraphicsRectItem::paint(painter, option, widget);
+  updateTextPosition();
+}
 
-    bool ok;
-    double newValue = m_textItem->toPlainText().toDouble(&ok);
-    if (ok) {
-      m_value = newValue;
-
-    } else {
-      m_textItem->setPlainText(QString::number(m_value));
-    }
+void NumberVisualNode::updateTextPosition() {
+  if (m_textItem) {
+    qreal x = rect().width() / 2 - m_textItem->boundingRect().width() / 2;
+    qreal y = rect().height() / 2 - m_textItem->boundingRect().height() / 2;
+    m_textItem->setPos(x, y);
+    m_textItem->setRotation(0);  // Ensure it remains horizontally aligned
   }
+}
 
-  return VisualNode::itemChange(change, value);
+EditableTextItem::EditableTextItem(double initialValue,
+                                   GraphController *controller,
+                                   QGraphicsItem *parent)
+    : QGraphicsTextItem(QString::number(initialValue), parent),
+      m_controller(controller),
+      m_value(initialValue) {}
+
+void EditableTextItem::keyPressEvent(QKeyEvent *event) {
+  if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
+    clearFocus();  // Lose focus when Enter is pressed
+    saveEnteredValue();
+  } else {
+    QGraphicsTextItem::keyPressEvent(event);
+  }
+}
+
+void EditableTextItem::focusOutEvent(QFocusEvent *event) {
+  saveEnteredValue();
+  QGraphicsTextItem::focusOutEvent(event);
+}
+
+void EditableTextItem::saveEnteredValue() {
+  setTextInteractionFlags(Qt::NoTextInteraction);
+
+  bool ok;
+  double newValue = toPlainText().toDouble(&ok);
+  if (ok) {
+    m_value = newValue;
+
+  } else {
+    setPlainText(QString::number(m_value));
+  }
 }

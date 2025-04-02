@@ -51,10 +51,6 @@ int main(int argc, char** argv) {
       new CalculationWidget(&controller, rightPanel);
   LatexDisplayWidget* latex_widget = new LatexDisplayWidget(&controller);
 
-  graphWidget->connect(graphWidget, &GraphWidget::graphEdited, latex_widget,
-                       &LatexDisplayWidget::updatePreviewBuilderThreadInput,
-                       Qt::QueuedConnection);
-
   rightLayout->addWidget(calcWidget);
   rightLayout->addWidget(latex_widget);
   rightLayout->addStretch();

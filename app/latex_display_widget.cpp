@@ -1,6 +1,7 @@
 #include "latex_display_widget.h"
 
 #include <QDebug>
+#include <QPalette>
 
 #include "klfbackend.h"
 #include "mainwindow.h"
@@ -11,13 +12,16 @@ LatexDisplayWidget::LatexDisplayWidget(GraphController* controller,
     : QWidget(parent), controller(controller) {
   timer = new QTimer(this);
   timer->setInterval(1000);
-  connect(timer, SIGNAL(timeout()), this, SLOT(updatePreviewBuilderThreadInput()));
+  connect(timer, SIGNAL(timeout()), this,
+          SLOT(updatePreviewBuilderThreadInput()));
   timer->start();
 
   input.mathmode = "\\[ ... \\]";
   input.dpi = 150;
   input.bg_color = qRgba(0, 0, 0, 0);
-  input.fg_color = qRgb(255, 255, 255);
+  input.fg_color = QApplication::palette()
+                       .color(QPalette::Active, QPalette::WindowText)
+                       .rgb();
 
   label = new QLabel();
   label->setMinimumHeight(input.dpi / 2);
@@ -49,8 +53,7 @@ void LatexDisplayWidget::updatePreviewBuilderThreadInput() {
   // in linux, I need to reinstate the preamble when rendering. No idea why.
   static int a = 0;
   input.preamble = QString("\\usepackage{amssymb,amsmath}");
-  input.latex =
-      "x \\left(\\int_0^1 dx \\right) " + QString::number(++a);
+  input.latex = "x \\left(\\int_0^1 dx \\right) " + QString::number(++a);
   if (mPreviewBuilderThread->inputChanged(input)) {
     qDebug() << "input changed. Render...";
     mPreviewBuilderThread->start();

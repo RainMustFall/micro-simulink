@@ -11,6 +11,21 @@
 #include "graph_controller.h"
 #include "visual_node.h"
 
+class EditableTextItem : public QGraphicsTextItem {
+public:
+    EditableTextItem(double initialValue, GraphController *controller,
+                     QGraphicsItem *parent = nullptr);
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+    void focusOutEvent(QFocusEvent *event) override;
+
+private:
+    void saveEnteredValue();
+    GraphController *m_controller;
+    double m_value;
+};
+
 class NumberVisualNode : public VisualNode {
  public:
   explicit NumberVisualNode(GraphController *controller,
@@ -18,15 +33,14 @@ class NumberVisualNode : public VisualNode {
 
  protected:
   void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
-  QVariant itemChange(GraphicsItemChange change,
-                      const QVariant &value) override;
+
+  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
+             QWidget *widget) override;
 
  private:
-  QGraphicsTextItem *m_textItem;
+  void updateTextPosition();
 
-  double m_value;
-
-  GraphController *m_controller;
+  EditableTextItem *m_textItem;
 };
 
 #endif  // NUMBER_VISUAL_NODE_H

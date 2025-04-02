@@ -2,4 +2,5 @@
 
 RootVisualNode::RootVisualNode(GraphController *controller,
                                QGraphicsItem *parent)
-    : VisualNode(1, controller->AddRootNode(), parent) {}
+    : VisualNode(/* numInputs= */ 1, controller->AddRootNode(),
+                 QRect(-40, -20, 80, 40), parent) {}

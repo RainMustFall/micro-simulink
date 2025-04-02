@@ -3,9 +3,9 @@
 OutputConnectionPoint::OutputConnectionPoint(size_t nodeId,
                                              QGraphicsRectItem *parent)
     : ConnectionPoint(nodeId, parent) {
-  double x = parent->boundingRect().right() - 10;
-  double y = parent->boundingRect().center().y() - 5;
-  setRect(x, y, 10, 10);
+  double x = parent->boundingRect().right() - 2 * kRadius;
+  double y = parent->boundingRect().center().y() - kRadius;
+  setRect(x, y, 2 * kRadius, 2 * kRadius);
 }
 
 void OutputConnectionPoint::updateHovered(const QPointF &scenePos,

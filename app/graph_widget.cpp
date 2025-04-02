@@ -122,7 +122,6 @@ void GraphWidget::mouseReleaseEvent(QMouseEvent *event) {
                                  destinationPoint->getSlot());
       makeConnection(destinationPoint);
       connectionHappened = true;
-      emit graphEdited();
       break;
     }
   }
@@ -139,7 +138,9 @@ void GraphWidget::mouseReleaseEvent(QMouseEvent *event) {
 void GraphWidget::drawForeground(QPainter *painter, const QRectF &rect) {
   QGraphicsView::drawForeground(painter, rect);
   if (m_connectionSourcePoint != nullptr) {
-    painter->setPen(QPen(Qt::blue, 2));
+    auto color =
+        QApplication::palette().color(QPalette::Active, QPalette::WindowText);
+    painter->setPen(QPen(color, 1, Qt::DashLine));
     painter->drawLine(m_connectionSourcePoint->sceneBoundingRect().center(),
                       m_currentMousePos);
   }

@@ -52,5 +52,7 @@ class ConnectionPoint : public QGraphicsEllipseItem {
   ConnectionState m_state = ConnectionState::FREE;
 
   size_t m_nodeId;
+
+  constexpr static double kRadius = 5;
 };
 #endif  // CONNECTION_POINT_H

@@ -8,7 +8,7 @@ InputConnectionPoint::InputConnectionPoint(size_t index, size_t totalPoints,
       parent->boundingRect().height() / (totalPoints + 1);
   double x = parent->boundingRect().left();
   double y = parent->boundingRect().top() + distanceBetweenInputs * (index + 1);
-  setRect(x, y, 10, 10);
+  setRect(x, y - kRadius, 2 * kRadius, 2 * kRadius);
 }
 
 void InputConnectionPoint::updateHovered(const QPointF &scenePos,

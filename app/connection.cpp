@@ -22,7 +22,10 @@ void Connection::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
   QPointF sourcePoint = m_sourcePoint->sceneBoundingRect().center();
   QPointF destPoint = m_destPoint->sceneBoundingRect().center();
 
-  painter->setPen(QPen(Qt::black, 2));
+  auto color =
+      QApplication::palette().color(QPalette::Active, QPalette::WindowText);
+
+  painter->setPen(QPen(color));
   painter->drawLine(sourcePoint, destPoint);
 
   // Draw arrowhead

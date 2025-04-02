@@ -5,13 +5,19 @@
 #include "input_connection_point.h"
 #include "output_connection_point.h"
 
-VisualNode::VisualNode(size_t numberOfInputs, size_t id, QGraphicsItem *parent)
-    : QGraphicsRectItem(parent), m_id{id} {
+VisualNode::VisualNode(size_t numberOfInputs, size_t id, const QRect& rect, QGraphicsItem *parent)
+    : QGraphicsRectItem(rect, parent), m_id{id} {
   setFlag(ItemIsMovable);
   setFlag(ItemIsSelectable);
-  setRect(-40, -20, 80, 40);
-  setBrush(QBrush(Qt::white));
-  setPen(QPen(Qt::black));
+
+  auto penColor =
+      QApplication::palette().color(QPalette::Active, QPalette::WindowText);
+
+  auto fillColor =
+      QApplication::palette().color(QPalette::Active, QPalette::Button).lighter();
+
+  setBrush(QBrush(fillColor));
+  setPen(QPen(penColor));
 
   m_connectionPoints = {std::make_shared<OutputConnectionPoint>(id, this)};
 
