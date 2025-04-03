@@ -46,7 +46,7 @@ void TestNumericGraph::testXPlusOne() {
 
 void TestNumericGraph::testGraphController() {
   auto controller = GraphController();
-  controller.AddRootNode();
+  auto root = controller.AddRootNode();
 
   auto five = controller.AddScalarNode(5);
   auto plus = controller.AddPlusNode();
@@ -54,7 +54,7 @@ void TestNumericGraph::testGraphController() {
 
   controller.ConnectNodes(five, plus, 0);
   controller.ConnectNodes(three, plus, 1);
-  controller.ConnectNodes(plus, GraphController::kRootIndex, 0);
+  controller.ConnectNodes(plus, root, 0);
 
   QCOMPARE(controller.GetGraphResult(), 8);
 }

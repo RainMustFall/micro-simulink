@@ -7,13 +7,12 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QWidget>
-#include <QTimer>
 
 #include "graph_controller.h"
 #include "klfbackend.h"
 #include "klfpreviewbuilderthread.h"
 
-class LatexDisplayWidget : public QWidget {
+class LatexDisplayWidget : public QWidget, GraphUpdateSubscriber {
   Q_OBJECT
 
  public:
@@ -23,6 +22,8 @@ class LatexDisplayWidget : public QWidget {
 
  public slots:
   void updatePreviewBuilderThreadInput();
+
+  void Notify() override;
 
  private slots:
   void showRealTimePreview(const QImage &preview, bool latexerror);
@@ -37,7 +38,6 @@ class LatexDisplayWidget : public QWidget {
   QLabel *label;
   QVBoxLayout *m_layout;
   GraphController *controller;
-  QTimer* timer;
 };
 
 #endif  // MAINWINDOW_H

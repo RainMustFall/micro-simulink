@@ -10,11 +10,7 @@
 LatexDisplayWidget::LatexDisplayWidget(GraphController* controller,
                                        QWidget* parent)
     : QWidget(parent), controller(controller) {
-  timer = new QTimer(this);
-  timer->setInterval(1000);
-  connect(timer, SIGNAL(timeout()), this,
-          SLOT(updatePreviewBuilderThreadInput()));
-  timer->start();
+  controller->SubscribeForUpdates(this);
 
   input.mathmode = "\\[ ... \\]";
   input.dpi = 150;
@@ -59,6 +55,8 @@ void LatexDisplayWidget::updatePreviewBuilderThreadInput() {
     mPreviewBuilderThread->start();
   }
 }
+
+void LatexDisplayWidget::Notify() { updatePreviewBuilderThreadInput(); }
 
 void LatexDisplayWidget::showRealTimePreview(const QImage& preview,
                                              bool latexerror) {
