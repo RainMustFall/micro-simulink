@@ -78,10 +78,3 @@ void VisualNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
   // We want to repaint connections if the node is moved
   scene()->update();
 }
-
-void VisualNode::updateRect(const QRectF &rect) {
-  setRect(rect);
-  for (auto connectionPoint : m_connectionPoints) {
-    connectionPoint->updatePosition();
-  }
-}

@@ -37,8 +37,6 @@ class ConnectionPoint : public QGraphicsEllipseItem {
 
   bool isHovered() const;
 
-  virtual void updatePosition() = 0;
-
  protected:
   void paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
              QWidget* widget = nullptr) override;

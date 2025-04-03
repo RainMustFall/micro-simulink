@@ -12,18 +12,18 @@
 #include "visual_node.h"
 
 class EditableTextItem : public QGraphicsTextItem {
-public:
-    EditableTextItem(double initialValue, GraphController *controller,
-                     QGraphicsItem *parent = nullptr);
+ public:
+  EditableTextItem(double initialValue, GraphController *controller,
+                   QGraphicsItem *parent = nullptr);
 
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
-    void focusOutEvent(QFocusEvent *event) override;
+ protected:
+  void keyPressEvent(QKeyEvent *event) override;
+  void focusOutEvent(QFocusEvent *event) override;
 
-private:
-    void saveEnteredValue();
-    GraphController *m_controller;
-    double m_value;
+ private:
+  void saveEnteredValue();
+  GraphController *m_controller;
+  double m_value;
 };
 
 class NumberVisualNode : public VisualNode {
@@ -42,6 +42,8 @@ class NumberVisualNode : public VisualNode {
 
   EditableTextItem *m_textItem;
   void updateRectWidth();
+
+  constexpr static double kHeight = 40;
 };
 
 #endif  // NUMBER_VISUAL_NODE_H

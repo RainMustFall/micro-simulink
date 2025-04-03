@@ -17,12 +17,6 @@ class OutputConnectionPoint : public ConnectionPoint {
   bool acceptsInputPress(const QPointF&) override;
 
   size_t getSlot() const override;
-
- public:
-  void updatePosition() override;
-
- private:
-  void setPositionOnParent();
 };
 
 #endif  // OUTPUT_CONNECTION_POINT_H

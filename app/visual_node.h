@@ -21,8 +21,6 @@ class VisualNode : public QGraphicsRectItem {
 
   virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
 
-  void updateRect(const QRectF& rect);
-
  private:
   std::vector<std::shared_ptr<ConnectionPoint>> m_connectionPoints;
 

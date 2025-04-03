@@ -7,12 +7,12 @@
 NumberVisualNode::NumberVisualNode(GraphController *controller,
                                    QGraphicsItem *parent)
     : VisualNode(/* numInputs=*/0, controller->AddScalarNode(0),
-                 QRect(0, 0, 40, 40), parent) {
+                 QRect(0, 0, kHeight, kHeight), parent) {
   m_textItem = new EditableTextItem(/*initialValue=*/0, controller, this);
   m_textItem->setDefaultTextColor(pen().color());
 }
 
-void NumberVisualNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
+void NumberVisualNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *) {
   m_textItem->setTextInteractionFlags(Qt::TextEditorInteraction);
   m_textItem->setFocus();
   QTextCursor cursor = m_textItem->textCursor();
@@ -28,20 +28,21 @@ void NumberVisualNode::paint(QPainter *painter,
 }
 
 void NumberVisualNode::updateRectWidth() {
-  double newWidth = qMax(m_textItem->boundingRect().width(), 40.0);
+  double newWidth = qMax(m_textItem->boundingRect().width(), kHeight);
   auto newRect = rect();
 
   // Moving a bit right
   newRect.setX(rect().x() + rect().width() - newWidth);
   newRect.setWidth(newWidth);
 
-  updateRect(newRect);
+  setRect(newRect);
 }
 
 void NumberVisualNode::updateTextPosition() {
   if (m_textItem) {
     updateRectWidth();
-    qreal x = rect().x() + rect().width() / 2 - m_textItem->boundingRect().width() / 2;
+    qreal x = rect().x() + rect().width() / 2 -
+              m_textItem->boundingRect().width() / 2;
     qreal y = rect().height() / 2 - m_textItem->boundingRect().height() / 2;
     m_textItem->setPos(x, y);
     m_textItem->setRotation(0);  // Ensure it remains horizontally aligned
