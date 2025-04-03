@@ -14,6 +14,7 @@ SOURCES += \
     connection_point.cpp \
     graph_widget.cpp \
     input_connection_point.cpp \
+    integral_visual_node.cpp \
     latex_display_widget.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -30,6 +31,7 @@ HEADERS += \
     connection_point.h \
     graph_widget.h \
     input_connection_point.h \
+    integral_visual_node.h \
     latex_display_widget.h \
     mainwindow.h \
     node_drag_buffer.h \

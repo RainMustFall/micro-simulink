@@ -1,6 +1,15 @@
 #ifndef VISUAL_NODE_H
 #define VISUAL_NODE_H
 
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QFont>
+#include <QFormLayout>
+#include <QGraphicsRectItem>
+#include <QGraphicsSceneMouseEvent>
+#include <QInputDialog>
+#include <QLineEdit>
+
 #include "connection_point.h"
 
 class VisualNode : public QGraphicsRectItem {

@@ -14,6 +14,7 @@ GraphWidget::GraphWidget(GraphController *controller,
   setRenderHint(QPainter::Antialiasing);
   setDragMode(RubberBandDrag);
   setAcceptDrops(true);
+  setMouseTracking(true);
   // https://stackoverflow.com/questions/38458830
   m_scene.setItemIndexMethod(QGraphicsScene::ItemIndexMethod::NoIndex);
 
