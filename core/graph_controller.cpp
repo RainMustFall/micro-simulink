@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "binary_operator.h"
+#include "latex_expression_factory.h"
 #include "root_node.h"
 #include "scalar.h"
 #include "scalar_node.h"
@@ -24,11 +25,20 @@ size_t GraphController::AddPlusNode() { return AddNode<PlusOperator>(); }
 void GraphController::ConnectNodes(size_t src_node, size_t dst_node,
                                    size_t slot) {
   nodes_[dst_node]->AttachInput(slot, *(nodes_[src_node]));
+  latex_nodes_[dst_node]->AttachInput(slot, *(latex_nodes_[src_node]));
   NotifySubscribers();
 }
 
 void GraphController::DetachNode(size_t dst_node, size_t slot) {
   nodes_[dst_node]->DetachInput(slot);
+  latex_nodes_[dst_node]->DetachInput(slot);
+  NotifySubscribers();
+}
+
+void GraphController::SetScalarValue(size_t node_id, double value) {
+  static_cast<ScalarNode<Function>*>(nodes_[node_id].get())->SetValue(value);
+  static_cast<ScalarNode<LatexExpression>*>(latex_nodes_[node_id].get())
+      ->SetValue(value);
   NotifySubscribers();
 }
 
@@ -41,4 +51,10 @@ double GraphController::GetGraphResult() {
   //       function");
   // }
   return scalar->GetValue();
+}
+
+std::string GraphController::GetLatex() {
+  auto latex_expression =
+      latex_nodes_[kRootIndex]->Execute(LatexExpressionFactory());
+  return latex_expression->GetExpression();
 }

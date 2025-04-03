@@ -13,7 +13,8 @@
 
 class EditableTextItem : public QGraphicsTextItem {
  public:
-  EditableTextItem(double initialValue, GraphController *controller,
+  EditableTextItem(double initialValue, size_t nodeId,
+                   GraphController *controller,
                    QGraphicsItem *parent = nullptr);
 
  protected:
@@ -24,6 +25,7 @@ class EditableTextItem : public QGraphicsTextItem {
   void saveEnteredValue();
   GraphController *m_controller;
   double m_value;
+  size_t m_nodeId;
 };
 
 class NumberVisualNode : public VisualNode {

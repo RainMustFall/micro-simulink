@@ -4,10 +4,12 @@
 #include <stddef.h>
 
 #include <memory>
+#include <string>
 #include <vector>
 
 #include "function.h"
 #include "graph_update_subscription.h"
+#include "latex_expression.h"
 #include "node.h"
 
 class GraphController : public GraphUpdateNotifier {
@@ -15,6 +17,8 @@ class GraphController : public GraphUpdateNotifier {
   GraphController();
 
   size_t AddScalarNode(double value);
+
+  void SetScalarValue(size_t node_id, double value);
 
   size_t AddRootNode();
 
@@ -28,14 +32,21 @@ class GraphController : public GraphUpdateNotifier {
 
   double GetGraphResult();
 
+  std::string GetLatex();
+
  private:
   std::vector<std::unique_ptr<Node<Function>>> nodes_;
+  std::vector<std::unique_ptr<Node<LatexExpression>>> latex_nodes_;
 
   static const size_t kRootIndex = 0;
 
   template <template <class> class NodeType, typename... Args>
   size_t AddNode(Args &&...args) {
     nodes_.emplace_back(new NodeType<Function>(std::forward<Args>(args)...));
+
+    latex_nodes_.emplace_back(
+        new NodeType<LatexExpression>(std::forward<Args>(args)...));
+
     return nodes_.size() - 1;
   }
 };

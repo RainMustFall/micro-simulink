@@ -46,10 +46,14 @@ LatexDisplayWidget::LatexDisplayWidget(GraphController* controller,
 LatexDisplayWidget::~LatexDisplayWidget() { delete mPreviewBuilderThread; }
 
 void LatexDisplayWidget::updatePreviewBuilderThreadInput() {
-  // in linux, I need to reinstate the preamble when rendering. No idea why.
-  static int a = 0;
   input.preamble = QString("\\usepackage{amssymb,amsmath}");
-  input.latex = "x \\left(\\int_0^1 dx \\right) " + QString::number(++a);
+
+  try {
+    input.latex = QString::fromStdString(controller->GetLatex());
+  } catch (std::runtime_error&) {
+    // Graph is incomplete, that's fine
+  }
+
   if (mPreviewBuilderThread->inputChanged(input)) {
     qDebug() << "input changed. Render...";
     mPreviewBuilderThread->start();
@@ -60,9 +64,7 @@ void LatexDisplayWidget::Notify() { updatePreviewBuilderThreadInput(); }
 
 void LatexDisplayWidget::showRealTimePreview(const QImage& preview,
                                              bool latexerror) {
-  if (latexerror) {
-    // a
-  } else {
+  if (!latexerror) {
     pixmap = QPixmap::fromImage(preview);
     label->setPixmap(pixmap);
   }

@@ -1,0 +1,14 @@
+#include "latex_expression_factory.h"
+
+#include <sstream>
+
+std::unique_ptr<LatexExpression> LatexExpressionFactory::CreateScalar(
+    double scalar) const {
+  std::ostringstream sstream;
+  sstream << scalar;
+  return std::make_unique<LatexExpression>(sstream.str());
+}
+
+std::unique_ptr<LatexExpression> LatexExpressionFactory::CreateX() const {
+  return std::make_unique<LatexExpression>("x");
+}

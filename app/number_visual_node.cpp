@@ -8,7 +8,8 @@ NumberVisualNode::NumberVisualNode(GraphController *controller,
                                    QGraphicsItem *parent)
     : VisualNode(/* numInputs=*/0, controller->AddScalarNode(0),
                  QRect(0, 0, kHeight, kHeight), parent) {
-  m_textItem = new EditableTextItem(/*initialValue=*/0, controller, this);
+  m_textItem =
+      new EditableTextItem(/*initialValue=*/0, getId(), controller, this);
   m_textItem->setDefaultTextColor(pen().color());
 }
 
@@ -49,12 +50,13 @@ void NumberVisualNode::updateTextPosition() {
   }
 }
 
-EditableTextItem::EditableTextItem(double initialValue,
+EditableTextItem::EditableTextItem(double initialValue, size_t nodeId,
                                    GraphController *controller,
                                    QGraphicsItem *parent)
     : QGraphicsTextItem(QString::number(initialValue), parent),
       m_controller(controller),
-      m_value(initialValue) {}
+      m_value(initialValue),
+      m_nodeId(nodeId) {}
 
 void EditableTextItem::keyPressEvent(QKeyEvent *event) {
   if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
@@ -77,7 +79,7 @@ void EditableTextItem::saveEnteredValue() {
   double newValue = toPlainText().replace(',', '.').toDouble(&ok);
   if (ok) {
     m_value = newValue;
-
+    m_controller->SetScalarValue(m_nodeId, m_value);
   } else {
     setPlainText(QString::number(m_value));
   }

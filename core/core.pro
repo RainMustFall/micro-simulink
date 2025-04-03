@@ -13,6 +13,8 @@ SOURCES += \
     function.cpp \
     graph_controller.cpp \
     graph_update_subscription.cpp \
+    latex_expression.cpp \
+    latex_expression_factory.cpp \
     scalar.cpp \
     scalar_result_factory.cpp
 
@@ -22,6 +24,8 @@ HEADERS += \
     function.h \
     graph_controller.h \
     graph_update_subscription.h \
+    latex_expression.h \
+    latex_expression_factory.h \
     node.h \
     root_node.h \
     scalar.h \

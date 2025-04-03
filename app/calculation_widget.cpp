@@ -40,8 +40,8 @@ void CalculationWidget::startCalculation() {
   m_progressDialog->show();
 
   // Launch the calculation in a separate thread and get the QFuture
-  QFuture<double> future =
-      QtConcurrent::run([this]() { return m_controller->GetGraphResult(); });
+  QFuture<double> future = QtConcurrent::run(
+      [this]() { return m_controller->GetGraphResult(); });
 
   // Set the future for the watcher
   m_futureWatcher->setFuture(future);
@@ -55,6 +55,7 @@ void CalculationWidget::calculationFinished() {
   }
 }
 
-void CalculationWidget::handleResult(double result) {
-  m_resultLineEdit->setText(QString::number(result));
+void CalculationWidget::handleResult(int resultIndex) {
+  m_resultLineEdit->setText(
+      QString::number(m_futureWatcher->resultAt(resultIndex)));
 }

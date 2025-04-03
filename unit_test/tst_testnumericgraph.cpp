@@ -14,6 +14,7 @@ class TestNumericGraph : public QObject {
   void testAddTwoNumbers();
   void testXPlusOne();
   void testGraphController();
+  void testLatexExpression();
 };
 
 void TestNumericGraph::testAddTwoNumbers() {
@@ -57,6 +58,21 @@ void TestNumericGraph::testGraphController() {
   controller.ConnectNodes(plus, root, 0);
 
   QCOMPARE(controller.GetGraphResult(), 8);
+}
+
+void TestNumericGraph::testLatexExpression() {
+  auto controller = GraphController();
+  auto root = controller.AddRootNode();
+
+  auto x = controller.AddXNode();
+  auto plus = controller.AddPlusNode();
+  auto three = controller.AddScalarNode(3);
+
+  controller.ConnectNodes(x, plus, 0);
+  controller.ConnectNodes(three, plus, 1);
+  controller.ConnectNodes(plus, root, 0);
+
+  QCOMPARE(controller.GetLatex(), "x+3");
 }
 
 QTEST_APPLESS_MAIN(TestNumericGraph)

@@ -25,7 +25,7 @@ class CalculationWidget : public QWidget {
 
   void calculationFinished();
 
-  void handleResult(double result);
+  void handleResult(int resultIndex);
 
  private:
   GraphController* m_controller;
