@@ -22,6 +22,8 @@ class IntegralVisualNode : public VisualNode {
   double upperLimit;
   double lowerLimit;
 
+  GraphController *m_controller;
+
   constexpr static double kHeight = 70.0;
 };
 

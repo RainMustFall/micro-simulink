@@ -26,6 +26,11 @@ class GraphController : public GraphUpdateNotifier {
 
   size_t AddPlusNode();
 
+  size_t AddIntegralNode(double lower_limit, double upper_limit);
+
+  void SetIntegralLimits(size_t node_id, double lower_limit,
+                         double upper_limit);
+
   void ConnectNodes(size_t src_node, size_t dst_node, size_t slot);
 
   void DetachNode(size_t dst_node, size_t slot);

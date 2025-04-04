@@ -2,11 +2,27 @@
 
 #include <memory>
 
+#include "scalar.h"
+
 Function::Function(std::function<double(double)> function)
     : function_(std::move(function)) {}
 
 std::unique_ptr<Function> Function::operator+(const Function &rhs) {
   return rhs.OperatorWithFunction(*this, std::plus<double>());
+}
+
+std::unique_ptr<Function> Function::Integrate(double lower_limit,
+                                              double upper_limit) const {
+  const int n = 1000;  // Number of intervals
+  double h = (upper_limit - lower_limit) / n;
+  double sum = 0.5 * (function_(lower_limit) + function_(upper_limit));
+
+  for (int i = 1; i < n; ++i) {
+    double x = lower_limit + i * h;
+    sum += function_(x);
+  }
+
+  return std::make_unique<Scalar>(sum * h);
 }
 
 std::unique_ptr<Function> Function::OperatorWithFunction(

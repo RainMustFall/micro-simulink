@@ -6,6 +6,10 @@
 class Scalar : public Function {
  public:
   std::unique_ptr<Function> operator+(const Function &rhs) override;
+
+  virtual std::unique_ptr<Function> Integrate(double lower_limit,
+                                              double upper_limit) const;
+
   Scalar(double value);
   double GetValue() const;
 

@@ -9,6 +9,9 @@ class Function {
   Function(std::function<double(double)> function);
   virtual std::unique_ptr<Function> operator+(const Function &rhs);
 
+  virtual std::unique_ptr<Function> Integrate(double lower_limit,
+                                              double upper_limit) const;
+
   virtual double operator()(double x) const { return function_(x); }
 
   virtual std::unique_ptr<Function> OperatorWithFunction(

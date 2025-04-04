@@ -24,6 +24,7 @@ HEADERS += \
     function.h \
     graph_controller.h \
     graph_update_subscription.h \
+    integral_node.h \
     latex_expression.h \
     latex_expression_factory.h \
     node.h \

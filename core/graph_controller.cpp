@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "binary_operator.h"
+#include "integral_node.h"
 #include "latex_expression_factory.h"
 #include "root_node.h"
 #include "scalar.h"
@@ -21,6 +22,20 @@ size_t GraphController::AddScalarNode(double value) {
 size_t GraphController::AddXNode() { return AddNode<XNode>(); }
 
 size_t GraphController::AddPlusNode() { return AddNode<PlusOperator>(); }
+
+size_t GraphController::AddIntegralNode(double lower_limit,
+                                        double upper_limit) {
+  return AddNode<IntegralNode>(lower_limit, upper_limit);
+}
+
+void GraphController::SetIntegralLimits(size_t node_id, double lower_limit,
+                                        double upper_limit) {
+  static_cast<IntegralNode<Function>*>(nodes_[node_id].get())
+      ->SetLimits(lower_limit, upper_limit);
+  static_cast<IntegralNode<LatexExpression>*>(latex_nodes_[node_id].get())
+      ->SetLimits(lower_limit, upper_limit);
+  NotifySubscribers();
+}
 
 void GraphController::ConnectNodes(size_t src_node, size_t dst_node,
                                    size_t slot) {

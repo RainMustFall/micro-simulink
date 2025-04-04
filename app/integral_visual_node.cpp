@@ -2,10 +2,11 @@
 
 IntegralVisualNode::IntegralVisualNode(GraphController *controller,
                                        QGraphicsItem *parent)
-    : VisualNode(/* numInputs=*/1, controller->AddScalarNode(0),
+    : VisualNode(/* numInputs=*/1, controller->AddIntegralNode(0, 1),
                  QRect(0, 0, kHeight, kHeight), parent),
       upperLimit(1),
-      lowerLimit(0) {}
+      lowerLimit(0),
+      m_controller(controller) {}
 
 void IntegralVisualNode::paint(QPainter *painter,
                                const QStyleOptionGraphicsItem *option,
@@ -47,8 +48,11 @@ void IntegralVisualNode::mouseDoubleClickEvent(
     bool okUpper, okLower;
     double newUpper = upperEdit.text().replace(',', '.').toDouble(&okUpper);
     double newLower = lowerEdit.text().replace(',', '.').toDouble(&okLower);
-    if (okUpper) upperLimit = newUpper;
-    if (okLower) lowerLimit = newLower;
-    update();
+    if (okUpper && okLower && newLower < newUpper) {
+      upperLimit = newUpper;
+      lowerLimit = newLower;
+      m_controller->SetIntegralLimits(getId(), lowerLimit, upperLimit);
+      update();
+    }
   }
 }

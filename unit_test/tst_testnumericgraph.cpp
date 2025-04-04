@@ -16,6 +16,7 @@ class TestNumericGraph : public QObject {
   void testXPlusOneIsNotScalar();
   void testGraphController();
   void testLatexExpression();
+  void testIntegral();
 };
 
 void TestNumericGraph::testAddTwoNumbers() {
@@ -87,6 +88,19 @@ void TestNumericGraph::testLatexExpression() {
   controller.ConnectNodes(plus, root, 0);
 
   QCOMPARE(controller.GetLatex(), "x+3");
+}
+
+void TestNumericGraph::testIntegral() {
+    auto controller = GraphController();
+    auto root = controller.AddRootNode();
+
+    auto x = controller.AddXNode();
+    auto integral = controller.AddIntegralNode(0, 1);
+
+    controller.ConnectNodes(x, integral, 0);
+    controller.ConnectNodes(integral, root, 0);
+
+    QCOMPARE(controller.GetGraphResult(), 0.5);
 }
 
 QTEST_APPLESS_MAIN(TestNumericGraph)
