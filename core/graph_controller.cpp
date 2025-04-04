@@ -44,12 +44,11 @@ void GraphController::SetScalarValue(size_t node_id, double value) {
 
 double GraphController::GetGraphResult() {
   auto function = nodes_[kRootIndex]->Execute(FunctionFactory());
-  auto scalar = static_cast<Scalar*>(function.get());
-  // if (scalar == nullptr) {
-  //   throw std::domain_error(
-  //       "Only scalar expressions are supported! The graph produced a
-  //       function");
-  // }
+  auto scalar = dynamic_cast<Scalar*>(function.get());
+  if (scalar == nullptr) {
+    throw std::domain_error(
+        "Only scalar expressions are supported! The graph produced a function");
+  }
   return scalar->GetValue();
 }
 

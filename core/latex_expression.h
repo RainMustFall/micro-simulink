@@ -2,11 +2,12 @@
 #define LATEX_EXPRESSION_H
 
 #include <string>
+#include <memory>
 
 class LatexExpression {
  public:
   LatexExpression(std::string expression);
-  LatexExpression operator+(const LatexExpression& rhs);
+  std::unique_ptr<LatexExpression> operator+(const LatexExpression& rhs);
 
   const std::string& GetExpression() const;
 

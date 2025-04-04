@@ -13,6 +13,7 @@ class TestNumericGraph : public QObject {
  private slots:
   void testAddTwoNumbers();
   void testXPlusOne();
+  void testXPlusOneIsNotScalar();
   void testGraphController();
   void testLatexExpression();
 };
@@ -25,7 +26,7 @@ void TestNumericGraph::testAddTwoNumbers() {
   plus.AttachInput(0, two).AttachInput(1, three);
 
   std::unique_ptr<Function> result = plus.Execute(FunctionFactory());
-  auto scalar = static_cast<Scalar&>(*result);
+  auto scalar = dynamic_cast<Scalar&>(*result);
 
   QCOMPARE(scalar.GetValue(), 5);
 }
@@ -43,6 +44,19 @@ void TestNumericGraph::testXPlusOne() {
   QCOMPARE(function(0), 1);
   QCOMPARE(function(1), 2);
   QCOMPARE(function(2), 3);
+}
+
+void TestNumericGraph::testXPlusOneIsNotScalar() {
+  auto x = XNode<Function>();
+  auto plus = PlusOperator<Function>();
+  auto one = ScalarNode<Function>(1);
+
+  plus.AttachInput(0, x).AttachInput(1, one);
+
+  std::unique_ptr<Function> result = plus.Execute(FunctionFactory());
+
+  // There is X in the expression, so cast to Scalar should fail
+  QCOMPARE(dynamic_cast<Scalar*>(result.get()), nullptr);
 }
 
 void TestNumericGraph::testGraphController() {

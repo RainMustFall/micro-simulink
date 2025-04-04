@@ -11,7 +11,7 @@ class PlusOperator : public Node<T> {
   std::unique_ptr<T> Execute(
       const ExecutionResultFactory<T> &factory) const override {
     auto inputs = this->ExecuteDependencies(factory);
-    return std::make_unique<T>(*(inputs.front()) + *(inputs.back()));
+    return *(inputs.front()) + *(inputs.back());
   }
 };
 
