@@ -3,7 +3,7 @@
 
 #include <QPainter>
 
-#include "number_visual_node.h"
+#include "graph_controller.h"
 #include "visual_node.h"
 
 class IntegralVisualNode : public VisualNode {

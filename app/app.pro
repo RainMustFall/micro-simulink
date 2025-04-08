@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    binary_operator.cpp \
     calculation_widget.cpp \
     connection.cpp \
     connection_point.cpp \
@@ -23,9 +24,11 @@ SOURCES += \
     number_visual_node.cpp \
     output_connection_point.cpp \
     root_visual_node.cpp \
-    visual_node.cpp
+    visual_node.cpp \
+    x_visual_node.cpp
 
 HEADERS += \
+    binary_operator.h \
     calculation_widget.h \
     connection.h \
     connection_point.h \
@@ -39,7 +42,8 @@ HEADERS += \
     number_visual_node.h \
     output_connection_point.h \
     root_visual_node.h \
-    visual_node.h
+    visual_node.h \
+    x_visual_node.h
 
 FORMS += \
     mainwindow.ui

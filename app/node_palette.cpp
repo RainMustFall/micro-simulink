@@ -8,12 +8,16 @@
 
 #include "integral_visual_node.h"
 #include "number_visual_node.h"
+#include "x_visual_node.h"
+#include "binary_operator.h"
 
 NodePalette::NodePalette(GraphController *controller,
                          NodeDragBuffer *dragBuffer, QWidget *parent)
     : QListWidget(parent), m_dragBuffer(dragBuffer), m_controller(controller) {
   setDragEnabled(true);
   addItem(new NodePaletteItem<NumberVisualNode>("Number"));
+  addItem(new NodePaletteItem<XVisualNode>("X"));
+  addItem(new NodePaletteItem<PlusVisualNode>("Plus"));
   addItem(new NodePaletteItem<IntegralVisualNode>("Integral"));
 }
 
