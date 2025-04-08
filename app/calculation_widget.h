@@ -9,7 +9,6 @@
 #include <QThread>
 #include <QVBoxLayout>
 #include <QWidget>
-#include <QtConcurrent>
 
 #include "graph_controller.h"
 

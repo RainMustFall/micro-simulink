@@ -29,6 +29,8 @@ class Node {
   virtual std::unique_ptr<T> Execute(
       const ExecutionResultFactory<T>& factory) const = 0;
 
+  virtual ~Node() {}
+
  protected:
   std::vector<std::unique_ptr<T>> ExecuteDependencies(
       const ExecutionResultFactory<T>& factory) const {

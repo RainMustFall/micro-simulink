@@ -1,6 +1,8 @@
 #ifndef INTEGRAL_NODE_H
 #define INTEGRAL_NODE_H
 
+#include "node.h"
+
 template <typename T>
 class IntegralNode : public Node<T> {
  public:

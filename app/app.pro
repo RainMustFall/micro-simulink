@@ -49,11 +49,6 @@ TRANSLATIONS += \
 CONFIG += lrelease
 CONFIG += embed_translations
 
-
-# CONFIG+=sanitizer
-
-# CONFIG+=sanitize_thread
-
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -75,6 +70,7 @@ else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../core/libcore.a
 
 DEFINES += KLF_SRC_BUILD
+
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../klfbackend/release/ -lKLFBackend
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../klfbackend/debug/ -lKLFBackend

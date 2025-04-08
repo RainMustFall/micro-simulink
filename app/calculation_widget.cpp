@@ -1,5 +1,9 @@
 #include "calculation_widget.h"
 
+#include <QFuture>
+#include <QFutureWatcher>
+#include <QtConcurrentRun>
+
 CalculationWidget::CalculationWidget(GraphController *controller,
                                      QWidget *parent)
     : QWidget(parent), m_controller(controller) {
