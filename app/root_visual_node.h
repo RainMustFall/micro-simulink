@@ -8,6 +8,8 @@ class RootVisualNode : public VisualNode {
  public:
   explicit RootVisualNode(GraphController* controller,
                           QGraphicsItem* parent = nullptr);
+
+  bool isDeletable() const override;
 };
 
 #endif  // ROOT_VISUAL_NODE_H

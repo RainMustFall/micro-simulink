@@ -73,8 +73,23 @@ ConnectionPoint *VisualNode::processInputPress(const QPointF &mousePos) {
   return nullptr;
 }
 
+bool VisualNode::isConnected(const Connection &connection) const {
+  for (auto connectionPoint : m_connectionPoints) {
+    if (connection.sourcePoint() == connectionPoint.get() ||
+        connection.destPoint() == connectionPoint.get()) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+bool VisualNode::isDeletable() const { return true; }
+
 void VisualNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
   QGraphicsRectItem::mouseMoveEvent(event);
   // We want to repaint connections if the node is moved
   scene()->update();
 }
+
+bool VisualNode::isGettingTextInput() const { return false; }

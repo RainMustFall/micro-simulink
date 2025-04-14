@@ -43,6 +43,10 @@ ConnectionPoint *Connection::sourcePoint() { return m_sourcePoint; }
 
 ConnectionPoint *Connection::destPoint() { return m_destPoint; }
 
+const ConnectionPoint *Connection::sourcePoint() const { return m_sourcePoint; }
+
+const ConnectionPoint *Connection::destPoint() const { return m_destPoint; }
+
 Connection::~Connection() {
   prepareGeometryChange();
   scene()->removeItem(this);

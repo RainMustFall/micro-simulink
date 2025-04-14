@@ -13,6 +13,10 @@ NumberVisualNode::NumberVisualNode(GraphController *controller,
   m_textItem->setDefaultTextColor(pen().color());
 }
 
+bool NumberVisualNode::isGettingTextInput() const {
+  return m_textItem->hasFocus();
+}
+
 void NumberVisualNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *) {
   m_textItem->setTextInteractionFlags(Qt::TextEditorInteraction);
   m_textItem->setFocus();

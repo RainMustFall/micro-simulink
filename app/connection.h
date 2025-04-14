@@ -18,9 +18,12 @@ class Connection : public QGraphicsItem {
              QWidget *) override;
 
   ConnectionPoint *sourcePoint();
-  ;
 
   ConnectionPoint *destPoint();
+
+  const ConnectionPoint *sourcePoint() const;
+
+  const ConnectionPoint *destPoint() const;
 
   ~Connection() override;
 

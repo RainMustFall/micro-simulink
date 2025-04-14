@@ -30,6 +30,8 @@ class GraphWidget : public QGraphicsView {
 
   void mouseMoveEvent(QMouseEvent *event) override;
 
+  void keyPressEvent(QKeyEvent *event) override;
+
   void mouseReleaseEvent(QMouseEvent *event) override;
 
   void drawForeground(QPainter *painter, const QRectF &rect) override;
@@ -63,6 +65,10 @@ class GraphWidget : public QGraphicsView {
 
   Connection *removeConnectionByDestination(
       const ConnectionPoint *connectionPoint);
+
+  void deleteConnectionsWithSelectedNodes();
+  void deleteSelectedNodes();
+  bool connectedToAnyDeletedNode(const Connection* connection) const;
 };
 
 #endif  // GRAPH_WIDGET_H

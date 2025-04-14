@@ -33,6 +33,8 @@ class NumberVisualNode : public VisualNode {
   explicit NumberVisualNode(GraphController *controller,
                             QGraphicsItem *parent = nullptr);
 
+  bool isGettingTextInput() const override;
+
  protected:
   void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 

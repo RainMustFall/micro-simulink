@@ -10,6 +10,7 @@
 #include <QInputDialog>
 #include <QLineEdit>
 
+#include "connection.h"
 #include "connection_point.h"
 
 class VisualNode : public QGraphicsRectItem {
@@ -28,7 +29,13 @@ class VisualNode : public QGraphicsRectItem {
 
   ConnectionPoint* processInputPress(const QPointF& scenePos);
 
+  bool isConnected(const Connection& connection) const;
+
+  virtual bool isDeletable() const;
+
   virtual void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
+
+  virtual bool isGettingTextInput() const;
 
  private:
   std::vector<std::shared_ptr<ConnectionPoint>> m_connectionPoints;

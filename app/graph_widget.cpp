@@ -1,6 +1,7 @@
 #include "graph_widget.h"
 
 #include <QGraphicsProxyWidget>
+#include <algorithm>
 
 #include "number_visual_node.h"
 #include "root_visual_node.h"
@@ -93,6 +94,19 @@ void GraphWidget::mouseMoveEvent(QMouseEvent *event) {
     }
 
     viewport()->update();  // Trigger repaint
+  }
+}
+
+void GraphWidget::keyPressEvent(QKeyEvent *event) {
+  QGraphicsView::keyPressEvent(event);
+  bool anyNodeHasFocus = false;
+  for (auto *node : m_nodes) {
+    anyNodeHasFocus |= node->isGettingTextInput();
+  }
+
+  if (!anyNodeHasFocus && event->key() == Qt::Key_Delete) {
+    deleteConnectionsWithSelectedNodes();
+    deleteSelectedNodes();
   }
 }
 
@@ -200,4 +214,45 @@ Connection *GraphWidget::removeConnectionByDestination(
     }
   }
   return nullptr;
+}
+
+void GraphWidget::deleteConnectionsWithSelectedNodes() {
+  auto firstConnectionToKeep = std::partition(
+      m_connections.begin(), m_connections.end(),
+        [this](auto connection) { return connectedToAnyDeletedNode(connection); });
+
+  for (auto it = m_connections.begin(); it != firstConnectionToKeep; ++it) {
+    Connection *connection = *it;
+    connection->destPoint()->disconnect();
+    connection->sourcePoint()->disconnect();
+    m_controller->DetachNode(connection->destPoint()->getNodeId(),
+                             connection->destPoint()->getSlot());
+    delete *it;
+  }
+
+  m_connections.erase(m_connections.begin(), firstConnectionToKeep);
+}
+
+void GraphWidget::deleteSelectedNodes() {
+  auto firstNodeToKeep = std::partition(
+      m_nodes.begin(), m_nodes.end(),
+      [](auto node) { return node->isDeletable() && node->isSelected(); });
+
+  for (auto it = m_nodes.begin(); it != firstNodeToKeep; ++it) {
+    scene()->removeItem(*it);
+    delete *it;
+  }
+
+  m_nodes.erase(m_nodes.begin(), firstNodeToKeep);
+}
+
+bool GraphWidget::connectedToAnyDeletedNode(
+    const Connection *connection) const {
+  for (const auto *node : m_nodes) {
+    if (node->isDeletable() && node->isSelected() &&
+        node->isConnected(*connection)) {
+      return true;
+    }
+  }
+  return false;
 }
