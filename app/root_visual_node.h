@@ -2,9 +2,9 @@
 #define ROOT_VISUAL_NODE_H
 
 #include "graph_controller.h"
-#include "visual_node.h"
+#include "text_visual_node.h"
 
-class RootVisualNode : public VisualNode {
+class RootVisualNode : public TextVisualNode {
  public:
   explicit RootVisualNode(GraphController* controller,
                           QGraphicsItem* parent = nullptr);

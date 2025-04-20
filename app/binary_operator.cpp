@@ -2,16 +2,8 @@
 
 BinaryOperatorVisualNode::BinaryOperatorVisualNode(size_t nodeId, QString op,
                                                    QGraphicsItem *parent)
-    : VisualNode(/* numberOfInputs=*/2, /* numberOfOutputs=*/1, nodeId,
-                 QRect(0, 0, kHeight, kHeight), parent),
-      m_operator(std::move(op)) {}
-
-void BinaryOperatorVisualNode::paint(QPainter *painter,
-                                     const QStyleOptionGraphicsItem *option,
-                                     QWidget *widget) {
-  VisualNode::paint(painter, option, widget);
-  painter->drawText(rect(), Qt::AlignCenter | Qt::AlignHCenter, m_operator);
-}
+    : TextVisualNode(/* numberOfInputs=*/2, /* numberOfOutputs=*/1, nodeId,
+                     QRect(0, 0, kHeight, kHeight), std::move(op), parent) {}
 
 PlusVisualNode::PlusVisualNode(GraphController *controller,
                                QGraphicsItem *parent)

@@ -24,6 +24,7 @@ SOURCES += \
     number_visual_node.cpp \
     output_connection_point.cpp \
     root_visual_node.cpp \
+    text_visual_node.cpp \
     visual_node.cpp \
     x_visual_node.cpp
 
@@ -42,6 +43,7 @@ HEADERS += \
     number_visual_node.h \
     output_connection_point.h \
     root_visual_node.h \
+    text_visual_node.h \
     visual_node.h \
     x_visual_node.h
 

@@ -4,17 +4,13 @@
 #include <QPainter>
 
 #include "graph_controller.h"
-#include "visual_node.h"
+#include "text_visual_node.h"
 
-class BinaryOperatorVisualNode : public VisualNode {
+class BinaryOperatorVisualNode : public TextVisualNode {
  protected:
   BinaryOperatorVisualNode(size_t nodeId, QString op, QGraphicsItem *parent);
 
-  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-             QWidget *widget = nullptr) override;
-
  private:
-  QString m_operator;
   constexpr static double kHeight = 40.0;
 };
 
