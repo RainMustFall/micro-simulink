@@ -1,8 +1,9 @@
 #include "x_visual_node.h"
 
 XVisualNode::XVisualNode(GraphController *controller, QGraphicsItem *parent)
-    : VisualNode(/* numInputs=*/0, controller->AddXNode(),
-                 QRect(0, 0, kHeight, kHeight), parent) {}
+    : VisualNode(/* numberOfInputs=*/0, /* numberOfOutputs=*/1,
+                 controller->AddXNode(), QRect(0, 0, kHeight, kHeight),
+                 parent) {}
 
 void XVisualNode::paint(QPainter *painter,
                         const QStyleOptionGraphicsItem *option,

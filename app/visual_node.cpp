@@ -5,8 +5,8 @@
 #include "input_connection_point.h"
 #include "output_connection_point.h"
 
-VisualNode::VisualNode(size_t numberOfInputs, size_t id, const QRect &rect,
-                       QGraphicsItem *parent)
+VisualNode::VisualNode(size_t numberOfInputs, size_t numberOfOutputs, size_t id,
+                       const QRect &rect, QGraphicsItem *parent)
     : QGraphicsRectItem(rect, parent), m_id{id} {
   setFlag(ItemIsMovable);
   setFlag(ItemIsSelectable);
@@ -21,11 +21,16 @@ VisualNode::VisualNode(size_t numberOfInputs, size_t id, const QRect &rect,
   setBrush(QBrush(fillColor));
   setPen(QPen(penColor));
 
-  m_connectionPoints = {std::make_shared<OutputConnectionPoint>(id, this)};
+  m_connectionPoints.reserve(numberOfInputs + numberOfOutputs);
 
   for (size_t i = 0; i < numberOfInputs; ++i) {
     m_connectionPoints.push_back(
         std::make_shared<InputConnectionPoint>(i, numberOfInputs, id, this));
+  }
+
+  for (size_t i = 0; i < numberOfOutputs; ++i) {
+    m_connectionPoints.push_back(
+        std::make_shared<OutputConnectionPoint>(id, this));
   }
 }
 

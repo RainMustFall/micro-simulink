@@ -15,7 +15,7 @@
 
 class VisualNode : public QGraphicsRectItem {
  public:
-  VisualNode(size_t numberOfInputs, size_t id, const QRect& rect,
+  VisualNode(size_t numberOfInputs, size_t numberOfOutputs, size_t id, const QRect& rect,
              QGraphicsItem* parent);
 
   size_t getId() const;

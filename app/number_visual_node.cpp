@@ -6,8 +6,9 @@
 
 NumberVisualNode::NumberVisualNode(GraphController *controller,
                                    QGraphicsItem *parent)
-    : VisualNode(/* numInputs=*/0, controller->AddScalarNode(0),
-                 QRect(0, 0, kHeight, kHeight), parent) {
+    : VisualNode(/* numberOfInputs=*/0, /* numberOfOutputs=*/1,
+                 controller->AddScalarNode(0), QRect(0, 0, kHeight, kHeight),
+                 parent) {
   m_textItem =
       new EditableTextItem(/*initialValue=*/0, getId(), controller, this);
   m_textItem->setDefaultTextColor(pen().color());

@@ -2,8 +2,8 @@
 
 BinaryOperatorVisualNode::BinaryOperatorVisualNode(size_t nodeId, QString op,
                                                    QGraphicsItem *parent)
-    : VisualNode(/* numInputs=*/2, nodeId, QRect(0, 0, kHeight, kHeight),
-                 parent),
+    : VisualNode(/* numberOfInputs=*/2, /* numberOfOutputs=*/1, nodeId,
+                 QRect(0, 0, kHeight, kHeight), parent),
       m_operator(std::move(op)) {}
 
 void BinaryOperatorVisualNode::paint(QPainter *painter,
