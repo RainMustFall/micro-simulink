@@ -25,16 +25,16 @@ void IntegralVisualNode::paint(QPainter *painter,
 void IntegralVisualNode::mouseDoubleClickEvent(
     QGraphicsSceneMouseEvent *event) {
   QDialog dialog;
-  dialog.setWindowTitle("Edit Limits");
+  dialog.setWindowTitle(qtTrId("update-limits"));
   QFormLayout form(&dialog);
 
   QLineEdit upperEdit;
   upperEdit.setText(QString::number(upperLimit));
-  form.addRow("Upper Limit:", &upperEdit);
+  form.addRow(qtTrId("upper-limit"), &upperEdit);
 
   QLineEdit lowerEdit;
   lowerEdit.setText(QString::number(lowerLimit));
-  form.addRow("Lower Limit:", &lowerEdit);
+  form.addRow(qtTrId("lower-limit"), &lowerEdit);
 
   QDialogButtonBox buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel,
                              Qt::Horizontal, &dialog);

@@ -1,3 +1,5 @@
+#include <QDir>
+#include <QTranslator>
 #include <QtCore/QPointF>
 #include <QtCore/QRectF>
 #include <QtCore/QString>
@@ -25,6 +27,17 @@
 
 int main(int argc, char** argv) {
   QApplication app(argc, argv);
+
+  QTranslator translator;
+  if (!translator.load(":/i18n/app_en_US")) {
+    qDebug() << "Could not load translation file" << QDir::currentPath();
+    return 1;
+  }
+
+  if (!QCoreApplication::installTranslator(&translator)) {
+    qDebug() << "Could not apply translator";
+    return 1;
+  }
 
   QMainWindow mainWindow;
   mainWindow.setWindowTitle("Simulink Prototype");

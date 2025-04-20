@@ -47,13 +47,10 @@ HEADERS += \
     visual_node.h \
     x_visual_node.h
 
-FORMS += \
-    mainwindow.ui
-
 TRANSLATIONS += \
-    app_pl_PL.ts
-CONFIG += lrelease
-CONFIG += embed_translations
+    app_en_US.ts
+QMAKE_LRELEASE_FLAGS = -idbased
+CONFIG += lrelease embed_translations
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

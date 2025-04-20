@@ -6,19 +6,19 @@
 #include <QtGui/QDrag>
 #include <QtWidgets/QListWidgetItem>
 
+#include "binary_operator.h"
 #include "integral_visual_node.h"
 #include "number_visual_node.h"
 #include "x_visual_node.h"
-#include "binary_operator.h"
 
 NodePalette::NodePalette(GraphController *controller,
                          NodeDragBuffer *dragBuffer, QWidget *parent)
     : QListWidget(parent), m_dragBuffer(dragBuffer), m_controller(controller) {
   setDragEnabled(true);
-  addItem(new NodePaletteItem<NumberVisualNode>("Number"));
-  addItem(new NodePaletteItem<XVisualNode>("X"));
-  addItem(new NodePaletteItem<PlusVisualNode>("Plus"));
-  addItem(new NodePaletteItem<IntegralVisualNode>("Integral"));
+  addItem(new NodePaletteItem<NumberVisualNode>(qtTrId("number-option")));
+  addItem(new NodePaletteItem<XVisualNode>(qtTrId("x-option")));
+  addItem(new NodePaletteItem<PlusVisualNode>(qtTrId("plus-option")));
+  addItem(new NodePaletteItem<IntegralVisualNode>(qtTrId("integral-option")));
 }
 
 void NodePalette::startDrag(Qt::DropActions supportedActions) {
