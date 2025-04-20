@@ -1,4 +1,5 @@
 #include <QDir>
+#include <QSplitter>
 #include <QTranslator>
 #include <QtCore/QPointF>
 #include <QtCore/QRectF>
@@ -46,16 +47,18 @@ int main(int argc, char** argv) {
   QWidget* centralWidget = new QWidget(&mainWindow);
   QHBoxLayout* mainLayout = new QHBoxLayout(centralWidget);
 
+  QSplitter* splitter = new QSplitter(centralWidget);
+  mainLayout->addWidget(splitter);
+
   GraphController controller;
   NodeDragBuffer dragBuffer;
 
   // Create the graph widget
   GraphWidget* graphWidget = new GraphWidget(&controller, &dragBuffer);
-  mainLayout->addWidget(graphWidget);
+  splitter->addWidget(graphWidget);
 
   // Create the right panel
   QWidget* rightPanel = new QWidget();
-  rightPanel->setFixedWidth(200);
   QVBoxLayout* rightLayout = new QVBoxLayout(rightPanel);
 
   // Create the node palette
@@ -69,10 +72,11 @@ int main(int argc, char** argv) {
   rightLayout->addStretch();
   rightLayout->addWidget(nodePalette);
 
-  mainLayout->addWidget(rightPanel);
+  splitter->addWidget(rightPanel);
 
   mainWindow.setCentralWidget(centralWidget);
   mainWindow.setGeometry(100, 100, 1000, 600);
+  splitter->setSizes({mainWindow.width() - 200, 200});
   mainWindow.show();
 
   return app.exec();
