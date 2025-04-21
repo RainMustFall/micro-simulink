@@ -1,9 +1,6 @@
 #ifndef LATEX_DISPLAY_WIDGET_H
 #define LATEX_DISPLAY_WIDGET_H
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -39,7 +36,5 @@ class LatexDisplayWidget : public QWidget, GraphUpdateSubscriber {
   QVBoxLayout *m_layout;
   GraphController *controller;
 };
-
-#endif  // MAINWINDOW_H
 
 #endif  // LATEX_DISPLAY_WIDGET_H

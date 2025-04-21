@@ -2,22 +2,23 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QObject>
+#include <QWidget>
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
-QT_END_NAMESPACE
+#include "graph_controller.h"
+#include "node_drag_buffer.h"
 
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
+class MainWindow : public QMainWindow {
+  Q_OBJECT
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+ public:
+  MainWindow(const QRect &windowSize, QWidget *parent = nullptr);
 
-private:
-    Ui::MainWindow *ui;
+ private:
+  GraphController controller;
+  NodeDragBuffer dragBuffer;
+
+  QWidget *createRightPanel();
 };
-#endif // MAINWINDOW_H
+
+#endif  // MAINWINDOW_H

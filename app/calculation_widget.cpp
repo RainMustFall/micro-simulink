@@ -33,7 +33,7 @@ CalculationWidget::CalculationWidget(GraphController *controller,
 
 void CalculationWidget::startCalculation() {
   if (!m_controller) {
-    m_resultLineEdit->setText(tr("err-controller-not-set"));
+    m_resultLineEdit->setText(qtTrId("err-controller-not-set"));
     return;
   }
 

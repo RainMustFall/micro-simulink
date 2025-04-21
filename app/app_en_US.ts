@@ -4,7 +4,6 @@
 <context>
     <name></name>
     <message id="button-calculate">
-        <location filename="binary_operator.cpp" line="10"/>
         <location filename="calculation_widget.cpp" line="11"/>
         <source></source>
         <translation>Calculate</translation>
@@ -15,18 +14,17 @@
         <translation>Press to get result of the graph</translation>
     </message>
     <message id="err-controller-not-set">
-        <location filename="calculation_widget.cpp" line="35"/>
+        <location filename="calculation_widget.cpp" line="36"/>
         <source></source>
         <translation>Error: controller not set</translation>
     </message>
     <message id="calculating">
-        <location filename="calculation_widget.cpp" line="41"/>
+        <location filename="calculation_widget.cpp" line="42"/>
         <source></source>
-        <oldsource>LAST CASE</oldsource>
         <translation>Calculating...</translation>
     </message>
     <message id="button-cancel">
-        <location filename="calculation_widget.cpp" line="42"/>
+        <location filename="calculation_widget.cpp" line="43"/>
         <source></source>
         <translation>Cancel</translation>
     </message>
@@ -69,6 +67,11 @@
         <location filename="root_visual_node.cpp" line="6"/>
         <source></source>
         <translation>Result</translation>
+    </message>
+    <message id="window-name">
+        <location filename="mainwindow.cpp" line="12"/>
+        <source></source>
+        <translation>Micro-Simulink</translation>
     </message>
 </context>
 </TS>
