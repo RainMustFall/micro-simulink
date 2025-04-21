@@ -10,6 +10,7 @@
 #include "scalar_node.h"
 #include "scalar_result_factory.h"
 #include "x_node.h"
+#include "exceptions.h"
 
 GraphController::GraphController() {}
 
@@ -57,17 +58,17 @@ void GraphController::SetScalarValue(size_t node_id, double value) {
   NotifySubscribers();
 }
 
-double GraphController::GetGraphResult() {
+double GraphController::GetGraphResult() const {
   auto function = nodes_[kRootIndex]->Execute(FunctionFactory());
   auto scalar = dynamic_cast<Scalar*>(function.get());
   if (scalar == nullptr) {
-    throw std::domain_error(
+    throw ResultIsNotScalar(
         "Only scalar expressions are supported! The graph produced a function");
   }
   return scalar->GetValue();
 }
 
-std::string GraphController::GetLatex() {
+std::string GraphController::GetLatex() const {
   auto latex_expression =
       latex_nodes_[kRootIndex]->Execute(LatexExpressionFactory());
   return latex_expression->GetExpression();

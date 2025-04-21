@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "execution_result_factory.h"
+#include "exceptions.h"
 
 template <typename T>
 class Node {
@@ -37,7 +38,7 @@ class Node {
     std::vector<std::unique_ptr<T>> result;
     for (size_t i = 0; i < dependencies_.size(); ++i) {
       if (dependencies_[i] == nullptr) {
-        throw std::runtime_error(
+        throw GraphIsIncomplete(
             "The graph is incomplete: some nodes are missing inputs!");
       }
 

@@ -9,6 +9,7 @@
 #include <QThread>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <variant>
 
 #include "graph_controller.h"
 
@@ -29,11 +30,18 @@ class CalculationWidget : public QWidget {
  private:
   GraphController* m_controller;
   QLabel* m_label;
+  QLabel* m_errorLabel;
   QPushButton* m_button;
   QLineEdit* m_resultLineEdit;
   QVBoxLayout* m_layout;
   QProgressDialog* m_progressDialog = nullptr;
-  QFutureWatcher<double>* m_futureWatcher;
+
+  typedef std::variant<double, QString> ExecutionResult;
+  QFutureWatcher<ExecutionResult>* m_futureWatcher;
+
+  ExecutionResult processGraphExecution() const;
+  void showDialog();
+  QLabel* setUpErrorLabel();
 };
 
 #endif  // CALCULATION_WIDGET_H

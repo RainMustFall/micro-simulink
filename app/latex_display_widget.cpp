@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QPalette>
 
+#include "exceptions.h"
 #include "klfbackend.h"
 #include "mainwindow.h"
 
@@ -49,7 +50,7 @@ void LatexDisplayWidget::updatePreviewBuilderThreadInput() {
 
   try {
     input.latex = QString::fromStdString(controller->GetLatex());
-  } catch (std::runtime_error&) {
+  } catch (GraphIsIncomplete&) {
     // Graph is incomplete, that's fine
   }
 

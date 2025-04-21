@@ -35,9 +35,9 @@ class GraphController : public GraphUpdateNotifier {
 
   void DetachNode(size_t dst_node, size_t slot);
 
-  double GetGraphResult();
+  double GetGraphResult() const;
 
-  std::string GetLatex();
+  std::string GetLatex() const;
 
  private:
   std::vector<std::unique_ptr<Node<Function>>> nodes_;
