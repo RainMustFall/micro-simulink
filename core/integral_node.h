@@ -3,9 +3,17 @@
 
 #include "node.h"
 
+/*!
+ * @brief The node performing integration of its input
+ */
 template <typename T>
 class IntegralNode : public Node<T> {
  public:
+  /*!
+   * @brief IntegralNode
+   * @param lower_limit - lower limit of integration
+   * @param upper_limit - upper limit of integration
+   */
   IntegralNode(double lower_limit, double upper_limit)
       : Node<T>(1), lower_limit_(lower_limit), upper_limit_(upper_limit) {}
 
@@ -15,6 +23,11 @@ class IntegralNode : public Node<T> {
     return inputs.front()->Integrate(lower_limit_, upper_limit_);
   }
 
+  /*!
+   * @brief Set integration limits
+   * @param lower_limit - new lower limit of integration
+   * @param upper_limit - new upper limit of integration
+   */
   void SetLimits(double lower_limit, double upper_limit) {
     lower_limit_ = lower_limit;
     upper_limit_ = upper_limit;

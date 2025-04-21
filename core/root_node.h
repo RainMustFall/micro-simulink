@@ -3,6 +3,12 @@
 
 #include "node.h"
 
+/*!
+ * @brief The RootNode class
+ *
+ * Graph execution starts from the root. It simply returns the result of its
+ * only dependency.
+ */
 template <typename T>
 class RootNode : public Node<T> {
  public:

@@ -6,6 +6,12 @@
 
 enum class Priority { Additive = 0, Multiplicative = 1, Expression = 2 };
 
+/*!
+ * @brief Stores a syntactically correct LaTeX expression.
+ *
+ * It defines operations on it so that new LaTeX expressions are created. For
+ * example, .Sinus from “x + 5” will return “\sin{(x + 5)}”.
+ */
 class LatexExpression {
  public:
   LatexExpression(std::string expression,

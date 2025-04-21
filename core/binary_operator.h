@@ -3,6 +3,10 @@
 
 #include "node.h"
 
+/*!
+ * @brief A node with two inputs. Performs addition of dependency results. The
+ * meaning of addition is defined by the type T.
+ */
 template <typename T>
 class PlusOperator : public Node<T> {
  public:

@@ -3,6 +3,12 @@
 
 #include "node.h"
 
+/*!
+ * @brief Graph node without input.
+ *
+ *  Returns an object of type T that represents the function y = x (e.g. functor
+ * or LaTeX expression “x”).
+ */
 template <typename T>
 class XNode : public Node<T> {
  public:
