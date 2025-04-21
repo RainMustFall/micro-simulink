@@ -53,13 +53,13 @@ void GraphWidget::mousePressEvent(QMouseEvent *event) {
   if (event->button() == Qt::LeftButton) {
     QPointF scenePos = mapToScene(event->pos());
     for (VisualNode *node : m_nodes) {
-      auto sourcePoint = node->processOutputPress(scenePos);
+      auto sourcePoint = node->tryStartConnection(scenePos);
       if (sourcePoint != nullptr) {
         startConnecting(sourcePoint, scenePos);
         return;
       }
 
-      auto destinationPoint = node->processInputPress(scenePos);
+      auto destinationPoint = node->tryCancelConnection(scenePos);
       if (destinationPoint != nullptr) {
         m_controller->DetachNode(node->getId(), destinationPoint->getSlot());
         detachAndStartConnecting(destinationPoint, scenePos);
@@ -218,8 +218,9 @@ Connection *GraphWidget::removeConnectionByDestination(
 
 void GraphWidget::deleteConnectionsWithSelectedNodes() {
   auto firstConnectionToKeep = std::partition(
-      m_connections.begin(), m_connections.end(),
-        [this](auto connection) { return connectedToAnyDeletedNode(connection); });
+      m_connections.begin(), m_connections.end(), [this](auto connection) {
+        return connectedToAnyDeletedNode(connection);
+      });
 
   for (auto it = m_connections.begin(); it != firstConnectionToKeep; ++it) {
     Connection *connection = *it;

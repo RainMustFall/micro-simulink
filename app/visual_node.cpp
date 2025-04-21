@@ -60,18 +60,18 @@ ConnectionPoint *VisualNode::processDrop(const QPointF &mousePos) {
   return nullptr;
 }
 
-ConnectionPoint *VisualNode::processOutputPress(const QPointF &mousePos) {
+ConnectionPoint *VisualNode::tryStartConnection(const QPointF &mousePos) {
   for (auto connectionPoint : m_connectionPoints) {
-    if (connectionPoint->acceptsOutputPress(mousePos)) {
+    if (connectionPoint->canStartConnection(mousePos)) {
       return connectionPoint.get();
     }
   }
   return nullptr;
 }
 
-ConnectionPoint *VisualNode::processInputPress(const QPointF &mousePos) {
+ConnectionPoint *VisualNode::tryCancelConnection(const QPointF &mousePos) {
   for (auto connectionPoint : m_connectionPoints) {
-    if (connectionPoint->acceptsInputPress(mousePos)) {
+    if (connectionPoint->canCancelConnection(mousePos)) {
       return connectionPoint.get();
     }
   }

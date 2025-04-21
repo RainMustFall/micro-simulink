@@ -7,8 +7,18 @@
 #include "node_drag_buffer.h"
 #include "visual_node.h"
 
+/*!
+ * @brief Qt widget allowing to select nodes and drag them onto the graph editor
+ */
 class NodePalette : public QListWidget {
  public:
+  /*!
+   * @brief NodePalette
+   * @param controller - GraphController maintaining the graph model
+   * @param dragBuffer - buffer providing node objects which have been dragged
+   * from palette
+   * @param parent - parent widget
+   */
   NodePalette(GraphController* controller, NodeDragBuffer* dragBuffer,
               QWidget* parent = nullptr);
 

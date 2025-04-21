@@ -45,7 +45,7 @@ LatexDisplayWidget::LatexDisplayWidget(GraphController* controller,
 
 LatexDisplayWidget::~LatexDisplayWidget() { delete mPreviewBuilderThread; }
 
-void LatexDisplayWidget::updatePreviewBuilderThreadInput() {
+void LatexDisplayWidget::Notify() {
   input.preamble = QString("\\usepackage{amssymb,amsmath}");
 
   try {
@@ -59,8 +59,6 @@ void LatexDisplayWidget::updatePreviewBuilderThreadInput() {
     mPreviewBuilderThread->start();
   }
 }
-
-void LatexDisplayWidget::Notify() { updatePreviewBuilderThreadInput(); }
 
 void LatexDisplayWidget::showRealTimePreview(const QImage& preview,
                                              bool latexerror) {

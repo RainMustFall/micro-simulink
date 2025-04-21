@@ -20,8 +20,22 @@
 #include "node_drag_buffer.h"
 #include "visual_node.h"
 
+/*!
+ * @brief Qt Graphics view responsible for graph drawing
+ *
+ * It contains all the visual nodes, connections, and forwards mouse and
+ * keyboard events to them, communicating with the NodeController when the
+ * state changes.
+ */
 class GraphWidget : public QGraphicsView {
  public:
+  /*!
+   * @brief GraphWidget constructor
+   * @param controller - GraphController maintaining the graph model
+   * @param dragBuffer - buffer providing node objects which have been dragged
+   * from palette
+   * @param parent - parent widget
+   */
   GraphWidget(GraphController *controller, NodeDragBuffer *dragBuffer,
               QWidget *parent = nullptr);
 
@@ -68,7 +82,7 @@ class GraphWidget : public QGraphicsView {
 
   void deleteConnectionsWithSelectedNodes();
   void deleteSelectedNodes();
-  bool connectedToAnyDeletedNode(const Connection* connection) const;
+  bool connectedToAnyDeletedNode(const Connection *connection) const;
 };
 
 #endif  // GRAPH_WIDGET_H

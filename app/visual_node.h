@@ -20,14 +20,14 @@ class VisualNode : public QGraphicsRectItem {
 
   size_t getId() const;
 
-  ConnectionPoint* processHover(const QPointF& scenePos, bool mousePressed,
+  ConnectionPoint* processHover(const QPointF& mousePos, bool mousePressed,
                                 bool currentlyConnecting);
 
-  ConnectionPoint* processDrop(const QPointF& scenePos);
+  ConnectionPoint* processDrop(const QPointF& mousePos);
 
-  ConnectionPoint* processOutputPress(const QPointF& scenePos);
+  ConnectionPoint* tryStartConnection(const QPointF& mousePos);
 
-  ConnectionPoint* processInputPress(const QPointF& scenePos);
+  ConnectionPoint* tryCancelConnection(const QPointF& mousePos);
 
   bool isConnected(const Connection& connection) const;
 

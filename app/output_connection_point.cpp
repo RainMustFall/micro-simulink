@@ -8,10 +8,10 @@ OutputConnectionPoint::OutputConnectionPoint(size_t nodeId,
   setRect(x, y, 2 * kRadius, 2 * kRadius);
 }
 
-void OutputConnectionPoint::updateHovered(const QPointF &scenePos,
+void OutputConnectionPoint::updateHovered(const QPointF &mousePos,
                                           bool mousePressed,
                                           bool currentlyConnecting) {
-  if (sceneBoundingRect().contains(scenePos)) {
+  if (sceneBoundingRect().contains(mousePos)) {
     m_hovered = (!currentlyConnecting && !mousePressed &&
                  m_state == ConnectionState::FREE);
   } else {
@@ -22,11 +22,13 @@ void OutputConnectionPoint::updateHovered(const QPointF &scenePos,
 
 bool OutputConnectionPoint::acceptsDrop(const QPointF &) { return false; }
 
-bool OutputConnectionPoint::acceptsOutputPress(const QPointF &scenePos) {
-  return sceneBoundingRect().contains(scenePos) &&
+bool OutputConnectionPoint::canStartConnection(const QPointF &mousePos) {
+  return sceneBoundingRect().contains(mousePos) &&
          m_state == ConnectionState::FREE;
 }
 
-bool OutputConnectionPoint::acceptsInputPress(const QPointF &) { return false; }
+bool OutputConnectionPoint::canCancelConnection(const QPointF &) {
+  return false;
+}
 
 size_t OutputConnectionPoint::getSlot() const { return 0; }

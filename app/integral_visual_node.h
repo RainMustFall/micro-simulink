@@ -6,8 +6,16 @@
 #include "graph_controller.h"
 #include "visual_node.h"
 
+/*!
+ * @brief Visual node representing integral
+ */
 class IntegralVisualNode : public VisualNode {
  public:
+  /*!
+   * @brief IntegralVisualNode constructor
+   * @param controller - GraphController maintaining the graph model
+   * @param parent - parent graphich item
+   */
   explicit IntegralVisualNode(GraphController *controller,
                               QGraphicsItem *parent = nullptr);
 
@@ -15,7 +23,6 @@ class IntegralVisualNode : public VisualNode {
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
              QWidget *widget = nullptr) override;
 
- protected:
   void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 
  private:

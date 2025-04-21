@@ -13,10 +13,18 @@
 
 #include "graph_controller.h"
 
+/*!
+ * @brief Qt widget to query and display calculation result
+ */
 class CalculationWidget : public QWidget {
   Q_OBJECT
 
  public:
+  /*!
+   * @brief Constructor
+   * @param controller - GraphController object to query execution results
+   * @param parent - parent widget
+   */
   explicit CalculationWidget(GraphController* controller,
                              QWidget* parent = nullptr);
 

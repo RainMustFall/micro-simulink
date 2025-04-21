@@ -9,18 +9,29 @@
 #include "klfbackend.h"
 #include "klfpreviewbuilderthread.h"
 
+/*!
+ * @brief Qt widget responsible for rendering LaTeX representation of the graph
+ */
 class LatexDisplayWidget : public QWidget, GraphUpdateSubscriber {
   Q_OBJECT
 
  public:
+  /*!
+   * @brief LatexDisplayWidget constructor
+   * @param controller - GraphController maintaining the graph model
+   * @param parent - parent widget
+   */
   explicit LatexDisplayWidget(GraphController *controller,
                               QWidget *parent = nullptr);
-  ~LatexDisplayWidget();
 
- public slots:
-  void updatePreviewBuilderThreadInput();
-
+  /*!
+   * @brief Process notification that graph has been updated
+   *
+   * Trigger LaTeX render
+   */
   void Notify() override;
+
+  ~LatexDisplayWidget();
 
  private slots:
   void showRealTimePreview(const QImage &preview, bool latexerror);

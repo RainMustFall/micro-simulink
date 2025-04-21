@@ -29,9 +29,9 @@ bool InputConnectionPoint::acceptsDrop(const QPointF &scenePos) {
          sceneBoundingRect().contains(scenePos);
 }
 
-bool InputConnectionPoint::acceptsOutputPress(const QPointF &) { return false; }
+bool InputConnectionPoint::canStartConnection(const QPointF &) { return false; }
 
-bool InputConnectionPoint::acceptsInputPress(const QPointF &scenePos) {
+bool InputConnectionPoint::canCancelConnection(const QPointF &scenePos) {
   return sceneBoundingRect().contains(scenePos) &&
          m_state == ConnectionState::CONNECTED;
 }

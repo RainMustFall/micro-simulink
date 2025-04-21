@@ -13,8 +13,6 @@ QRectF Connection::boundingRect() const {
   return sourceRect.united(destRect);
 }
 
-void Connection::prepareForRemoval() { prepareGeometryChange(); }
-
 void Connection::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
                        QWidget *) {
   if (!m_sourcePoint || !m_destPoint) return;
