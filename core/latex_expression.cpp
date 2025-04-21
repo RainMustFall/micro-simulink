@@ -32,5 +32,5 @@ std::string LatexExpression::MaybePutParentheses(std::string expression,
     return "\\left(" + expression + "\\right)";
   }
 
-  return std::move(expression);
+  return expression;
 }

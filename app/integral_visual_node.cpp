@@ -22,8 +22,7 @@ void IntegralVisualNode::paint(QPainter *painter,
                     "∫");  // Integral sign
 }
 
-void IntegralVisualNode::mouseDoubleClickEvent(
-    QGraphicsSceneMouseEvent *event) {
+void IntegralVisualNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *) {
   QDialog dialog;
   dialog.setWindowTitle(qtTrId("update-limits"));
   QFormLayout form(&dialog);

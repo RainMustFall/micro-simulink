@@ -5,7 +5,6 @@
 
 #include "klfbackend.h"
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 
 LatexDisplayWidget::LatexDisplayWidget(GraphController* controller,
                                        QWidget* parent)
