@@ -34,7 +34,7 @@ class PlusVisualNode : public BinaryOperatorVisualNode {
   /*!
    * @brief Constructor
    * @param controller - GraphController used to interact with the graph
-   * @param parent - QGraphicsItem
+   * @param parent - parent graphics item
    */
   PlusVisualNode(GraphController *controller, QGraphicsItem *parent = nullptr);
 };

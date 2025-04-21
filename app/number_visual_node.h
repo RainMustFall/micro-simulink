@@ -11,8 +11,18 @@
 #include "graph_controller.h"
 #include "visual_node.h"
 
+/*!
+ * @brief Custom text item used to edit the number of numeric visual nodes
+ */
 class EditableTextItem : public QGraphicsTextItem {
  public:
+  /*!
+   * @brief EditableTextItem
+   * @param initialValue - the number that will initially be in the field
+   * @param nodeId - id of the node this text item corresponds to
+   * @param controller - controller maintaining the graph model
+   * @param parent - parent graphics item
+   */
   EditableTextItem(double initialValue, size_t nodeId,
                    GraphController *controller,
                    QGraphicsItem *parent = nullptr);
@@ -28,8 +38,16 @@ class EditableTextItem : public QGraphicsTextItem {
   size_t m_nodeId;
 };
 
+/*!
+ * @brief Visual node containing an editable number on it
+ */
 class NumberVisualNode : public VisualNode {
  public:
+  /*!
+   * @brief NumberVisualNode
+   * @param controller - controller maintaining the graph model
+   * @param parent - parent graphics item
+   */
   explicit NumberVisualNode(GraphController *controller,
                             QGraphicsItem *parent = nullptr);
 
