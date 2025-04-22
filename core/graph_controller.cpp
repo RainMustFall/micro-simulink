@@ -25,6 +25,16 @@ size_t GraphController::AddXNode() { return AddNode<XNode>(); }
 
 size_t GraphController::AddPlusNode() { return AddNode<PlusOperator>(); }
 
+size_t GraphController::AddMinusNode() { return AddNode<MinusOperator>(); }
+
+size_t GraphController::AddMultipliesNode() {
+  return AddNode<MultipliesOperator>();
+}
+
+size_t GraphController::AddDividesNode() { return AddNode<DividesOperator>(); }
+
+size_t GraphController::AddPowerNode() { return AddNode<PowerOperator>(); }
+
 size_t GraphController::AddIntegralNode(double lower_limit,
                                         double upper_limit) {
   return AddNode<IntegralNode>(lower_limit, upper_limit);

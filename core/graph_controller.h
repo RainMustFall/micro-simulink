@@ -53,6 +53,30 @@ class GraphController : public GraphUpdateNotifier {
   size_t AddPlusNode();
 
   /*!
+   * @brief Add minus node
+   * @return ID of the newly created node
+   */
+  size_t AddMinusNode();
+
+  /*!
+   * @brief Add multiplies node
+   * @return ID of the newly created node
+   */
+  size_t AddMultipliesNode();
+
+  /*!
+   * @brief Add divides node
+   * @return ID of the newly created node
+   */
+  size_t AddDividesNode();
+
+  /*!
+   * @brief Add power node
+   * @return ID of the newly created node
+   */
+  size_t AddPowerNode();
+
+  /*!
    * @brief Add integral node
    * @param lower_limit - lower limit of integration
    * @param upper_limit - upper limit of integration

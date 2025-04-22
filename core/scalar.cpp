@@ -1,11 +1,30 @@
 #include "scalar.h"
 
+#include <cmath>
+
 Scalar::Scalar(double value) : Function([value](double) { return value; }) {}
 
 double Scalar::GetValue() const { return this->operator()(0); }
 
 std::unique_ptr<Function> Scalar::operator+(const Function &rhs) {
   return rhs.OperatorWithScalar(*this, std::plus<double>());
+}
+
+std::unique_ptr<Function> Scalar::operator-(const Function &rhs) {
+  return rhs.OperatorWithScalar(*this, std::minus<double>());
+}
+
+std::unique_ptr<Function> Scalar::operator/(const Function &rhs) {
+  return rhs.OperatorWithScalar(*this, std::divides<double>());
+}
+
+std::unique_ptr<Function> Scalar::operator*(const Function &rhs) {
+  return rhs.OperatorWithScalar(*this, std::multiplies<double>());
+}
+
+std::unique_ptr<Function> Scalar::operator^(const Function &rhs) {
+  return rhs.OperatorWithScalar(
+      *this, [](double x, double y) { return std::pow(x, y); });
 }
 
 std::unique_ptr<Function> Scalar::Integrate(double lower_limit,

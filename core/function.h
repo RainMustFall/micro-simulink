@@ -21,6 +21,10 @@ class Function {
   virtual double operator()(double x) const { return function_(x); }
 
   virtual std::unique_ptr<Function> operator+(const Function &rhs);
+  virtual std::unique_ptr<Function> operator-(const Function &rhs);
+  virtual std::unique_ptr<Function> operator/(const Function &rhs);
+  virtual std::unique_ptr<Function> operator*(const Function &rhs);
+  virtual std::unique_ptr<Function> operator^(const Function &rhs);
 
   /*!
    * @brief Integrate the fucntion

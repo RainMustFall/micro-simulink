@@ -21,6 +21,9 @@ class TestNumericGraph : public QObject {
   void testSinus();
   void testCotangent();
   void nestedTrigonometry();
+  void testMinus();
+  void testDivide();
+  void testPower();
 };
 
 void TestNumericGraph::testAddTwoNumbers() {
@@ -150,6 +153,55 @@ void TestNumericGraph::nestedTrigonometry() {
 
   // About zero
   QVERIFY(std::fabs(controller.GetGraphResult() < 1e-15));
+}
+
+void TestNumericGraph::testPower() {
+  auto controller = GraphController();
+  auto root = controller.AddRootNode();
+
+  auto two = controller.AddScalarNode(2);
+  auto pow = controller.AddPowerNode();
+  auto three = controller.AddScalarNode(3);
+
+  controller.ConnectNodes(two, pow, 0);
+  controller.ConnectNodes(three, pow, 1);
+  controller.ConnectNodes(pow, root, 0);
+
+  QCOMPARE(controller.GetGraphResult(), 8);
+}
+
+void TestNumericGraph::testDivide() {
+  auto controller = GraphController();
+  auto root = controller.AddRootNode();
+
+  auto one = controller.AddScalarNode(1);
+  auto divides = controller.AddDividesNode();
+  auto two = controller.AddScalarNode(2);
+
+  controller.ConnectNodes(one, divides, 0);
+  controller.ConnectNodes(two, divides, 1);
+  controller.ConnectNodes(divides, root, 0);
+
+  QCOMPARE(controller.GetGraphResult(), 0.5);
+
+  controller.SetScalarValue(two, 0);
+  QCOMPARE(controller.GetGraphResult(),
+           std::numeric_limits<double>::infinity());
+}
+
+void TestNumericGraph::testMinus() {
+  auto controller = GraphController();
+  auto root = controller.AddRootNode();
+
+  auto two = controller.AddScalarNode(2);
+  auto minus = controller.AddMinusNode();
+  auto one = controller.AddScalarNode(1);
+
+  controller.ConnectNodes(two, minus, 0);
+  controller.ConnectNodes(one, minus, 1);
+  controller.ConnectNodes(minus, root, 0);
+
+  QCOMPARE(controller.GetGraphResult(), 1);
 }
 
 QTEST_APPLESS_MAIN(TestNumericGraph)

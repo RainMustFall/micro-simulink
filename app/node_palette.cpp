@@ -19,6 +19,11 @@ NodePalette::NodePalette(GraphController *controller,
   addItem(new NodePaletteItem<NumberVisualNode>(qtTrId("number-option")));
   addItem(new NodePaletteItem<XVisualNode>(qtTrId("x-option")));
   addItem(new NodePaletteItem<PlusVisualNode>(qtTrId("plus-option")));
+  addItem(new NodePaletteItem<MinusVisualNode>(qtTrId("minus-option")));
+  addItem(new NodePaletteItem<DividesVisualNode>(qtTrId("divides-option")));
+  addItem(
+      new NodePaletteItem<MultipliesVisualNode>(qtTrId("multiplies-option")));
+  addItem(new NodePaletteItem<PowerVisualNode>(qtTrId("power-option")));
   addItem(new NodePaletteItem<IntegralVisualNode>(qtTrId("integral-option")));
   addItem(new NodePaletteItem<SineVisualNode>(qtTrId("sin-option")));
   addItem(new NodePaletteItem<CosineVisualNode>(qtTrId("cos-option")));

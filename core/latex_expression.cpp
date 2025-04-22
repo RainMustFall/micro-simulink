@@ -9,8 +9,46 @@ LatexExpression::LatexExpression(std::string expression,
 
 std::unique_ptr<LatexExpression> LatexExpression::operator+(
     const LatexExpression& rhs) {
-  return std::make_unique<LatexExpression>(expression_ + '+' + rhs.expression_,
-                                           Priority::Additive);
+  auto priority = Priority::Additive;
+  return std::make_unique<LatexExpression>(
+      MaybePutParentheses(expression_, priority) + "+" +
+          MaybePutParentheses(rhs.expression_, priority),
+      priority);
+}
+
+std::unique_ptr<LatexExpression> LatexExpression::operator-(
+    const LatexExpression& rhs) {
+  auto priority = Priority::Additive;
+  return std::make_unique<LatexExpression>(
+      MaybePutParentheses(expression_, priority) + "-" +
+          MaybePutParentheses(rhs.expression_, priority),
+      priority);
+}
+
+std::unique_ptr<LatexExpression> LatexExpression::operator*(
+    const LatexExpression& rhs) {
+  auto priority = Priority::Multiplicative;
+  return std::make_unique<LatexExpression>(
+      MaybePutParentheses(expression_, priority) + "\\cdot" +
+          MaybePutParentheses(rhs.expression_, priority),
+      priority);
+}
+
+std::unique_ptr<LatexExpression> LatexExpression::operator/(
+    const LatexExpression& rhs) {
+  auto priority = Priority::Multiplicative;
+  return std::make_unique<LatexExpression>(
+      "\\dfrac{" + expression_ + "}{" + rhs.expression_ + "}", priority);
+}
+
+std::unique_ptr<LatexExpression> LatexExpression::operator^(
+    const LatexExpression& rhs) {
+  std::string base = expression_;
+  if (last_operation_priority_ != Priority::Expression) {
+    base = "\\left(" + base + "\\right)";
+  }
+  return std::make_unique<LatexExpression>(base + "^{" + rhs.expression_ + "}",
+                                           Priority::Power);
 }
 
 std::unique_ptr<LatexExpression> LatexExpression::Integrate(

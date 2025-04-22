@@ -39,4 +39,58 @@ class PlusVisualNode : public BinaryOperatorVisualNode {
   PlusVisualNode(GraphController *controller, QGraphicsItem *parent = nullptr);
 };
 
+/*!
+ * @brief A visual node representing - operator.
+ */
+class MinusVisualNode : public BinaryOperatorVisualNode {
+ public:
+  /*!
+   * @brief Constructor
+   * @param controller - GraphController used to interact with the graph
+   * @param parent - parent graphics item
+   */
+  MinusVisualNode(GraphController *controller, QGraphicsItem *parent = nullptr);
+};
+
+/*!
+ * @brief A visual node representing * operator.
+ */
+class MultipliesVisualNode : public BinaryOperatorVisualNode {
+ public:
+  /*!
+   * @brief Constructor
+   * @param controller - GraphController used to interact with the graph
+   * @param parent - parent graphics item
+   */
+  MultipliesVisualNode(GraphController *controller,
+                       QGraphicsItem *parent = nullptr);
+};
+
+/*!
+ * @brief A visual node representing / operator.
+ */
+class DividesVisualNode : public BinaryOperatorVisualNode {
+ public:
+  /*!
+   * @brief Constructor
+   * @param controller - GraphController used to interact with the graph
+   * @param parent - parent graphics item
+   */
+  DividesVisualNode(GraphController *controller,
+                    QGraphicsItem *parent = nullptr);
+};
+
+/*!
+ * @brief A visual node representing ^ operator.
+ */
+class PowerVisualNode : public BinaryOperatorVisualNode {
+ public:
+  /*!
+   * @brief Constructor
+   * @param controller - GraphController used to interact with the graph
+   * @param parent - parent graphics item
+   */
+  PowerVisualNode(GraphController *controller, QGraphicsItem *parent = nullptr);
+};
+
 #endif  // BINARY_OPERATOR_H

@@ -12,6 +12,23 @@ std::unique_ptr<Function> Function::operator+(const Function &rhs) {
   return rhs.OperatorWithFunction(*this, std::plus<double>());
 }
 
+std::unique_ptr<Function> Function::operator-(const Function &rhs) {
+  return rhs.OperatorWithFunction(*this, std::minus<double>());
+}
+
+std::unique_ptr<Function> Function::operator/(const Function &rhs) {
+  return rhs.OperatorWithFunction(*this, std::divides<double>());
+}
+
+std::unique_ptr<Function> Function::operator*(const Function &rhs) {
+  return rhs.OperatorWithFunction(*this, std::multiplies<double>());
+}
+
+std::unique_ptr<Function> Function::operator^(const Function &rhs) {
+  return rhs.OperatorWithFunction(
+      *this, [](double x, double y) { return std::pow(x, y); });
+}
+
 std::unique_ptr<Function> Function::Integrate(double lower_limit,
                                               double upper_limit) const {
   const int n = 1000;  // Number of intervals

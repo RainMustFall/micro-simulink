@@ -68,28 +68,48 @@
         <source></source>
         <translation>+</translation>
     </message>
-    <message id="integral-option">
+    <message id="minus-option">
         <location filename="node_palette.cpp" line="22"/>
+        <source></source>
+        <translation>-</translation>
+    </message>
+    <message id="divides-option">
+        <location filename="node_palette.cpp" line="23"/>
+        <source></source>
+        <translation>/</translation>
+    </message>
+    <message id="multiplies-option">
+        <location filename="node_palette.cpp" line="25"/>
+        <source></source>
+        <translation>×</translation>
+    </message>
+    <message id="power-option">
+        <location filename="node_palette.cpp" line="26"/>
+        <source></source>
+        <translation>^ (power)</translation>
+    </message>
+    <message id="integral-option">
+        <location filename="node_palette.cpp" line="27"/>
         <source></source>
         <translation>Integral</translation>
     </message>
     <message id="sin-option">
-        <location filename="node_palette.cpp" line="23"/>
+        <location filename="node_palette.cpp" line="28"/>
         <source></source>
         <translation>sin</translation>
     </message>
     <message id="cos-option">
-        <location filename="node_palette.cpp" line="24"/>
+        <location filename="node_palette.cpp" line="29"/>
         <source></source>
         <translation>cos</translation>
     </message>
     <message id="tan-option">
-        <location filename="node_palette.cpp" line="25"/>
+        <location filename="node_palette.cpp" line="30"/>
         <source></source>
         <translation>tan</translation>
     </message>
     <message id="cot-option">
-        <location filename="node_palette.cpp" line="26"/>
+        <location filename="node_palette.cpp" line="31"/>
         <source></source>
         <translation>cot</translation>
     </message>

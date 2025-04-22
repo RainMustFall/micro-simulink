@@ -4,7 +4,12 @@
 #include <memory>
 #include <string>
 
-enum class Priority { Additive = 0, Multiplicative = 1, Expression = 2 };
+enum class Priority {
+  Additive = 0,
+  Multiplicative = 1,
+  Power = 2,
+  Expression = 3
+};
 
 /*!
  * @brief Stores a syntactically correct LaTeX expression.
@@ -17,6 +22,10 @@ class LatexExpression {
   LatexExpression(std::string expression,
                   Priority last_operation_priority = Priority::Expression);
   std::unique_ptr<LatexExpression> operator+(const LatexExpression& rhs);
+  std::unique_ptr<LatexExpression> operator-(const LatexExpression& rhs);
+  std::unique_ptr<LatexExpression> operator/(const LatexExpression& rhs);
+  std::unique_ptr<LatexExpression> operator*(const LatexExpression& rhs);
+  std::unique_ptr<LatexExpression> operator^(const LatexExpression& rhs);
 
   /*!
    * @brief Create LaTeX expression representing integral of the current
