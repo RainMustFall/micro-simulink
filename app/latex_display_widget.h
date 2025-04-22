@@ -37,7 +37,7 @@ class LatexDisplayWidget : public QWidget, GraphUpdateSubscriber {
   void showRealTimePreview(const QImage &preview, bool latexerror);
 
  private:
-  KLFPreviewBuilderThread *mPreviewBuilderThread;
+  KLFPreviewBuilderThread *mPreviewBuilderThread = nullptr;
   KLFBackend::klfInput input;
   KLFBackend::klfSettings settings;
   KLFBackend::klfOutput output;
@@ -46,6 +46,7 @@ class LatexDisplayWidget : public QWidget, GraphUpdateSubscriber {
   QLabel *label;
   QVBoxLayout *m_layout;
   GraphController *controller;
+  QString getMissingComponentText();
 };
 
 #endif  // LATEX_DISPLAY_WIDGET_H

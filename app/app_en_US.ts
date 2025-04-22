@@ -4,12 +4,12 @@
 <context>
     <name></name>
     <message id="button-calculate">
-        <location filename="calculation_widget.cpp" line="26"/>
+        <location filename="calculation_widget.cpp" line="16"/>
         <source></source>
         <translation>Calculate</translation>
     </message>
     <message id="press-button-to-calculate">
-        <location filename="calculation_widget.cpp" line="27"/>
+        <location filename="calculation_widget.cpp" line="17"/>
         <source></source>
         <translation>Press to get result of the graph</translation>
     </message>
@@ -29,12 +29,12 @@
         <translation>Graph produced a function. Only scalar results are supported!</translation>
     </message>
     <message id="calculating">
-        <location filename="calculation_widget.cpp" line="53"/>
+        <location filename="calculation_widget.cpp" line="43"/>
         <source></source>
         <translation>Calculating...</translation>
     </message>
     <message id="button-cancel">
-        <location filename="calculation_widget.cpp" line="54"/>
+        <location filename="calculation_widget.cpp" line="44"/>
         <source></source>
         <translation>Cancel</translation>
     </message>
@@ -82,6 +82,31 @@
         <location filename="mainwindow.cpp" line="12"/>
         <source></source>
         <translation>Micro-Simulink</translation>
+    </message>
+    <message id="latex-not-found">
+        <location filename="latex_display_widget.cpp" line="48"/>
+        <source></source>
+        <translation>LaTeX was not found on the system. Formulas will not be generated</translation>
+    </message>
+    <message id="ghostscript-not-found">
+        <location filename="latex_display_widget.cpp" line="50"/>
+        <source></source>
+        <translation>Ghostscript was not found on the system. Formulas will not be generated</translation>
+    </message>
+    <message id="dvipsexec-not-found">
+        <location filename="latex_display_widget.cpp" line="52"/>
+        <source></source>
+        <translation>dvips was not found on the system. Formulas will not be generated</translation>
+    </message>
+    <message id="epstopdfexec-not-found">
+        <location filename="latex_display_widget.cpp" line="54"/>
+        <source></source>
+        <translation>epstopdf was not found on the system. Formulas will not be generated</translation>
+    </message>
+    <message id="unknown-latex-issue">
+        <location filename="latex_display_widget.cpp" line="57"/>
+        <source></source>
+        <translation>Failed to initialize LaTeX generator (don&apos;t know why...). Formulas will not be generated</translation>
     </message>
 </context>
 </TS>

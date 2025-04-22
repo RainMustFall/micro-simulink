@@ -7,11 +7,9 @@
 #include "klfbackend.h"
 #include "mainwindow.h"
 
-LatexDisplayWidget::LatexDisplayWidget(GraphController* controller,
-                                       QWidget* parent)
+LatexDisplayWidget::LatexDisplayWidget(GraphController *controller,
+                                       QWidget *parent)
     : QWidget(parent), controller(controller) {
-  controller->SubscribeForUpdates(this);
-
   input.mathmode = "\\[ ... \\]";
   input.dpi = 150;
   input.bg_color = qRgba(0, 0, 0, 0);
@@ -30,17 +28,33 @@ LatexDisplayWidget::LatexDisplayWidget(GraphController* controller,
   input.preamble = QString("\\usepackage{amssymb,amsmath,mathrsfs}");
 
   if (!KLFBackend::detectSettings(&settings)) {
-    qDebug() << "unable to find LaTeX in default directories.";
-  } else {
-    qDebug() << "default settings working!";
+    label->setWordWrap(true);
+    label->setText(getMissingComponentText());
+    return;
   }
 
   // setup variables:
   mPreviewBuilderThread = new KLFPreviewBuilderThread(this, input, settings);
 
-  connect(mPreviewBuilderThread, SIGNAL(previewAvailable(const QImage&, bool)),
-          this, SLOT(showRealTimePreview(const QImage&, bool)),
+  connect(mPreviewBuilderThread, SIGNAL(previewAvailable(const QImage &, bool)),
+          this, SLOT(showRealTimePreview(const QImage &, bool)),
           Qt::QueuedConnection);
+
+  controller->SubscribeForUpdates(this);
+}
+
+QString LatexDisplayWidget::getMissingComponentText() {
+  if (settings.latexexec.isEmpty()) {
+    return qtTrId("latex-not-found");
+  } else if (settings.gsexec.isEmpty()) {
+    return qtTrId("ghostscript-not-found");
+  } else if (settings.dvipsexec.isEmpty()) {
+    return qtTrId("dvipsexec-not-found");
+  } else if (settings.epstopdfexec.isEmpty()) {
+    return qtTrId("epstopdfexec-not-found");
+  }
+
+  return qtTrId("unknown-latex-issue");
 }
 
 LatexDisplayWidget::~LatexDisplayWidget() { delete mPreviewBuilderThread; }
@@ -50,7 +64,7 @@ void LatexDisplayWidget::Notify() {
 
   try {
     input.latex = QString::fromStdString(controller->GetLatex());
-  } catch (GraphIsIncomplete&) {
+  } catch (GraphIsIncomplete &) {
     // Graph is incomplete, that's fine
   }
 
@@ -60,7 +74,7 @@ void LatexDisplayWidget::Notify() {
   }
 }
 
-void LatexDisplayWidget::showRealTimePreview(const QImage& preview,
+void LatexDisplayWidget::showRealTimePreview(const QImage &preview,
                                              bool latexerror) {
   if (!latexerror) {
     pixmap = QPixmap::fromImage(preview);
