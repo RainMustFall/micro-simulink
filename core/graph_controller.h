@@ -61,6 +61,30 @@ class GraphController : public GraphUpdateNotifier {
   size_t AddIntegralNode(double lower_limit, double upper_limit);
 
   /*!
+   * @brief Add sin node
+   * @return ID of the newly created node
+   */
+  size_t AddSineNode();
+
+  /*!
+   * @brief Add cos node
+   * @return ID of the newly created node
+   */
+  size_t AddCosineNode();
+
+  /*!
+   * @brief Add tan node
+   * @return ID of the newly created node
+   */
+  size_t AddTangentNode();
+
+  /*!
+   * @brief Add cot node
+   * @return ID of the newly created node
+   */
+  size_t AddCotangentNode();
+
+  /*!
    * @brief Set integral limits
    * @param node_id - ID of the integral node
    * @param lower_limit - new lower limit of integration

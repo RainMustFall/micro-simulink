@@ -34,6 +34,11 @@ class Scalar : public Function {
   std::unique_ptr<Function> OperatorWithScalar(
       const Function &scalar,
       const std::function<double(double, double)> &op) const override;
+
+  // Function interface
+ protected:
+  std::unique_ptr<Function> calculateMathFunction(
+      std::function<double(double)> func) const;
 };
 
 #endif  // SCALAR_H

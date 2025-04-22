@@ -32,6 +32,30 @@ class Function {
                                               double upper_limit) const;
 
   /*!
+   * @brief Calculate f(x) -> sin(f(x))
+   * @return sin(f(x)) function
+   */
+  std::unique_ptr<Function> Sin() const;
+
+  /*!
+   * @brief Calculate f(x) -> cos(f(x))
+   * @return cos(f(x)) function
+   */
+  std::unique_ptr<Function> Cos() const;
+
+  /*!
+   * @brief Calculate f(x) -> tan(f(x))
+   * @return tan(f(x)) function
+   */
+  std::unique_ptr<Function> Tan() const;
+
+  /*!
+   * @brief Calculate f(x) -> cot(f(x))
+   * @return cot(f(x)) function
+   */
+  std::unique_ptr<Function> Cot() const;
+
+  /*!
    * @brief Perform the binary operation on another function and this one
    *
    * Dual dispatching (an approach often used in Visitor) is used here to
@@ -56,6 +80,19 @@ class Function {
   virtual std::unique_ptr<Function> OperatorWithScalar(
       const Function &scalar,
       const std::function<double(double, double)> &op) const;
+
+ protected:
+  /*!
+   * @brief Apply some mathematical unary function to the internal
+   * representation
+   *
+   * Function instance applies `func` to each point. Scalar applies it to its
+   * only value, returning another scalar
+   * @param func - mathematical function to apply (e.g., std::sin)
+   * @return a new function func(f(x))
+   */
+  virtual std::unique_ptr<Function> calculateMathFunction(
+      std::function<double(double)> func) const;
 
  private:
   std::function<double(double)> function_;

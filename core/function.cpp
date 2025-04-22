@@ -1,5 +1,6 @@
 #include "function.h"
 
+#include <cmath>
 #include <memory>
 
 #include "scalar.h"
@@ -25,6 +26,23 @@ std::unique_ptr<Function> Function::Integrate(double lower_limit,
   return std::make_unique<Scalar>(sum * h);
 }
 
+std::unique_ptr<Function> Function::Sin() const {
+  return calculateMathFunction([](double x) { return std::sin(x); });
+}
+
+std::unique_ptr<Function> Function::Cos() const {
+  return calculateMathFunction([](double x) { return std::cos(x); });
+}
+
+std::unique_ptr<Function> Function::Tan() const {
+  return calculateMathFunction([](double x) { return std::tan(x); });
+}
+
+std::unique_ptr<Function> Function::Cot() const {
+  return calculateMathFunction(
+      [](double x) { return std::cos(x) / std::sin(x); });
+}
+
 std::unique_ptr<Function> Function::OperatorWithFunction(
     const Function &function,
     const std::function<double(double, double)> &op) const {
@@ -38,4 +56,12 @@ std::unique_ptr<Function> Function::OperatorWithScalar(
     const Function &scalar,
     const std::function<double(double, double)> &op) const {
   return OperatorWithFunction(scalar, op);
+}
+
+std::unique_ptr<Function> Function::calculateMathFunction(
+    std::function<double(double)> func) const {
+  return std::make_unique<Function>(
+      [my_function = this->function_, func](double x) {
+        return func(my_function(x));
+      });
 }

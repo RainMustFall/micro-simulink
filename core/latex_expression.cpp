@@ -21,6 +21,22 @@ std::unique_ptr<LatexExpression> LatexExpression::Integrate(
   return std::make_unique<LatexExpression>(ss.str(), Priority::Multiplicative);
 }
 
+std::unique_ptr<LatexExpression> LatexExpression::Sin() const {
+  return wrapWithFunction("sin");
+}
+
+std::unique_ptr<LatexExpression> LatexExpression::Cos() const {
+  return wrapWithFunction("cos");
+}
+
+std::unique_ptr<LatexExpression> LatexExpression::Tan() const {
+  return wrapWithFunction("tan");
+}
+
+std::unique_ptr<LatexExpression> LatexExpression::Cot() const {
+  return wrapWithFunction("cot");
+}
+
 const std::string& LatexExpression::GetExpression() const {
   return expression_;
 }
@@ -33,4 +49,10 @@ std::string LatexExpression::MaybePutParentheses(std::string expression,
   }
 
   return expression;
+}
+
+std::unique_ptr<LatexExpression> LatexExpression::wrapWithFunction(
+    const std::string& function) const {
+  return std::make_unique<LatexExpression>("\\" + function + "{\\left(" +
+                                           expression_ + "\\right)}");
 }

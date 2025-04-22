@@ -3,14 +3,15 @@
 #include <cassert>
 
 #include "binary_operator.h"
+#include "exceptions.h"
 #include "integral_node.h"
 #include "latex_expression_factory.h"
 #include "root_node.h"
 #include "scalar.h"
 #include "scalar_node.h"
 #include "scalar_result_factory.h"
+#include "trigonometry.h"
 #include "x_node.h"
-#include "exceptions.h"
 
 GraphController::GraphController() {}
 
@@ -28,6 +29,14 @@ size_t GraphController::AddIntegralNode(double lower_limit,
                                         double upper_limit) {
   return AddNode<IntegralNode>(lower_limit, upper_limit);
 }
+
+size_t GraphController::AddSineNode() { return AddNode<SineNode>(); }
+
+size_t GraphController::AddCosineNode() { return AddNode<CosineNode>(); }
+
+size_t GraphController::AddTangentNode() { return AddNode<TangentNode>(); }
+
+size_t GraphController::AddCotangentNode() { return AddNode<CotangentNode>(); }
 
 void GraphController::SetIntegralLimits(size_t node_id, double lower_limit,
                                         double upper_limit) {

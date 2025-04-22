@@ -9,6 +9,7 @@
 #include "binary_operator.h"
 #include "integral_visual_node.h"
 #include "number_visual_node.h"
+#include "trigonometry_visual_nodes.h"
 #include "x_visual_node.h"
 
 NodePalette::NodePalette(GraphController *controller,
@@ -19,6 +20,10 @@ NodePalette::NodePalette(GraphController *controller,
   addItem(new NodePaletteItem<XVisualNode>(qtTrId("x-option")));
   addItem(new NodePaletteItem<PlusVisualNode>(qtTrId("plus-option")));
   addItem(new NodePaletteItem<IntegralVisualNode>(qtTrId("integral-option")));
+  addItem(new NodePaletteItem<SineVisualNode>(qtTrId("sin-option")));
+  addItem(new NodePaletteItem<CosineVisualNode>(qtTrId("cos-option")));
+  addItem(new NodePaletteItem<TangentVisualNode>(qtTrId("tan-option")));
+  addItem(new NodePaletteItem<CotangentVisualNode>(qtTrId("cot-option")));
 }
 
 void NodePalette::startDrag(Qt::DropActions supportedActions) {

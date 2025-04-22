@@ -1,4 +1,5 @@
 #include <QtTest>
+#include <numbers>
 
 #include "binary_operator.h"
 #include "function.h"
@@ -17,6 +18,9 @@ class TestNumericGraph : public QObject {
   void testGraphController();
   void testLatexExpression();
   void testIntegral();
+  void testSinus();
+  void testCotangent();
+  void nestedTrigonometry();
 };
 
 void TestNumericGraph::testAddTwoNumbers() {
@@ -91,16 +95,61 @@ void TestNumericGraph::testLatexExpression() {
 }
 
 void TestNumericGraph::testIntegral() {
-    auto controller = GraphController();
-    auto root = controller.AddRootNode();
+  auto controller = GraphController();
+  auto root = controller.AddRootNode();
 
-    auto x = controller.AddXNode();
-    auto integral = controller.AddIntegralNode(0, 1);
+  auto x = controller.AddXNode();
+  auto integral = controller.AddIntegralNode(0, 1);
 
-    controller.ConnectNodes(x, integral, 0);
-    controller.ConnectNodes(integral, root, 0);
+  controller.ConnectNodes(x, integral, 0);
+  controller.ConnectNodes(integral, root, 0);
 
-    QCOMPARE(controller.GetGraphResult(), 0.5);
+  QCOMPARE(controller.GetGraphResult(), 0.5);
+}
+
+void TestNumericGraph::testSinus() {
+  auto controller = GraphController();
+  auto root = controller.AddRootNode();
+
+  auto half_pi = controller.AddScalarNode(std::numbers::pi_v<double> / 2);
+  auto sinus = controller.AddSineNode();
+
+  controller.ConnectNodes(half_pi, sinus, 0);
+  controller.ConnectNodes(sinus, root, 0);
+
+  QCOMPARE(controller.GetGraphResult(), 1);
+}
+
+void TestNumericGraph::testCotangent() {
+  auto controller = GraphController();
+  auto root = controller.AddRootNode();
+
+  auto pi = controller.AddScalarNode(std::asin(0));
+  auto cotangent = controller.AddCotangentNode();
+
+  controller.ConnectNodes(pi, cotangent, 0);
+  controller.ConnectNodes(cotangent, root, 0);
+
+  QCOMPARE(controller.GetGraphResult(),
+           std::numeric_limits<double>::infinity());
+}
+
+void TestNumericGraph::nestedTrigonometry() {
+  auto controller = GraphController();
+  auto root = controller.AddRootNode();
+
+  auto x = controller.AddXNode();
+  auto sin_inner = controller.AddSineNode();
+  auto sin_outer = controller.AddSineNode();
+  auto integral = controller.AddIntegralNode(-1, 1);
+
+  controller.ConnectNodes(x, sin_inner, 0);
+  controller.ConnectNodes(sin_inner, sin_outer, 0);
+  controller.ConnectNodes(sin_outer, integral, 0);
+  controller.ConnectNodes(integral, root, 0);
+
+  // About zero
+  QVERIFY(std::fabs(controller.GetGraphResult() < 1e-15));
 }
 
 QTEST_APPLESS_MAIN(TestNumericGraph)

@@ -34,6 +34,7 @@ HEADERS += \
     scalar.h \
     scalar_node.h \
     scalar_result_factory.h \
+    trigonometry.h \
     x_node.h
 
 # Default rules for deployment.
