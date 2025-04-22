@@ -14,12 +14,9 @@ void IntegralVisualNode::paint(QPainter *painter,
                                QWidget *widget) {
   VisualNode::paint(painter, option, widget);
   int integralSize = kHeight / 2;
-  QFont font("Times", integralSize, QFont::Cursive);
+  QFont font({"Times", "Times New Roman"}, integralSize, QFont::Cursive);
   painter->setFont(font);
-
-  painter->drawText(rect().center().x() - 0.7 * integralSize,
-                    rect().center().y() + integralSize / 2,
-                    "∫");  // Integral sign
+  painter->drawText(rect(), Qt::AlignCenter | Qt::AlignHCenter, "∫");
 }
 
 void IntegralVisualNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *) {
