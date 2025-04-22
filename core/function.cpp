@@ -60,6 +60,18 @@ std::unique_ptr<Function> Function::Cot() const {
       [](double x) { return std::cos(x) / std::sin(x); });
 }
 
+std::unique_ptr<Function> Function::Log() const {
+  return calculateMathFunction([](double x) { return std::log(x); });
+}
+
+std::unique_ptr<Function> Function::Exp() const {
+  return calculateMathFunction([](double x) { return std::exp(x); });
+}
+
+std::unique_ptr<Function> Function::Sqrt() const {
+  return calculateMathFunction([](double x) { return std::sqrt(x); });
+}
+
 std::unique_ptr<Function> Function::operator-() {
   return calculateMathFunction([](double x) { return -x; });
 }

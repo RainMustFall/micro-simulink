@@ -61,6 +61,24 @@ class Function {
   std::unique_ptr<Function> Cot() const;
 
   /*!
+   * @brief Calculate f(x) -> sqrt(f(x))
+   * @return sqrt(f(x)) function
+   */
+  std::unique_ptr<Function> Sqrt() const;
+
+  /*!
+   * @brief Calculate f(x) -> log(f(x))
+   * @return log(f(x)) function
+   */
+  std::unique_ptr<Function> Log() const;
+
+  /*!
+   * @brief Calculate f(x) -> Exp(f(x))
+   * @return Exp(f(x)) function
+   */
+  std::unique_ptr<Function> Exp() const;
+
+  /*!
    * @brief Perform the binary operation on another function and this one
    *
    * Dual dispatching (an approach often used in Visitor) is used here to

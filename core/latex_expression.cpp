@@ -81,6 +81,18 @@ std::unique_ptr<LatexExpression> LatexExpression::Cot() const {
   return wrapWithFunction("cot");
 }
 
+std::unique_ptr<LatexExpression> LatexExpression::Log() const {
+  return wrapWithFunction("log");
+}
+
+std::unique_ptr<LatexExpression> LatexExpression::Exp() const {
+  return wrapWithFunction("exp");
+}
+
+std::unique_ptr<LatexExpression> LatexExpression::Sqrt() const {
+  return std::make_unique<LatexExpression>("\\sqrt{" + expression_ + "}");
+}
+
 const std::string& LatexExpression::GetExpression() const {
   return expression_;
 }

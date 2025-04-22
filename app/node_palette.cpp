@@ -6,6 +6,7 @@
 #include <QtGui/QDrag>
 #include <QtWidgets/QListWidgetItem>
 
+#include "algebraic_visual_nodes.h"
 #include "integral_visual_node.h"
 #include "number_visual_node.h"
 #include "trigonometry_visual_nodes.h"
@@ -27,6 +28,9 @@ NodePalette::NodePalette(GraphController *controller,
   addItem(new NodePaletteItem<PowerVisualNode>(qtTrId("power-option")));
   addItem(new NodePaletteItem<IntegralVisualNode>(qtTrId("integral-option")));
   addItem(new NodePaletteItem<VisualNegationOperator>(qtTrId("neg-option")));
+  addItem(new NodePaletteItem<LogVisualNode>(qtTrId("log-option")));
+  addItem(new NodePaletteItem<SqrtVisualNode>(qtTrId("sqrt-option")));
+  addItem(new NodePaletteItem<ExpVisualNode>(qtTrId("exp-option")));
   addItem(new NodePaletteItem<SineVisualNode>(qtTrId("sin-option")));
   addItem(new NodePaletteItem<CosineVisualNode>(qtTrId("cos-option")));
   addItem(new NodePaletteItem<TangentVisualNode>(qtTrId("tan-option")));

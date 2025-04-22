@@ -62,6 +62,24 @@ class LatexExpression {
   std::unique_ptr<LatexExpression> Cot() const;
 
   /*!
+   * @brief Create \sqrt(<THIS>) LaTeX expression
+   * @return A new LaTeX expression
+   */
+  std::unique_ptr<LatexExpression> Sqrt() const;
+
+  /*!
+   * @brief Create \log(<THIS>) LaTeX expression
+   * @return A new LaTeX expression
+   */
+  std::unique_ptr<LatexExpression> Log() const;
+
+  /*!
+   * @brief Create \exp(<THIS>) LaTeX expression
+   * @return A new LaTeX expression
+   */
+  std::unique_ptr<LatexExpression> Exp() const;
+
+  /*!
    * @brief Get string representation of the LaTeX expression
    * @return string representation
    */

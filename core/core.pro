@@ -36,6 +36,7 @@ HEADERS += \
     scalar_node.h \
     scalar_result_factory.h \
     trigonometry.h \
+    unary_algebraic_functions.h \
     x_node.h
 
 # Default rules for deployment.

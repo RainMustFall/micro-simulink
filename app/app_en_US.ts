@@ -39,82 +39,102 @@
         <translation>Cancel</translation>
     </message>
     <message id="update-limits">
-        <location filename="integral_visual_node.cpp" line="24"/>
+        <location filename="integral_visual_node.cpp" line="26"/>
         <source></source>
         <translation>Update limits</translation>
     </message>
     <message id="upper-limit">
-        <location filename="integral_visual_node.cpp" line="29"/>
+        <location filename="integral_visual_node.cpp" line="31"/>
         <source></source>
         <translation>Upper limit</translation>
     </message>
     <message id="lower-limit">
-        <location filename="integral_visual_node.cpp" line="33"/>
+        <location filename="integral_visual_node.cpp" line="35"/>
         <source></source>
         <translation>Lower limit</translation>
     </message>
     <message id="number-option">
-        <location filename="node_palette.cpp" line="19"/>
+        <location filename="node_palette.cpp" line="21"/>
         <source></source>
         <translation>Number</translation>
     </message>
     <message id="x-option">
-        <location filename="node_palette.cpp" line="20"/>
+        <location filename="node_palette.cpp" line="22"/>
         <source></source>
         <translation>X</translation>
     </message>
     <message id="plus-option">
-        <location filename="node_palette.cpp" line="21"/>
+        <location filename="node_palette.cpp" line="23"/>
         <source></source>
         <translation>+</translation>
     </message>
     <message id="minus-option">
-        <location filename="node_palette.cpp" line="22"/>
+        <location filename="node_palette.cpp" line="24"/>
         <source></source>
         <translation>-</translation>
     </message>
     <message id="divides-option">
-        <location filename="node_palette.cpp" line="23"/>
+        <location filename="node_palette.cpp" line="25"/>
         <source></source>
         <translation>/</translation>
     </message>
     <message id="multiplies-option">
-        <location filename="node_palette.cpp" line="25"/>
+        <location filename="node_palette.cpp" line="27"/>
         <source></source>
         <translation>×</translation>
     </message>
     <message id="power-option">
-        <location filename="node_palette.cpp" line="26"/>
+        <location filename="node_palette.cpp" line="28"/>
         <source></source>
         <translation>^ (power)</translation>
     </message>
     <message id="integral-option">
-        <location filename="node_palette.cpp" line="27"/>
+        <location filename="node_palette.cpp" line="29"/>
         <source></source>
         <translation>Integral</translation>
     </message>
+    <message id="neg-option">
+        <location filename="node_palette.cpp" line="30"/>
+        <source></source>
+        <translation>-(...)</translation>
+    </message>
+    <message id="log-option">
+        <location filename="node_palette.cpp" line="31"/>
+        <source></source>
+        <translation>log</translation>
+    </message>
+    <message id="sqrt-option">
+        <location filename="node_palette.cpp" line="32"/>
+        <source></source>
+        <translation>√</translation>
+    </message>
+    <message id="exp-option">
+        <location filename="node_palette.cpp" line="33"/>
+        <source></source>
+        <translation>exp</translation>
+    </message>
     <message id="sin-option">
-        <location filename="node_palette.cpp" line="28"/>
+        <location filename="node_palette.cpp" line="34"/>
         <source></source>
         <translation>sin</translation>
     </message>
     <message id="cos-option">
-        <location filename="node_palette.cpp" line="29"/>
+        <location filename="node_palette.cpp" line="35"/>
         <source></source>
         <translation>cos</translation>
     </message>
     <message id="tan-option">
-        <location filename="node_palette.cpp" line="30"/>
+        <location filename="node_palette.cpp" line="36"/>
         <source></source>
         <translation>tan</translation>
     </message>
     <message id="cot-option">
-        <location filename="node_palette.cpp" line="31"/>
+        <location filename="node_palette.cpp" line="37"/>
         <source></source>
         <translation>cot</translation>
     </message>
     <message id="result">
-        <location filename="root_visual_node.cpp" line="6"/>
+        <location filename="root_visual_node.cpp" line="9"/>
         <source></source>
         <translation>Result</translation>
     </message>
