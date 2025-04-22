@@ -13,41 +13,6 @@
 #include "trigonometry.h"
 #include "x_node.h"
 
-GraphController::GraphController() {}
-
-size_t GraphController::AddRootNode() { return AddNode<RootNode>(); }
-
-size_t GraphController::AddScalarNode(double value) {
-  return AddNode<ScalarNode>(value);
-}
-
-size_t GraphController::AddXNode() { return AddNode<XNode>(); }
-
-size_t GraphController::AddPlusNode() { return AddNode<PlusOperator>(); }
-
-size_t GraphController::AddMinusNode() { return AddNode<MinusOperator>(); }
-
-size_t GraphController::AddMultipliesNode() {
-  return AddNode<MultipliesOperator>();
-}
-
-size_t GraphController::AddDividesNode() { return AddNode<DividesOperator>(); }
-
-size_t GraphController::AddPowerNode() { return AddNode<PowerOperator>(); }
-
-size_t GraphController::AddIntegralNode(double lower_limit,
-                                        double upper_limit) {
-  return AddNode<IntegralNode>(lower_limit, upper_limit);
-}
-
-size_t GraphController::AddSineNode() { return AddNode<SineNode>(); }
-
-size_t GraphController::AddCosineNode() { return AddNode<CosineNode>(); }
-
-size_t GraphController::AddTangentNode() { return AddNode<TangentNode>(); }
-
-size_t GraphController::AddCotangentNode() { return AddNode<CotangentNode>(); }
-
 void GraphController::SetIntegralLimits(size_t node_id, double lower_limit,
                                         double upper_limit) {
   static_cast<IntegralNode<Function>*>(nodes_[node_id].get())

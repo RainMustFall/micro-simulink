@@ -1,5 +1,5 @@
-#ifndef BINARY_OPERATOR_H
-#define BINARY_OPERATOR_H
+#ifndef VISUAL_BINARY_OPERATOR_H
+#define VISUAL_BINARY_OPERATOR_H
 
 #include <QPainter>
 
@@ -93,4 +93,4 @@ class PowerVisualNode : public BinaryOperatorVisualNode {
   PowerVisualNode(GraphController *controller, QGraphicsItem *parent = nullptr);
 };
 
-#endif  // BINARY_OPERATOR_H
+#endif  // VISUAL_BINARY_OPERATOR_H

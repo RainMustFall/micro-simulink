@@ -1,9 +1,11 @@
 #include "integral_visual_node.h"
 
+#include "integral_node.h"
+
 IntegralVisualNode::IntegralVisualNode(GraphController *controller,
                                        QGraphicsItem *parent)
     : VisualNode(/* numberOfInputs=*/1, /* numberOfOutputs=*/1,
-                 controller->AddIntegralNode(0, 1),
+                 controller->AddNode<IntegralNode>(0, 1),
                  QRect(0, 0, kHeight, kHeight), parent),
       upperLimit(1),
       lowerLimit(0),

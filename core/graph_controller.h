@@ -18,14 +18,20 @@
  */
 class GraphController : public GraphUpdateNotifier {
  public:
-  GraphController();
-
   /*!
-   * @brief Add scalar node
-   * @param value - the scalar stored in the node
+   * @brief Add a node of the given type
+   * @param args - constructor arguments of the node type to create
    * @return ID of the newly created node
    */
-  size_t AddScalarNode(double value);
+  template <template <class> class NodeType, typename... Args>
+  size_t AddNode(Args &&...args) {
+    nodes_.emplace_back(new NodeType<Function>(std::forward<Args>(args)...));
+
+    latex_nodes_.emplace_back(
+        new NodeType<LatexExpression>(std::forward<Args>(args)...));
+
+    return nodes_.size() - 1;
+  }
 
   /*!
    * @brief Set scalar value of the node
@@ -33,80 +39,6 @@ class GraphController : public GraphUpdateNotifier {
    * @param value - the value to set
    */
   void SetScalarValue(size_t node_id, double value);
-
-  /*!
-   * @brief Add root node
-   * @return ID of the newly created node
-   */
-  size_t AddRootNode();
-
-  /*!
-   * @brief Add "x" node
-   * @return ID of the newly created node
-   */
-  size_t AddXNode();
-
-  /*!
-   * @brief Add plus node
-   * @return ID of the newly created node
-   */
-  size_t AddPlusNode();
-
-  /*!
-   * @brief Add minus node
-   * @return ID of the newly created node
-   */
-  size_t AddMinusNode();
-
-  /*!
-   * @brief Add multiplies node
-   * @return ID of the newly created node
-   */
-  size_t AddMultipliesNode();
-
-  /*!
-   * @brief Add divides node
-   * @return ID of the newly created node
-   */
-  size_t AddDividesNode();
-
-  /*!
-   * @brief Add power node
-   * @return ID of the newly created node
-   */
-  size_t AddPowerNode();
-
-  /*!
-   * @brief Add integral node
-   * @param lower_limit - lower limit of integration
-   * @param upper_limit - upper limit of integration
-   * @return  ID of the newly created node
-   */
-  size_t AddIntegralNode(double lower_limit, double upper_limit);
-
-  /*!
-   * @brief Add sin node
-   * @return ID of the newly created node
-   */
-  size_t AddSineNode();
-
-  /*!
-   * @brief Add cos node
-   * @return ID of the newly created node
-   */
-  size_t AddCosineNode();
-
-  /*!
-   * @brief Add tan node
-   * @return ID of the newly created node
-   */
-  size_t AddTangentNode();
-
-  /*!
-   * @brief Add cot node
-   * @return ID of the newly created node
-   */
-  size_t AddCotangentNode();
 
   /*!
    * @brief Set integral limits
@@ -151,16 +83,6 @@ class GraphController : public GraphUpdateNotifier {
   std::vector<std::unique_ptr<Node<LatexExpression>>> latex_nodes_;
 
   static const size_t kRootIndex = 0;
-
-  template <template <class> class NodeType, typename... Args>
-  size_t AddNode(Args &&...args) {
-    nodes_.emplace_back(new NodeType<Function>(std::forward<Args>(args)...));
-
-    latex_nodes_.emplace_back(
-        new NodeType<LatexExpression>(std::forward<Args>(args)...));
-
-    return nodes_.size() - 1;
-  }
 };
 
 #endif  // GRAPH_CONTROLLER_H

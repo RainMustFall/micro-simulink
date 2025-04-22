@@ -4,9 +4,12 @@
 #include "binary_operator.h"
 #include "function.h"
 #include "graph_controller.h"
+#include "integral_node.h"
+#include "root_node.h"
 #include "scalar.h"
 #include "scalar_node.h"
 #include "scalar_result_factory.h"
+#include "trigonometry.h"
 #include "x_node.h"
 
 class TestNumericGraph : public QObject {
@@ -69,11 +72,11 @@ void TestNumericGraph::testXPlusOneIsNotScalar() {
 
 void TestNumericGraph::testGraphController() {
   auto controller = GraphController();
-  auto root = controller.AddRootNode();
+  auto root = controller.AddNode<RootNode>();
 
-  auto five = controller.AddScalarNode(5);
-  auto plus = controller.AddPlusNode();
-  auto three = controller.AddScalarNode(3);
+  auto five = controller.AddNode<ScalarNode>(5);
+  auto plus = controller.AddNode<PlusOperator>();
+  auto three = controller.AddNode<ScalarNode>(3);
 
   controller.ConnectNodes(five, plus, 0);
   controller.ConnectNodes(three, plus, 1);
@@ -84,11 +87,11 @@ void TestNumericGraph::testGraphController() {
 
 void TestNumericGraph::testLatexExpression() {
   auto controller = GraphController();
-  auto root = controller.AddRootNode();
+  auto root = controller.AddNode<RootNode>();
 
-  auto x = controller.AddXNode();
-  auto plus = controller.AddPlusNode();
-  auto three = controller.AddScalarNode(3);
+  auto x = controller.AddNode<XNode>();
+  auto plus = controller.AddNode<PlusOperator>();
+  auto three = controller.AddNode<ScalarNode>(3);
 
   controller.ConnectNodes(x, plus, 0);
   controller.ConnectNodes(three, plus, 1);
@@ -99,10 +102,10 @@ void TestNumericGraph::testLatexExpression() {
 
 void TestNumericGraph::testIntegral() {
   auto controller = GraphController();
-  auto root = controller.AddRootNode();
+  auto root = controller.AddNode<RootNode>();
 
-  auto x = controller.AddXNode();
-  auto integral = controller.AddIntegralNode(0, 1);
+  auto x = controller.AddNode<XNode>();
+  auto integral = controller.AddNode<IntegralNode>(0, 1);
 
   controller.ConnectNodes(x, integral, 0);
   controller.ConnectNodes(integral, root, 0);
@@ -112,10 +115,10 @@ void TestNumericGraph::testIntegral() {
 
 void TestNumericGraph::testSinus() {
   auto controller = GraphController();
-  auto root = controller.AddRootNode();
+  auto root = controller.AddNode<RootNode>();
 
-  auto half_pi = controller.AddScalarNode(std::numbers::pi_v<double> / 2);
-  auto sinus = controller.AddSineNode();
+  auto half_pi = controller.AddNode<ScalarNode>(std::numbers::pi_v<double> / 2);
+  auto sinus = controller.AddNode<SineNode>();
 
   controller.ConnectNodes(half_pi, sinus, 0);
   controller.ConnectNodes(sinus, root, 0);
@@ -125,10 +128,10 @@ void TestNumericGraph::testSinus() {
 
 void TestNumericGraph::testCotangent() {
   auto controller = GraphController();
-  auto root = controller.AddRootNode();
+  auto root = controller.AddNode<RootNode>();
 
-  auto pi = controller.AddScalarNode(std::asin(0));
-  auto cotangent = controller.AddCotangentNode();
+  auto pi = controller.AddNode<ScalarNode>(std::asin(0));
+  auto cotangent = controller.AddNode<CotangentNode>();
 
   controller.ConnectNodes(pi, cotangent, 0);
   controller.ConnectNodes(cotangent, root, 0);
@@ -139,12 +142,12 @@ void TestNumericGraph::testCotangent() {
 
 void TestNumericGraph::nestedTrigonometry() {
   auto controller = GraphController();
-  auto root = controller.AddRootNode();
+  auto root = controller.AddNode<RootNode>();
 
-  auto x = controller.AddXNode();
-  auto sin_inner = controller.AddSineNode();
-  auto sin_outer = controller.AddSineNode();
-  auto integral = controller.AddIntegralNode(-1, 1);
+  auto x = controller.AddNode<XNode>();
+  auto sin_inner = controller.AddNode<SineNode>();
+  auto sin_outer = controller.AddNode<SineNode>();
+  auto integral = controller.AddNode<IntegralNode>(-1, 1);
 
   controller.ConnectNodes(x, sin_inner, 0);
   controller.ConnectNodes(sin_inner, sin_outer, 0);
@@ -157,11 +160,11 @@ void TestNumericGraph::nestedTrigonometry() {
 
 void TestNumericGraph::testPower() {
   auto controller = GraphController();
-  auto root = controller.AddRootNode();
+  auto root = controller.AddNode<RootNode>();
 
-  auto two = controller.AddScalarNode(2);
-  auto pow = controller.AddPowerNode();
-  auto three = controller.AddScalarNode(3);
+  auto two = controller.AddNode<ScalarNode>(2);
+  auto pow = controller.AddNode<PowerOperator>();
+  auto three = controller.AddNode<ScalarNode>(3);
 
   controller.ConnectNodes(two, pow, 0);
   controller.ConnectNodes(three, pow, 1);
@@ -172,11 +175,11 @@ void TestNumericGraph::testPower() {
 
 void TestNumericGraph::testDivide() {
   auto controller = GraphController();
-  auto root = controller.AddRootNode();
+  auto root = controller.AddNode<RootNode>();
 
-  auto one = controller.AddScalarNode(1);
-  auto divides = controller.AddDividesNode();
-  auto two = controller.AddScalarNode(2);
+  auto one = controller.AddNode<ScalarNode>(1);
+  auto divides = controller.AddNode<DividesOperator>();
+  auto two = controller.AddNode<ScalarNode>(2);
 
   controller.ConnectNodes(one, divides, 0);
   controller.ConnectNodes(two, divides, 1);
@@ -191,11 +194,11 @@ void TestNumericGraph::testDivide() {
 
 void TestNumericGraph::testMinus() {
   auto controller = GraphController();
-  auto root = controller.AddRootNode();
+  auto root = controller.AddNode<RootNode>();
 
-  auto two = controller.AddScalarNode(2);
-  auto minus = controller.AddMinusNode();
-  auto one = controller.AddScalarNode(1);
+  auto two = controller.AddNode<ScalarNode>(2);
+  auto minus = controller.AddNode<MinusOperator>();
+  auto one = controller.AddNode<ScalarNode>(1);
 
   controller.ConnectNodes(two, minus, 0);
   controller.ConnectNodes(one, minus, 1);

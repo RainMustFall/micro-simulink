@@ -1,3 +1,5 @@
+#include "visual_binary_operator.h"
+
 #include "binary_operator.h"
 
 BinaryOperatorVisualNode::BinaryOperatorVisualNode(size_t nodeId, QString op,
@@ -7,20 +9,25 @@ BinaryOperatorVisualNode::BinaryOperatorVisualNode(size_t nodeId, QString op,
 
 PlusVisualNode::PlusVisualNode(GraphController *controller,
                                QGraphicsItem *parent)
-    : BinaryOperatorVisualNode(controller->AddPlusNode(), "+", parent) {}
+    : BinaryOperatorVisualNode(controller->AddNode<PlusOperator>(), "+",
+                               parent) {}
 
 MinusVisualNode::MinusVisualNode(GraphController *controller,
                                  QGraphicsItem *parent)
-    : BinaryOperatorVisualNode(controller->AddMinusNode(), "-", parent) {}
+    : BinaryOperatorVisualNode(controller->AddNode<MinusOperator>(), "-",
+                               parent) {}
 
 MultipliesVisualNode::MultipliesVisualNode(GraphController *controller,
                                            QGraphicsItem *parent)
-    : BinaryOperatorVisualNode(controller->AddMultipliesNode(), "×", parent) {}
+    : BinaryOperatorVisualNode(controller->AddNode<MultipliesOperator>(), "×",
+                               parent) {}
 
 DividesVisualNode::DividesVisualNode(GraphController *controller,
                                      QGraphicsItem *parent)
-    : BinaryOperatorVisualNode(controller->AddDividesNode(), "/", parent) {}
+    : BinaryOperatorVisualNode(controller->AddNode<DividesOperator>(), "/",
+                               parent) {}
 
 PowerVisualNode::PowerVisualNode(GraphController *controller,
                                  QGraphicsItem *parent)
-    : BinaryOperatorVisualNode(controller->AddPowerNode(), "^", parent) {}
+    : BinaryOperatorVisualNode(controller->AddNode<PowerOperator>(), "^",
+                               parent) {}

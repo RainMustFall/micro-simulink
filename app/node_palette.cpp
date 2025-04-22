@@ -6,7 +6,7 @@
 #include <QtGui/QDrag>
 #include <QtWidgets/QListWidgetItem>
 
-#include "binary_operator.h"
+#include "visual_binary_operator.h"
 #include "integral_visual_node.h"
 #include "number_visual_node.h"
 #include "trigonometry_visual_nodes.h"
