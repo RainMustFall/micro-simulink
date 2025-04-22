@@ -1,0 +1,4 @@
+<map id="Scalar" name="Scalar">
+<area shape="rect" id="node1" title="A special case of the function, but simpler (returns the same value for any argument)." alt="" coords="12,80,71,107"/>
+<area shape="rect" id="node2" href="$classFunction.html" title="Represents a mathematical function, overriding the () operator (accepting double and returning double..." alt="" coords="5,5,77,32"/>
+</map>

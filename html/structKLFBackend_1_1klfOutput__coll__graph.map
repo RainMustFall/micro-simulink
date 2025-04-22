@@ -1,0 +1,5 @@
+<map id="KLFBackend::klfOutput" name="KLFBackend::klfOutput">
+<area shape="rect" id="node1" title="KLFBackend::getLatexFormula() result." alt="" coords="100,95,259,121"/>
+<area shape="rect" id="node2" href="$structKLFBackend_1_1klfSettings.html" title="General settings for KLFBackend::getLatexFormula()" alt="" coords="5,5,172,32"/>
+<area shape="rect" id="node3" href="$structKLFBackend_1_1klfInput.html" title="Specific input to KLFBackend::getLatexFormula()" alt="" coords="196,5,344,32"/>
+</map>

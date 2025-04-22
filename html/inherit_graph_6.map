@@ -1,0 +1,4 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classFunction.html" title="Represents a mathematical function, overriding the () operator (accepting double and returning double..." alt="" coords="5,5,77,32"/>
+<area shape="rect" id="node2" href="$classScalar.html" title="A special case of the function, but simpler (returns the same value for any argument)." alt="" coords="125,5,184,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="InputConnectionPoint" name="InputConnectionPoint">
+<area shape="rect" id="node1" title="A small circle on the left edge of a node." alt="" coords="7,155,153,181"/>
+<area shape="rect" id="node2" href="$classConnectionPoint.html" title="A small circle on edge of a node used for connection." alt="" coords="21,80,139,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,5,155,32"/>
+</map>

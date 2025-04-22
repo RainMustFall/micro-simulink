@@ -1,0 +1,4 @@
+<map id="MinusOperator&lt; T &gt;" name="MinusOperator&lt; T &gt;">
+<area shape="rect" id="node1" title="A node with two inputs. Performs subtraction of dependency results. The meaning of subtraction is def..." alt="" coords="5,80,144,107"/>
+<area shape="rect" id="node2" href="$classNode.html" title="Represents a node of the graph (input, output or intermediate)." alt="" coords="32,5,117,32"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="KLFPreviewBuilderThread" name="KLFPreviewBuilderThread">
+<area shape="rect" id="node1" title=" " alt="" coords="99,95,272,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,77,32"/>
+<area shape="rect" id="node3" href="$structKLFBackend_1_1klfSettings.html" title="General settings for KLFBackend::getLatexFormula()" alt="" coords="102,5,269,32"/>
+<area shape="rect" id="node4" href="$structKLFBackend_1_1klfInput.html" title="Specific input to KLFBackend::getLatexFormula()" alt="" coords="293,5,441,32"/>
+</map>

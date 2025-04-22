@@ -1,0 +1,4 @@
+<map id="MultipliesOperator&lt; T &gt;" name="MultipliesOperator&lt; T &gt;">
+<area shape="rect" id="node1" title="A node with two inputs. Performs multiplication of dependency results. The meaning of multiplication ..." alt="" coords="5,80,164,107"/>
+<area shape="rect" id="node2" href="$classNode.html" title="Represents a node of the graph (input, output or intermediate)." alt="" coords="42,5,127,32"/>
+</map>

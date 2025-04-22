@@ -1,0 +1,7 @@
+<map id="MultipliesVisualNode" name="MultipliesVisualNode">
+<area shape="rect" id="node1" title="A visual node representing * operator." alt="" coords="21,304,165,331"/>
+<area shape="rect" id="node2" href="$classBinaryOperatorVisualNode.html" title="A visual node representing a binary operator." alt="" coords="5,229,181,256"/>
+<area shape="rect" id="node3" href="$classTextVisualNode.html" title="Visual node which is rendered with plain text on it." alt="" coords="36,155,151,181"/>
+<area shape="rect" id="node4" href="$classVisualNode.html" title="Graphics item responsible for displaying the vertex on the screen." alt="" coords="49,80,138,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="24,5,163,32"/>
+</map>

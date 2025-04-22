@@ -1,0 +1,4 @@
+<map id="ConnectionPoint" name="ConnectionPoint">
+<area shape="rect" id="node1" title="A small circle on edge of a node used for connection." alt="" coords="21,80,139,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,155,32"/>
+</map>

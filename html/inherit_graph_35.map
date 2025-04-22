@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,144,83"/>
+<area shape="rect" id="node2" href="$classVisualNode.html" title="Graphics item responsible for displaying the vertex on the screen." alt="" coords="192,56,281,83"/>
+<area shape="rect" id="node3" href="$classIntegralVisualNode.html" title="Visual node representing integral." alt="" coords="331,5,463,32"/>
+<area shape="rect" id="node4" href="$classNumberVisualNode.html" title="Visual node containing an editable number on it." alt="" coords="329,56,464,83"/>
+<area shape="rect" id="node5" href="$classTextVisualNode.html" title="Visual node which is rendered with plain text on it." alt="" coords="339,107,454,133"/>
+<area shape="rect" id="node6" href="$classBinaryOperatorVisualNode.html" title="A visual node representing a binary operator." alt="" coords="512,56,688,83"/>
+<area shape="rect" id="node8" href="$classRootVisualNode.html" title="Visual node representing the root of the graph." alt="" coords="541,107,659,133"/>
+<area shape="rect" id="node9" href="$classXVisualNode.html" title="Visual node corresponding to &quot;X&quot;." alt="" coords="551,157,649,184"/>
+<area shape="rect" id="node7" href="$classPlusVisualNode.html" title="A visual node representing + operator." alt="" coords="736,56,851,83"/>
+</map>

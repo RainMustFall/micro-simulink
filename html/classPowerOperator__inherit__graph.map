@@ -1,0 +1,4 @@
+<map id="PowerOperator&lt; T &gt;" name="PowerOperator&lt; T &gt;">
+<area shape="rect" id="node1" title="A node with two inputs. Elevates the first dependency to the degree of the second...." alt="" coords="5,80,147,107"/>
+<area shape="rect" id="node2" href="$classNode.html" title="Represents a node of the graph (input, output or intermediate)." alt="" coords="33,5,119,32"/>
+</map>

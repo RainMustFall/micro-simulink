@@ -1,0 +1,21 @@
+<map id="TextVisualNode" name="TextVisualNode">
+<area shape="rect" id="node1" title="Visual node which is rendered with plain text on it." alt="" coords="329,360,444,387"/>
+<area shape="rect" id="node4" href="$classBinaryOperatorVisualNode.html" title="A visual node representing a binary operator." alt="" coords="492,107,668,133"/>
+<area shape="rect" id="node10" href="$classCosineVisualNode.html" title="Visual node corresponding to cosinus." alt="" coords="515,157,645,184"/>
+<area shape="rect" id="node11" href="$classCotangentVisualNode.html" title="Visual node corresponding to cotangent." alt="" coords="505,208,655,235"/>
+<area shape="rect" id="node12" href="$classExpVisualNode.html" title="Visual node corresponding to exponent." alt="" coords="524,259,636,285"/>
+<area shape="rect" id="node13" href="$classLogVisualNode.html" title="Visual node corresponding to logarithm." alt="" coords="525,309,635,336"/>
+<area shape="rect" id="node14" href="$classRootVisualNode.html" title="Visual node representing the root of the graph." alt="" coords="521,360,639,387"/>
+<area shape="rect" id="node15" href="$classSineVisualNode.html" title="Visual node corresponding to sinus." alt="" coords="523,411,637,437"/>
+<area shape="rect" id="node16" href="$classSqrtVisualNode.html" title="Visual node corresponding to square root." alt="" coords="523,461,637,488"/>
+<area shape="rect" id="node17" href="$classTangentVisualNode.html" title="Visual node corresponding to tangent." alt="" coords="513,512,647,539"/>
+<area shape="rect" id="node18" href="$classVisualNegationOperator.html" title="Visual node corresponding to negation (&#45;x)" alt="" coords="500,563,660,589"/>
+<area shape="rect" id="node19" href="$classXVisualNode.html" title="Visual node corresponding to &quot;X&quot;." alt="" coords="531,613,629,640"/>
+<area shape="rect" id="node2" href="$classVisualNode.html" title="Graphics item responsible for displaying the vertex on the screen." alt="" coords="192,360,281,387"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,360,144,387"/>
+<area shape="rect" id="node5" href="$classDividesVisualNode.html" title="A visual node representing / operator." alt="" coords="721,5,855,32"/>
+<area shape="rect" id="node6" href="$classMinusVisualNode.html" title="A visual node representing &#45; operator." alt="" coords="726,56,850,83"/>
+<area shape="rect" id="node7" href="$classMultipliesVisualNode.html" title="A visual node representing * operator." alt="" coords="716,107,860,133"/>
+<area shape="rect" id="node8" href="$classPlusVisualNode.html" title="A visual node representing + operator." alt="" coords="731,157,845,184"/>
+<area shape="rect" id="node9" href="$classPowerVisualNode.html" title="A visual node representing ^ operator." alt="" coords="725,208,851,235"/>
+</map>

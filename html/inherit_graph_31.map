@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classNode.html" title="Represents a node of the graph (input, output or intermediate)." alt="" coords="5,107,91,133"/>
+<area shape="rect" id="node2" href="$classIntegralNode.html" title="The node performing integration of its input." alt="" coords="140,5,268,32"/>
+<area shape="rect" id="node3" href="$classPlusOperator.html" title="A node with two inputs. Performs addition of dependency results. The meaning of addition is defined b..." alt="" coords="139,56,269,83"/>
+<area shape="rect" id="node4" href="$classRootNode.html" title="The RootNode class." alt="" coords="147,107,261,133"/>
+<area shape="rect" id="node5" href="$classScalarNode.html" title="A node of a graph with no input." alt="" coords="143,157,265,184"/>
+<area shape="rect" id="node6" href="$classXNode.html" title="Graph node without input." alt="" coords="157,208,251,235"/>
+</map>

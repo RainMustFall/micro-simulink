@@ -1,0 +1,11 @@
+<map id="BinaryOperatorVisualNode" name="BinaryOperatorVisualNode">
+<area shape="rect" id="node1" title="A visual node representing a binary operator." alt="" coords="492,107,668,133"/>
+<area shape="rect" id="node5" href="$classDividesVisualNode.html" title="A visual node representing / operator." alt="" coords="721,5,855,32"/>
+<area shape="rect" id="node6" href="$classMinusVisualNode.html" title="A visual node representing &#45; operator." alt="" coords="726,56,850,83"/>
+<area shape="rect" id="node7" href="$classMultipliesVisualNode.html" title="A visual node representing * operator." alt="" coords="716,107,860,133"/>
+<area shape="rect" id="node8" href="$classPlusVisualNode.html" title="A visual node representing + operator." alt="" coords="731,157,845,184"/>
+<area shape="rect" id="node9" href="$classPowerVisualNode.html" title="A visual node representing ^ operator." alt="" coords="725,208,851,235"/>
+<area shape="rect" id="node2" href="$classTextVisualNode.html" title="Visual node which is rendered with plain text on it." alt="" coords="329,107,444,133"/>
+<area shape="rect" id="node3" href="$classVisualNode.html" title="Graphics item responsible for displaying the vertex on the screen." alt="" coords="192,107,281,133"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,107,144,133"/>
+</map>

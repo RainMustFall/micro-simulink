@@ -1,0 +1,5 @@
+<map id="LatexDisplayWidget" name="LatexDisplayWidget">
+<area shape="rect" id="node1" title="Qt widget responsible for rendering LaTeX representation of the graph." alt="" coords="43,80,182,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,79,32"/>
+<area shape="rect" id="node3" href="$classGraphUpdateSubscriber.html" title="Interface which allows to be notified when the graph is updated." alt="" coords="103,5,264,32"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="SqrtVisualNode" name="SqrtVisualNode">
+<area shape="rect" id="node1" title="Visual node corresponding to square root." alt="" coords="18,229,131,256"/>
+<area shape="rect" id="node2" href="$classTextVisualNode.html" title="Visual node which is rendered with plain text on it." alt="" coords="17,155,132,181"/>
+<area shape="rect" id="node3" href="$classVisualNode.html" title="Graphics item responsible for displaying the vertex on the screen." alt="" coords="30,80,119,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,5,144,32"/>
+</map>

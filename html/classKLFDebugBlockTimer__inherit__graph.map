@@ -1,0 +1,4 @@
+<map id="KLFDebugBlockTimer" name="KLFDebugBlockTimer">
+<area shape="rect" id="node1" title="An extension of KLFDebugBlock with millisecond&#45;time display." alt="" coords="5,80,156,107"/>
+<area shape="rect" id="node2" href="$classKLFDebugBlock.html" title="Utility to time the execution of a block." alt="" coords="22,5,139,32"/>
+</map>

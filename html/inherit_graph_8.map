@@ -1,0 +1,4 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classGraphUpdateNotifier.html" title="Interface which allows to subscribe on graph update events." alt="" coords="5,5,147,32"/>
+<area shape="rect" id="node2" href="$classGraphController.html" title="Stores and manages the current computational graph. Rebuilds it on user interface request and returns..." alt="" coords="195,5,308,32"/>
+</map>

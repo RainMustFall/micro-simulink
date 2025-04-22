@@ -1,0 +1,4 @@
+<map id="EditableTextItem" name="EditableTextItem">
+<area shape="rect" id="node1" title="Custom text item used to edit the number of numeric visual nodes." alt="" coords="13,80,133,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,140,32"/>
+</map>

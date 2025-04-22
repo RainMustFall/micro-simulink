@@ -1,0 +1,4 @@
+<map id="LogNode&lt; T &gt;" name="LogNode&lt; T &gt;">
+<area shape="rect" id="node1" title="The node calculating natural log of its input." alt="" coords="5,80,112,107"/>
+<area shape="rect" id="node2" href="$classNode.html" title="Represents a node of the graph (input, output or intermediate)." alt="" coords="16,5,101,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="ResultIsNotScalar" name="ResultIsNotScalar">
+<area shape="rect" id="node1" title="Exception thrown by controller if scalar was requested, but the graph produced a function." alt="" coords="5,80,135,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="8,5,132,32"/>
+</map>
