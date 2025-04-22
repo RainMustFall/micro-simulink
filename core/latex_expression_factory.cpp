@@ -6,7 +6,8 @@ std::unique_ptr<LatexExpression> LatexExpressionFactory::CreateScalar(
     double scalar) const {
   std::ostringstream sstream;
   sstream << scalar;
-  return std::make_unique<LatexExpression>(sstream.str());
+  auto priority = scalar < 0 ? Priority::Negation : Priority::Expression;
+  return std::make_unique<LatexExpression>(sstream.str(), priority);
 }
 
 std::unique_ptr<LatexExpression> LatexExpressionFactory::CreateX() const {

@@ -29,6 +29,7 @@ HEADERS += \
     integral_node.h \
     latex_expression.h \
     latex_expression_factory.h \
+    negation_node.h \
     node.h \
     root_node.h \
     scalar.h \

@@ -26,6 +26,7 @@ SOURCES += \
     text_visual_node.cpp \
     trigonometry_visual_nodes.cpp \
     visual_binary_operator.cpp \
+    visual_negation_operator.cpp \
     visual_node.cpp \
     x_visual_node.cpp
 
@@ -46,6 +47,7 @@ HEADERS += \
     text_visual_node.h \
     trigonometry_visual_nodes.h \
     visual_binary_operator.h \
+    visual_negation_operator.h \
     visual_node.h \
     x_visual_node.h
 

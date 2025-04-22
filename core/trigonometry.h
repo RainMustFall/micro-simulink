@@ -1,6 +1,8 @@
 #ifndef TRIGONOMETRY_H
 #define TRIGONOMETRY_H
 
+#include "node.h"
+
 /*!
  * @brief The node calculating sine of its input
  */

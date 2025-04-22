@@ -11,8 +11,8 @@ std::unique_ptr<LatexExpression> LatexExpression::operator+(
     const LatexExpression& rhs) {
   auto priority = Priority::Additive;
   return std::make_unique<LatexExpression>(
-      MaybePutParentheses(expression_, priority) + "+" +
-          MaybePutParentheses(rhs.expression_, priority),
+      MaybePutParentheses(*this, priority) + "+" +
+          MaybePutParentheses(rhs, priority),
       priority);
 }
 
@@ -20,17 +20,23 @@ std::unique_ptr<LatexExpression> LatexExpression::operator-(
     const LatexExpression& rhs) {
   auto priority = Priority::Additive;
   return std::make_unique<LatexExpression>(
-      MaybePutParentheses(expression_, priority) + "-" +
-          MaybePutParentheses(rhs.expression_, priority),
+      MaybePutParentheses(*this, priority) + "-" +
+          MaybePutParentheses(rhs, priority),
       priority);
+}
+
+std::unique_ptr<LatexExpression> LatexExpression::operator-() {
+  auto priority = Priority::Negation;
+  return std::make_unique<LatexExpression>(
+      "-" + MaybePutParentheses(*this, Priority::Multiplicative), priority);
 }
 
 std::unique_ptr<LatexExpression> LatexExpression::operator*(
     const LatexExpression& rhs) {
   auto priority = Priority::Multiplicative;
   return std::make_unique<LatexExpression>(
-      MaybePutParentheses(expression_, priority) + "\\cdot" +
-          MaybePutParentheses(rhs.expression_, priority),
+      MaybePutParentheses(*this, priority) + "\\cdot" +
+          MaybePutParentheses(rhs, priority),
       priority);
 }
 
@@ -55,7 +61,7 @@ std::unique_ptr<LatexExpression> LatexExpression::Integrate(
     double lower_limit, double upper_limit) const {
   std::ostringstream ss;
   ss << "\\int_{" << lower_limit << "}^{" << upper_limit << "}"
-     << MaybePutParentheses(expression_, Priority::Multiplicative) << "dx";
+     << MaybePutParentheses(*this, Priority::Multiplicative) << "dx";
   return std::make_unique<LatexExpression>(ss.str(), Priority::Multiplicative);
 }
 
@@ -79,14 +85,14 @@ const std::string& LatexExpression::GetExpression() const {
   return expression_;
 }
 
-std::string LatexExpression::MaybePutParentheses(std::string expression,
-                                                 Priority new_priority) const {
+std::string LatexExpression::MaybePutParentheses(
+    const LatexExpression& expression, Priority new_priority) const {
   if (static_cast<int>(new_priority) >
-      static_cast<int>(last_operation_priority_)) {
-    return "\\left(" + expression + "\\right)";
+      static_cast<int>(expression.last_operation_priority_)) {
+    return "\\left(" + expression.GetExpression() + "\\right)";
   }
 
-  return expression;
+  return expression.GetExpression();
 }
 
 std::unique_ptr<LatexExpression> LatexExpression::wrapWithFunction(

@@ -5,6 +5,7 @@
 #include "function.h"
 #include "graph_controller.h"
 #include "integral_node.h"
+#include "negation_node.h"
 #include "root_node.h"
 #include "scalar.h"
 #include "scalar_node.h"
@@ -27,6 +28,7 @@ class TestNumericGraph : public QObject {
   void testMinus();
   void testDivide();
   void testPower();
+  void testNegationParentheses();
 };
 
 void TestNumericGraph::testAddTwoNumbers() {
@@ -205,6 +207,23 @@ void TestNumericGraph::testMinus() {
   controller.ConnectNodes(minus, root, 0);
 
   QCOMPARE(controller.GetGraphResult(), 1);
+}
+
+void TestNumericGraph::testNegationParentheses() {
+  auto controller = GraphController();
+  auto root = controller.AddNode<RootNode>();
+
+  auto two = controller.AddNode<ScalarNode>(2);
+  auto minus = controller.AddNode<MinusOperator>();
+  auto minus_one = controller.AddNode<ScalarNode>(-1);
+  auto outer_minus = controller.AddNode<NegationNode>();
+
+  controller.ConnectNodes(two, minus, 0);
+  controller.ConnectNodes(minus_one, minus, 1);
+  controller.ConnectNodes(minus, outer_minus, 0);
+  controller.ConnectNodes(outer_minus, root, 0);
+
+  QCOMPARE(controller.GetLatex(), "-\\left(2-\\left(-1\\right)\\right)");
 }
 
 QTEST_APPLESS_MAIN(TestNumericGraph)

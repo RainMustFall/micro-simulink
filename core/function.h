@@ -22,6 +22,7 @@ class Function {
 
   virtual std::unique_ptr<Function> operator+(const Function &rhs);
   virtual std::unique_ptr<Function> operator-(const Function &rhs);
+  virtual std::unique_ptr<Function> operator-();
   virtual std::unique_ptr<Function> operator/(const Function &rhs);
   virtual std::unique_ptr<Function> operator*(const Function &rhs);
   virtual std::unique_ptr<Function> operator^(const Function &rhs);

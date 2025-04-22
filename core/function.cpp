@@ -60,6 +60,10 @@ std::unique_ptr<Function> Function::Cot() const {
       [](double x) { return std::cos(x) / std::sin(x); });
 }
 
+std::unique_ptr<Function> Function::operator-() {
+  return calculateMathFunction([](double x) { return -x; });
+}
+
 std::unique_ptr<Function> Function::OperatorWithFunction(
     const Function &function,
     const std::function<double(double, double)> &op) const {

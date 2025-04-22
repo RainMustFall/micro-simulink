@@ -5,10 +5,11 @@
 #include <string>
 
 enum class Priority {
-  Additive = 0,
-  Multiplicative = 1,
-  Power = 2,
-  Expression = 3
+  Negation = 0,
+  Additive = 1,
+  Multiplicative = 2,
+  Power = 3,
+  Expression = 4
 };
 
 /*!
@@ -22,6 +23,7 @@ class LatexExpression {
   LatexExpression(std::string expression,
                   Priority last_operation_priority = Priority::Expression);
   std::unique_ptr<LatexExpression> operator+(const LatexExpression& rhs);
+  std::unique_ptr<LatexExpression> operator-();
   std::unique_ptr<LatexExpression> operator-(const LatexExpression& rhs);
   std::unique_ptr<LatexExpression> operator/(const LatexExpression& rhs);
   std::unique_ptr<LatexExpression> operator*(const LatexExpression& rhs);
@@ -66,7 +68,7 @@ class LatexExpression {
   const std::string& GetExpression() const;
 
  private:
-  std::string MaybePutParentheses(std::string expression,
+  std::string MaybePutParentheses(const LatexExpression& expression,
                                   Priority new_priority) const;
 
   std::unique_ptr<LatexExpression> wrapWithFunction(

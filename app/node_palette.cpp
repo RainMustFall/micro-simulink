@@ -6,10 +6,11 @@
 #include <QtGui/QDrag>
 #include <QtWidgets/QListWidgetItem>
 
-#include "visual_binary_operator.h"
 #include "integral_visual_node.h"
 #include "number_visual_node.h"
 #include "trigonometry_visual_nodes.h"
+#include "visual_binary_operator.h"
+#include "visual_negation_operator.h"
 #include "x_visual_node.h"
 
 NodePalette::NodePalette(GraphController *controller,
@@ -25,6 +26,7 @@ NodePalette::NodePalette(GraphController *controller,
       new NodePaletteItem<MultipliesVisualNode>(qtTrId("multiplies-option")));
   addItem(new NodePaletteItem<PowerVisualNode>(qtTrId("power-option")));
   addItem(new NodePaletteItem<IntegralVisualNode>(qtTrId("integral-option")));
+  addItem(new NodePaletteItem<VisualNegationOperator>(qtTrId("neg-option")));
   addItem(new NodePaletteItem<SineVisualNode>(qtTrId("sin-option")));
   addItem(new NodePaletteItem<CosineVisualNode>(qtTrId("cos-option")));
   addItem(new NodePaletteItem<TangentVisualNode>(qtTrId("tan-option")));
