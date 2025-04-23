@@ -2,9 +2,7 @@
 
 Connection::Connection(ConnectionPoint *source, ConnectionPoint *dest,
                        QGraphicsItem *parent)
-    : QGraphicsItem(parent), m_sourcePoint(source), m_destPoint(dest) {
-  setZValue(-1);  // Draw connections behind nodes
-}
+    : QGraphicsItem(parent), m_sourcePoint(source), m_destPoint(dest) {}
 
 QRectF Connection::boundingRect() const {
   if (!m_sourcePoint || !m_destPoint) return QRectF();
