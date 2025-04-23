@@ -42,3 +42,5 @@ std::unique_ptr<Function> Scalar::calculateMathFunction(
     std::function<double(double)> func) const {
   return std::unique_ptr<Function>(new Scalar(func(GetValue())));
 }
+
+Scalar::~Scalar() {}

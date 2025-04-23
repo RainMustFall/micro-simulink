@@ -39,7 +39,8 @@ class Scalar : public Function {
       const Function &scalar,
       const std::function<double(double, double)> &op) const override;
 
-  // Function interface
+  virtual ~Scalar();
+
  protected:
   std::unique_ptr<Function> calculateMathFunction(
       std::function<double(double)> func) const override;

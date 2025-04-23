@@ -112,3 +112,5 @@ std::unique_ptr<LatexExpression> LatexExpression::wrapWithFunction(
   return std::make_unique<LatexExpression>("\\" + function + "{\\left(" +
                                            expression_ + "\\right)}");
 }
+
+LatexExpression::~LatexExpression() {}

@@ -85,6 +85,8 @@ class LatexExpression {
    */
   const std::string& GetExpression() const;
 
+  virtual ~LatexExpression();
+
  private:
   std::string MaybePutParentheses(const LatexExpression& expression,
                                   Priority new_priority) const;

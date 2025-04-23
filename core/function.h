@@ -104,6 +104,8 @@ class Function {
       const Function &scalar,
       const std::function<double(double, double)> &op) const;
 
+  virtual ~Function();
+
  protected:
   /*!
    * @brief Apply some mathematical unary function to the internal

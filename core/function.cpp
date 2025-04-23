@@ -98,3 +98,5 @@ std::unique_ptr<Function> Function::calculateMathFunction(
         return func(my_function(x));
       });
 }
+
+Function::~Function() {}
