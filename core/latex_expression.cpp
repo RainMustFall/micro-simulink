@@ -35,7 +35,7 @@ std::unique_ptr<LatexExpression> LatexExpression::operator*(
     const LatexExpression& rhs) {
   auto priority = Priority::Multiplicative;
   return std::make_unique<LatexExpression>(
-      MaybePutParentheses(*this, priority) + "\\cdot" +
+      MaybePutParentheses(*this, priority) + "\\cdot " +
           MaybePutParentheses(rhs, priority),
       priority);
 }
