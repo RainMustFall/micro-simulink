@@ -42,7 +42,7 @@ class Scalar : public Function {
   // Function interface
  protected:
   std::unique_ptr<Function> calculateMathFunction(
-      std::function<double(double)> func) const;
+      std::function<double(double)> func) const override;
 };
 
 #endif  // SCALAR_H

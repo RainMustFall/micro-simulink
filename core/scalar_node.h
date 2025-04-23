@@ -1,6 +1,7 @@
 #ifndef SCALAR_NODE_H
 #define SCALAR_NODE_H
 
+#include "execution_result_concept.h"
 #include "node.h"
 
 /*!
@@ -9,7 +10,7 @@
  * Returns an object of type T, which represents the number stored in this node
  * (e.g. scalar 5 or LaTeX expression “5”).
  */
-template <typename T>
+template <GraphExecutionResult T>
 class ScalarNode : public Node<T> {
  public:
   /*!

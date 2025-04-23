@@ -1,12 +1,13 @@
 #ifndef UNARY_ALGEBRAIC_FUNCTIONS_H
 #define UNARY_ALGEBRAIC_FUNCTIONS_H
 
+#include "execution_result_concept.h"
 #include "node.h"
 
 /*!
  * @brief The node calculating square root of its input
  */
-template <typename T>
+template <GraphExecutionResult T>
 class SqrtNode : public Node<T> {
  public:
   SqrtNode() : Node<T>(1) {}
@@ -21,7 +22,7 @@ class SqrtNode : public Node<T> {
 /*!
  * @brief The node calculating natural log of its input
  */
-template <typename T>
+template <GraphExecutionResult T>
 class LogNode : public Node<T> {
  public:
   LogNode() : Node<T>(1) {}
@@ -36,7 +37,7 @@ class LogNode : public Node<T> {
 /*!
  * @brief The node calculating exponent of its input
  */
-template <typename T>
+template <GraphExecutionResult T>
 class ExpNode : public Node<T> {
  public:
   ExpNode() : Node<T>(1) {}

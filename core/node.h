@@ -7,6 +7,7 @@
 
 #include "exceptions.h"
 #include "execution_result_factory.h"
+#include "execution_result_concept.h"
 
 /*!
  * @brief Represents a node of the graph (input, output or intermediate).
@@ -21,7 +22,7 @@
  * type that supports specific arithmetic operations (such as the addition
  * operator).
  */
-template <typename T>
+template <GraphExecutionResult T>
 class Node {
  public:
   /*!

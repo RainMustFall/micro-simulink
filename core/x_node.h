@@ -1,6 +1,7 @@
 #ifndef X_NODE_H
 #define X_NODE_H
 
+#include "execution_result_concept.h"
 #include "node.h"
 
 /*!
@@ -9,7 +10,7 @@
  *  Returns an object of type T that represents the function y = x (e.g. functor
  * or LaTeX expression “x”).
  */
-template <typename T>
+template <GraphExecutionResult T>
 class XNode : public Node<T> {
  public:
   XNode() : Node<T>(0) {}

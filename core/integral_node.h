@@ -1,12 +1,13 @@
 #ifndef INTEGRAL_NODE_H
 #define INTEGRAL_NODE_H
 
+#include "execution_result_concept.h"
 #include "node.h"
 
 /*!
  * @brief The node performing integration of its input
  */
-template <typename T>
+template <GraphExecutionResult T>
 class IntegralNode : public Node<T> {
  public:
   /*!

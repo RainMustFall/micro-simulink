@@ -22,6 +22,7 @@ SOURCES += \
 HEADERS += \
     binary_operator.h \
     exceptions.h \
+    execution_result_concept.h \
     execution_result_factory.h \
     function.h \
     graph_controller.h \

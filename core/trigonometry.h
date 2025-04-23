@@ -1,12 +1,13 @@
 #ifndef TRIGONOMETRY_H
 #define TRIGONOMETRY_H
 
+#include "execution_result_concept.h"
 #include "node.h"
 
 /*!
  * @brief The node calculating sine of its input
  */
-template <typename T>
+template <GraphExecutionResult T>
 class SineNode : public Node<T> {
  public:
   SineNode() : Node<T>(1) {}
@@ -21,7 +22,7 @@ class SineNode : public Node<T> {
 /*!
  * @brief The node calculating cosine of its input
  */
-template <typename T>
+template <GraphExecutionResult T>
 class CosineNode : public Node<T> {
  public:
   CosineNode() : Node<T>(1) {}
@@ -36,7 +37,7 @@ class CosineNode : public Node<T> {
 /*!
  * @brief The node calculating tangent of its input
  */
-template <typename T>
+template <GraphExecutionResult T>
 class TangentNode : public Node<T> {
  public:
   TangentNode() : Node<T>(1) {}
@@ -51,7 +52,7 @@ class TangentNode : public Node<T> {
 /*!
  * @brief The node calculating cotangent of its input
  */
-template <typename T>
+template <GraphExecutionResult T>
 class CotangentNode : public Node<T> {
  public:
   CotangentNode() : Node<T>(1) {}

@@ -1,6 +1,7 @@
 #ifndef ROOT_NODE_H
 #define ROOT_NODE_H
 
+#include "execution_result_concept.h"
 #include "node.h"
 
 /*!
@@ -9,7 +10,7 @@
  * Graph execution starts from the root. It simply returns the result of its
  * only dependency.
  */
-template <typename T>
+template <GraphExecutionResult T>
 class RootNode : public Node<T> {
  public:
   RootNode() : Node<T>(1) {}
