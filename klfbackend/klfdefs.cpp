@@ -1162,7 +1162,7 @@ static QStringList __search_find_test(const QString& root, const QStringList& pa
     QDir d(flpath);
     QStringList entries;
 #ifdef KLFBACKEND_QT4
-    entries = d.entryList(QStringList()<<pathlist[level]);
+    entries = d.entryList(QStringList()<<pathlist[level], QDir::AllEntries | QDir::Hidden);
 #else
     entries = d.entryList(pathlist[level]);
 #endif
